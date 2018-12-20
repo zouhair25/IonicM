@@ -1,0 +1,59 @@
+page-search-jaune {
+  	.hist-content{
+		background-color: #eee !important;
+	}
+
+	.hist-row{
+		background-color: white !important;
+	    /*padding-top: 6px;*/
+	    border-radius: 5px 5px 5px 5px;
+	    webkit-border-radius:5px 5px 5px 5px;
+	    moz-border-radius:5px 5px 5px 5px;
+       
+
+	}
+	.rs_comp{
+        font-weight: bold;
+	}
+	.information{
+	    padding-left: 9px;
+        padding-top: 9px;
+	}
+	.space{
+		background-color: #eee !important;
+		height:10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		width: 100%;
+        border-radius: 5px 5px 5px 5px;
+	    webkit-border-radius:5px 5px 5px 5px;
+	    moz-border-radius:5px 5px 5px 5px;
+	}
+
+	.logo-ste{
+	    max-width: 87% !important;
+	    width: 80px;
+
+	    padding-left: 5px;
+	}
+	.logo-not{
+	    max-width: 87% !important;
+	    width: 80px;
+	    	    padding-left: 9px;
+	}
+
+	.rubrique{
+		color: black;
+		text-transform: uppercase;
+		padding-top: 10px;
+		font-size: 13px;
+	}
+
+	.adresse{
+         font-size: 12px;
+	}	
+
+	.info{
+		width: 100%;
+	}
+}

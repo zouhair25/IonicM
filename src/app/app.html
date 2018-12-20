@@ -1,0 +1,40 @@
+<ion-menu [content]="content" type="">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title menuClose><img src="../assets/img/logo.png"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+        <button ion-item icon-start (click)="onNavigate(searchPage)">
+            <ion-icon name="search"></ion-icon>Rechercher
+        </button>
+        <button ion-item icon-start (click)="onNavigate(historiquePage)">
+            <ion-icon name="ios-information-circle-outline"></ion-icon>Historique
+        </button>
+        <button ion-item icon-start (click)="onNavigate(favorisPage)">
+            <ion-icon name="md-heart-outline"></ion-icon>
+            Favoris
+        </button>
+        <button ion-item icon-start (click)="onNavigate(loginPage)">
+            <ion-icon name="ios-contact-outline"></ion-icon>
+            Mon compte
+        </button>
+        <button ion-item icon-start (click)="onNavigate(optionsPage)">
+            <ion-icon name="ios-add-circle-outline"></ion-icon>
+            Donner votre avis sur l'app
+        </button>
+        <button ion-item icon-start (click)="onNavigate(optionsPage)">
+            <ion-icon name="ios-settings-outline"></ion-icon>
+            Paramètres
+        </button>
+        <button ion-item icon-start (click)="onNavigate(optionsPage)">
+            <ion-icon name="ios-information-circle-outline"></ion-icon>
+            A propos
+        </button>
+
+         
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="tabsPage" #content></ion-nav>
