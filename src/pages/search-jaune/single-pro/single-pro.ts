@@ -129,10 +129,15 @@ export class SingleProPage {
    
 
         addMarker(){
-         
+          let title;
+          if(this.rs_comp1){
+            title =this.rs_comp1;
+          }else{
+            title =this.rs_comp2;
+          }
         this.map.addMarker({
-           title: 'My Marker',
-           icon: 'blue',
+           title: title,
+           icon: '#ffdd00',
            animation: 'Drop',
            position: {
              lat: this.location.lat,
