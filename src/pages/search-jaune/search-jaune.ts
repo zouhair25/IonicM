@@ -19,12 +19,28 @@ export class SearchJaunePage implements OnInit{
   ou;
   list;
   count;
+  items = [];
   private searchTerms = new Subject<string>();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	          ) {
+    /*for(let i=0;i<30; i++){
+      this.items.push(this.items.length);
+    }*/
   }
+  
+ /*doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
 
+    setTimeout(() => {
+      for (let i = 0; i < 30; i++) {
+        this.items.push( this.items.length );
+      }
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+  }*/
   ionViewDidLoad() {
    
         this.quiquoi =this.navParams.get('quiquoi');
@@ -32,7 +48,7 @@ export class SearchJaunePage implements OnInit{
        
        
    
-
+  
 
   }
   ionViewDidEnter (){
@@ -61,7 +77,7 @@ export class SearchJaunePage implements OnInit{
        this.navCtrl.push(HomePage);
     }
     onDisplayPro(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push(HomePage, {pro: pro})
+      this.navCtrl.push(SingleProPage, {pro: pro})
     }
 
   ngOnInit(){
@@ -93,7 +109,7 @@ export class SearchJaunePage implements OnInit{
           data_send += '          <ou>'+ou+'</ou>';
           data_send += '          <region>Rabat-Salé-Zemmour-Zaër</region>';
           data_send += '          <start>'+start+'</start>';
-          data_send += '          <extract>100</extract>';  
+          data_send += '          <extract>4</extract>';  
           data_send += '          <first>'+first+'</first>';  
           data_send += '          <second>'+second+'</second>';  
           data_send += '          <third>'+third+'</third>';

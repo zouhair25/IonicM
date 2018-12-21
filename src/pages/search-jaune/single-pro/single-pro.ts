@@ -10,6 +10,7 @@ import {
   CameraPosition,
   MarkerOptions,
   Marker,
+  LatLng,
   Environment
 } from '@ionic-native/google-maps';
 @Component({
@@ -18,8 +19,9 @@ import {
 })
 export class SingleProPage {
     map: GoogleMap;
-    
-
+    @ViewChild('map') mapElement: ElementRef;
+    private location: LatLng; 
+   
     pro;
     rs_comp1;
     rs_comp2;
@@ -50,9 +52,20 @@ export class SingleProPage {
 
     longitude1;
     longitude2;
+    longitude3;
+    longitude4;
+    longitude5;
+
+
+    
 
     latitude1;
     latitude2;
+    latitude3;
+    latitude4;
+    latitude5;
+
+
 
     module1;
     module2;
@@ -69,10 +82,11 @@ export class SingleProPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
               private platform: Platform) {
+     
   }
 
    
-    loadMap() {
+   /* loadMap() {
     //ionic native google maps https://github.com/ionic-team/ionic-native-google-maps/blob/master/documents/README.md
     let options: GoogleMapOptions = {
       mapType: 'MAP_TYPE_NORMAL',
@@ -111,17 +125,37 @@ export class SingleProPage {
         console.log(params[0]);
       });
     });
-  }
+  }*/
+   
 
-
-
+        addMarker(){
+         
+        this.map.addMarker({
+           title: 'My Marker',
+           icon: 'blue',
+           animation: 'Drop',
+           position: {
+             lat: this.location.lat,
+             lng: this.location.lng
+           }
+        }).then(marker =>{
+          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(()=>{
+            alert('marker clicked');
+          });
+        })
+      }
   ionViewDidLoad() {
-     this.loadMap();
+    // this.loadMap();
+
+
+
      this.pro= this.navParams.get('pro');
     //this.loadmap();
     //console.log('loadmap',this.loadmap());
    console.log('i t : ', this.pro.length);
-   console.log('ionViewDidLoad SinglePro',this.pro);
+   console.log('longitude2 longitude2',this.longitude2);
+   console.log('latitude2 latitude2',this.latitude2);
+
    this.code_firme=this.pro[0].code_firme;
    this.rs_comp1=this.pro[1].rs_comp;
    this.rs_comp2=this.pro[2].rs_comp;
@@ -159,6 +193,7 @@ export class SingleProPage {
       this.rubrique3=this.pro[11].rubrique;
       this.texte2=this.pro[11].texte;
       this.longitude1=this.pro[11].longitude;
+         console.log('longitude1',this.longitude1);
    }
    
 
@@ -166,28 +201,37 @@ export class SingleProPage {
       this.longitude2=this.pro[12].longitude;
       this.rubrique4=this.pro[12].rubrique;
       this.latitude1=this.pro[12].latitude;
-       console.log('latitude');
+       console.log('latitude1',this.latitude1);
    }
-   if(this.pro.length>13) {
+   if(this.pro.length>12) {
       this.latitude2=this.pro[13].latitude;
    }
    if(this.pro.length>13) {
       this.video=this.pro[14].video;
       this.module1=this.pro[14].module;
-
+      this.longitude3=this.pro[14].longitude;
+      
       console.log('module1 :',this.module1);
    }
    if(this.pro.length>15) {
       this.poids=this.pro[15].poids;
       this.motcle=this.pro[15].motcle;
       this.module2=this.pro[15].module;
-
+      this.latitude3=this.pro[15].latitude;
+      this.longitude4=this.pro[15].longitude;
+      
        console.log('motcle :',this.motcle);  
    }
    if(this.pro.length>15) {
       this.region=this.pro[16].region;
       this.module3=this.pro[16].module;
+      this.longitude5=this.pro[16].longitude;  
+      this.latitude4=this.pro[16].latitude;
+
       console.log('module 2:',this.module3);
+   }
+   if(this.pro.length>17){
+      this.latitude5=this.pro[17].latitude;
    }
    if(this.pro.length>19) {
       this.webinfo_link1=this.pro[19].webinfo_link;
@@ -198,6 +242,47 @@ export class SingleProPage {
 
    
 
+    this.platform.ready().then(()=>{
+      let element = this.mapElement.nativeElement;
+      this.map =this.googleMaps.create('map');
+      // this.map = GoogleMaps.create('map', options);
+      this.map.one(GoogleMapsEvent.MAP_READY).then(()=>{
+        
+        if(this.longitude1 && this.latitude1){
+          this.location =new LatLng(+this.latitude1,+this.longitude1);
+          console.log('oui ici 1');
+        }else if(this.longitude2 && this.latitude2){
+           this.location =new LatLng(+this.latitude2,+this.longitude2);
+          console.log('non ici 2',this.latitude2);
+          console.log('non ici',this.longitude2);
+          
+        }else if(this.longitude3 && this.latitude3){
+           this.location =new LatLng(+this.latitude3,+this.longitude3);
+          console.log('non ici 3',this.latitude3);
+          console.log('non ici',this.longitude3);
+        } else if(this.longitude4 && this.latitude4){
+           this.location =new LatLng(+this.latitude4,+this.longitude4);
+          console.log('non ici 4',this.latitude4);
+          console.log('non ici',this.longitude4);
+        }else {
+           this.location =new LatLng(+this.latitude5,+this.longitude5);
+          console.log('non ici 3',this.latitude5);
+          console.log('non ici',this.longitude5);          
+        }
+        console.log('non ici',this.location);
+        //this.location =new LatLng(+this.latitude2,+this.longitude2);
+        //this.location =new LatLng(33.512609,-7.659389);
+          console.log('',this.location);
+
+        let options ={
+          target: this.location,
+          zoom: 18
+        };
+        this.map.moveCamera(options);
+        setTimeout(()=>{this.addMarker()},2000);
+      });
+
+    });
        
   }
 
