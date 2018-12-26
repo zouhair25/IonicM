@@ -78,10 +78,13 @@
             </div>
           </ion-item>
        
-          <!--<ion-item text-wrap>
+          <ion-item text-wrap>
             <b>Services et prestations: </b><br>
-              {{motcle}}
-          </ion-item>-->
+            <p *ngFor="let p of listPrestations">
+              {{p.title}}              
+            </p>
+
+          </ion-item>
         </ion-list>
 
       </ion-col>

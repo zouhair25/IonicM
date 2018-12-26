@@ -1,6 +1,7 @@
 import { Component,ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
-//import leaflet from 'leaflet';
+import * as $ from 'jquery';
+import xml2js from 'xml2js';
 import { Geolocation } from '@ionic-native/geolocation';
 import {
   GoogleMaps,
@@ -50,20 +51,23 @@ export class SingleProPage {
     texte1;
     texte2;
 
+    longitude0;
     longitude1;
     longitude2;
     longitude3;
     longitude4;
     longitude5;
+    longitude6;
 
 
     
-
+    latitude0;
     latitude1;
     latitude2;
     latitude3;
     latitude4;
     latitude5;
+    latitude6;
 
 
 
@@ -77,7 +81,8 @@ export class SingleProPage {
     webinfo_link1;
     webinfo_link2;
     motcle;
-
+    
+    listPrestations: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
@@ -157,9 +162,7 @@ export class SingleProPage {
      this.pro= this.navParams.get('pro');
     //this.loadmap();
     //console.log('loadmap',this.loadmap());
-   console.log('i t : ', this.pro.length);
-   console.log('longitude2 longitude2',this.longitude2);
-   console.log('latitude2 latitude2',this.latitude2);
+
 
    this.code_firme=this.pro[0].code_firme;
    this.rs_comp1=this.pro[1].rs_comp;
@@ -190,7 +193,8 @@ export class SingleProPage {
    this.web=this.pro[8].web;
    this.rubrique1=this.pro[9].rubrique;
    this.rubrique2=this.pro[10].rubrique;
-
+   this.longitude0=this.pro[9].longitude;
+   this.latitude0=this.pro[10].latitude;
 
 
    this.texte1=this.pro[10].texte;
@@ -198,7 +202,7 @@ export class SingleProPage {
       this.rubrique3=this.pro[11].rubrique;
       this.texte2=this.pro[11].texte;
       this.longitude1=this.pro[11].longitude;
-         console.log('longitude1',this.longitude1);
+
    }
    
 
@@ -210,33 +214,40 @@ export class SingleProPage {
    }
    if(this.pro.length>12) {
       this.latitude2=this.pro[13].latitude;
+      this.longitude3=this.pro[13].longitude;
+
    }
    if(this.pro.length>13) {
       this.video=this.pro[14].video;
       this.module1=this.pro[14].module;
-      this.longitude3=this.pro[14].longitude;
+      this.longitude4=this.pro[14].longitude;
+      this.latitude3=this.pro[14].latitude;
       
-      console.log('module1 :',this.module1);
+
    }
    if(this.pro.length>15) {
       this.poids=this.pro[15].poids;
       this.motcle=this.pro[15].motcle;
       this.module2=this.pro[15].module;
-      this.latitude3=this.pro[15].latitude;
-      this.longitude4=this.pro[15].longitude;
+      this.latitude4=this.pro[15].latitude;
+      this.longitude5=this.pro[15].longitude;
       
-       console.log('motcle :',this.motcle);  
+
    }
    if(this.pro.length>15) {
       this.region=this.pro[16].region;
       this.module3=this.pro[16].module;
       this.longitude5=this.pro[16].longitude;  
-      this.latitude4=this.pro[16].latitude;
+      this.latitude5=this.pro[16].latitude;
 
       console.log('module 2:',this.module3);
    }
+   if(this.pro.length>16){
+      this.longitude6=this.pro[16].longitude;  
+
+   }
    if(this.pro.length>17){
-      this.latitude5=this.pro[17].latitude;
+      this.latitude6=this.pro[17].latitude;
    }
    if(this.pro.length>19) {
       this.webinfo_link1=this.pro[19].webinfo_link;
@@ -253,31 +264,27 @@ export class SingleProPage {
       // this.map = GoogleMaps.create('map', options);
       this.map.one(GoogleMapsEvent.MAP_READY).then(()=>{
         
-        if(this.longitude1 && this.latitude1){
+        if(this.longitude0 && this.latitude0){
+          this.location =new LatLng(+this.latitude0,+this.longitude0);
+          console.log('oui ici 0');
+        }
+        else if(this.longitude1 && this.latitude1){
           this.location =new LatLng(+this.latitude1,+this.longitude1);
           console.log('oui ici 1');
         }else if(this.longitude2 && this.latitude2){
-           this.location =new LatLng(+this.latitude2,+this.longitude2);
-          console.log('non ici 2',this.latitude2);
-          console.log('non ici',this.longitude2);
-          
+           this.location =new LatLng(+this.latitude2,+this.longitude2);  
         }else if(this.longitude3 && this.latitude3){
            this.location =new LatLng(+this.latitude3,+this.longitude3);
-          console.log('non ici 3',this.latitude3);
-          console.log('non ici',this.longitude3);
         } else if(this.longitude4 && this.latitude4){
            this.location =new LatLng(+this.latitude4,+this.longitude4);
-          console.log('non ici 4',this.latitude4);
-          console.log('non ici',this.longitude4);
-        }else {
-           this.location =new LatLng(+this.latitude5,+this.longitude5);
-          console.log('non ici 3',this.latitude5);
-          console.log('non ici',this.longitude5);          
         }
-        console.log('non ici',this.location);
+         else if(this.longitude5 && this.latitude5){
+           this.location =new LatLng(+this.latitude5,+this.longitude5);
+        }else {
+           this.location =new LatLng(+this.latitude6,+this.longitude6);
+        }
         //this.location =new LatLng(+this.latitude2,+this.longitude2);
         //this.location =new LatLng(33.512609,-7.659389);
-          console.log('',this.location);
 
         let options ={
           target: this.location,
@@ -288,7 +295,79 @@ export class SingleProPage {
       });
 
     });
-       
+      
+      // recuperation des prestation
+      this.listPrestations=this.prestation_dispaly(this.code_firme);
+      console.log('this',this.listPrestations);
   }
+  prestation_dispaly(code_firme){
+    this.prestation(code_firme).then((data)=>{
+       this.listPrestations=data;
+    })
+     return this.listPrestations;  
+  }
+
+ prestation(code_firme){
+       let list: any = [];
+       return new Promise((resolve,  reject) =>{
+       let  start_files_sec =1;
+       //let code_firme =2107435;
+       var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
+          data_send += '  <methodcall>';
+          data_send += '    <methodname call="get_prestation_by_cf">';  
+          data_send += '      <params>';  
+          data_send += '        <value>';
+          data_send += '          <string>'+code_firme+'</string>';
+          data_send += '          <extract>5</extract>';  
+          data_send += '        </value>';
+          data_send += '      </params>';  
+          data_send += '    </methodname>';
+          data_send += '  </methodcall>';
+       $.ajax({
+              
+              type       : "POST",
+              url        : "https://www.telecontact.ma/WsMobTlC2014nVZA",
+              //headers: {accepts: '*'},
+              crossDomain: true,
+              beforeSend : function() {$("#results_loading").append('<div class="noresults"><br /><br />Veuillez patienter<br /><br /><img src="media/images/home/load_result.gif" /></div>');/*$.mobile.loading('show')*/},
+              complete   : function() {$("#results_loading").hide();/*$.mobile.loading('hide')*/},
+              data       : {telecontact : data_send},
+              dataType   : 'text',
+              success    : function(response) {
+                
+                 
+                let parser = new xml2js.Parser(
+                       {
+                          trim: true,
+                          explicitArray: true
+                       });
+              parser.parseString(response, function (err, result){
+                
+                console.log('response ville',result);
+                for(let answers of result.search_answers.search_answer) {
+                                  console.log('answers d',answers);  
+
+                         if (answers.items[0]=="      ") {
+
+                                     //yyy.push({'title': 'Aucun resultat'}); 
+                               }else{
+                 
+                     for(let item of answers.items){
+
+                       for(let i of item.item){
+                         //console.log('item d',i);
+                         list.push({'title': i.name[0]});
+      //console.log('this.listPrestations',list);
+
+                       }
+                     }
+                   }
+                 }
+                 resolve(list);
+                });
+              }
+       });
+    });
+     }
 
 }
