@@ -22,6 +22,8 @@ import { LoginPage } from '../pages/login/login';
 import { OptionsPage } from '../pages/options/options';
 import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
+import { AproximitePage } from '../pages/aproximite/aproximite';
+
 import { SingleProPage } from '../pages/search-jaune/single-pro/single-pro';
 import { Api } from '../providers/api';
 import { Functions } from '../providers/functions';
@@ -42,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     JaunesPage,
     BlanchesPage,
     SearchJaunePage,
-    SingleProPage
+    SingleProPage,
+    AproximitePage
   ],
   imports: [
     IonicStorageModule.forRoot(),
@@ -67,7 +70,8 @@ import { FormsModule } from '@angular/forms';
     JaunesPage,
     BlanchesPage,
     SearchJaunePage,
-    SingleProPage
+    SingleProPage,
+    AproximitePage
   ],
   providers: [
     StatusBar,

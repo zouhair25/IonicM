@@ -43,6 +43,7 @@ export class SearchPage {
 
   ionViewDidLoad() {
  
+     
 /*this.geolocation.getCurrentPosition().then((resp)=>{
      console.log('Location', resp);
     }).catch((error) => {
@@ -64,7 +65,7 @@ export class SearchPage {
 
 
        })*/
-
+    
    
   /////////////////////////////////////
   }

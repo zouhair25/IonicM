@@ -61,4 +61,11 @@
     <ion-grid >
     <ion-row *ngIf="count==0"><ion-col col12>Aucun resultat</ion-col></ion-row>
     </ion-grid>
+ <!--<ion-list>
+   <ion-item *ngFor="let i of items">{{i}}</ion-item>
+ </ion-list>-->
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content  loadingSpinner="bubbles"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

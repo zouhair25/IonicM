@@ -23,7 +23,7 @@ export class JaunesPage{
   list;
   searchTerm = new Subject<string>();
   searchTermOu = new Subject<string>();
-  quiquoi: string='Cliniques';
+  quiquoi: string='Camera de surveillance';
   ou: string ='Casablanca';
   searching: any =false;
  // @ViewChild('searchbar') searchBox: Searchbar;
@@ -239,7 +239,7 @@ export class JaunesPage{
 	            data       : {telecontact : data_send},
 	            dataType   : 'text',
 	            success    : function(response) {
-
+                     console.log('response ville',response);
 	              let parser = new xml2js.Parser(
 	                     {
 	                        trim: true,

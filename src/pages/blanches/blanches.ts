@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,HostListener } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { JaunesPage } from '../jaunes/jaunes';
@@ -21,4 +21,6 @@ export class BlanchesPage {
   onGoJaunesPage(){
     this.navCtrl.push(JaunesPage);
   }
+
+
 }
