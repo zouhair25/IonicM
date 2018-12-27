@@ -21,6 +21,10 @@ export class SearchJaunePage implements OnInit{
   listScroll;
   count;
   items = [];
+  start =0;
+  extract =12;
+  i=0;
+  reste =this.start;
   private searchTerms = new Subject<string>();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -30,17 +34,41 @@ export class SearchJaunePage implements OnInit{
     }*/
   }
   
- doInfinite(infiniteScroll) {
+  doInfinite(infiniteScroll) {
     console.log('Begin async operation');
 
-    setTimeout(() => {
-      /*for (let i = 0; i < 30; i++) {
-        this.items.push( this.items.length );
-      }*/
-      this.onSubmitFormScroll(this.quiquoi,this.ou)
-      console.log('Async operation has ended');
-      infiniteScroll.complete();
-    }, 500);
+      setTimeout(() => {
+        
+
+
+         
+
+        //start = this.x;
+
+
+        if(this.start>this.count){
+            infiniteScroll.enable(false);
+                    console.log('this.start>this.count');
+        }else{
+
+          this.start=this.start+13;
+                   console.log('start :', this.start);
+         console.log('count :', this.count);
+            infiniteScroll.complete();  
+            this.i++;
+            console.log('i :',this.i); 
+            if(this.count-this.start<12){
+              this.extract=this.count-this.start;
+               console.log('this.extract',this.extract);
+            }
+            this.onSubmitFormScroll(this.quiquoi,this.ou, this.start, this.extract)
+
+           
+        }
+
+        
+      }, 500);
+   
   }
   ionViewDidLoad() {
    
@@ -65,10 +93,12 @@ export class SearchJaunePage implements OnInit{
       //this.navCtrl.push(SearchJaunePage,{list: this.list});
       return this.list;      
     }
-            onSubmitFormScroll(quiquoi: string, ou: string){
-      this.listesResultatsScroll(quiquoi,ou).then(
+            onSubmitFormScroll(quiquoi: string, ou: string, start,extract){
+            
+      this.listesResultatsScroll(quiquoi,ou, start,extract).then(
         (data)=>{
-          for(let i=0 ; i<data.length;i++){
+         //console.log('data',data.length);
+          for(let i=0 ; i<data[0].length;i++){
           this.list.push(data[0][i]);
         console.log('data[0]',data[0][i]);
         }
@@ -90,23 +120,31 @@ export class SearchJaunePage implements OnInit{
 
   }
 
-      listesResultatsScroll(quiqoui,ou){
+      listesResultatsScroll(quiqoui,ou,start,extract ){
          let list: any = [];
          let count;
+         let i;
           return new Promise((resolve,  reject) =>{
 
               var quiquoi = this.quiquoi; 
               var ou = this.ou; 
 
-              var start   = '6'; 
+              //let start: number  =6 ; 
               var first   = 'result'; 
               var second  ='result'; 
               var third   = 'result'; 
               var pos     = '0'; 
               var extract_sd   = '0'; 
-              var extract ='4',
+              //var extract ='12';
+              console.log('avant for',start);
+             /* for(i=6; i<this.count;i+6){
+                start =i;
+                              console.log('apres for',start);
+              }*/
+             // ++start;
+             //var start   = 6; 
 
-
+              console.log('apres for',start);
           var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
           data_send += '  <methodcall>';
           data_send += '    <methodname call="hmida">';  
@@ -150,40 +188,25 @@ export class SearchJaunePage implements OnInit{
 
                    parser.parseString(response, function (err, result)
                   {
-                       console.log('result', result.search_answers.search_answer[0].items[0].$.count);
+                       console.log('result', result);
                         count =result.search_answers.search_answer[0].items[0].$.count;
                        //count=result.search_answers.search_answer.items[0].$.count;
-                   for(let answers of result.search_answers.search_answer) {
-                          
-
+                   for(let answers of result.search_answers.search_answer) {                     
                          if (answers.items[0]=="      ") {
-
                                      list.push({'title': 'Aucun resultat'}); 
                                }else{
-
-                     for(let item of answers.items){
-                             console.log('i :',item.$.count);   
+                     for(let item of answers.items){                             
                       if(item.$.count>0)  {
-                       for(let i of item.item){
-            
-                         for(let i_data of i.item_data){
-    
+                       for(let i of item.item){            
+                         for(let i_data of i.item_data){    
                               let d: any =[];
                            for(let data of i_data.data){
-                                                 //console.log(data.$);
-                               //console.log('data',data);
-                            let   type=data.$.name;
-                            //console.log('type', type);
-                                   
-                            d.push({[type]: data._});
-                             
+                              let   type=data.$.name;
+                            //console.log('type', type);                              
+                              d.push({[type]: data._});                         
                              //list.push({key: data.$.name, value: data._});
-
                              }
-                            list.push({d});
-                            
-                             
-                           
+                            list.push({d});                                                           
                          }
                        }
                       }else{
@@ -221,7 +244,7 @@ export class SearchJaunePage implements OnInit{
               var third   = 'result'; 
               var pos     = '0'; 
               var extract_sd   = '0'; 
-              var extract ='5',
+              var extract ='12';
 
 
           var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
