@@ -26,14 +26,26 @@ export class SingleProPage {
     pro;
     rs_comp1;
     rs_comp2;
-
+    
+    rs_abr1;
+    rs_abr2;
+    rs_abr3;
     code_firme;
-    logo;
+    logo1;
+    logo2;
+    logo3;
+    logo4;
+
+    adresse0;
     adresse1;
     adresse2;
+
+    ville0;
     ville1;
     ville2;
     ville3;
+
+    telephone0;
     telephone1;
     telephone2;
     fax1;
@@ -58,6 +70,9 @@ export class SingleProPage {
     longitude4;
     longitude5;
     longitude6;
+    longitude7;
+    longitude8;
+    longitude9;
 
 
     
@@ -68,6 +83,10 @@ export class SingleProPage {
     latitude4;
     latitude5;
     latitude6;
+    latitude7;
+    latitude8;
+    latitude9;
+
 
 
 
@@ -82,6 +101,7 @@ export class SingleProPage {
     webinfo_link2;
     motcle;
     
+    locateExiste: boolean =false;
     listPrestations: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -90,47 +110,7 @@ export class SingleProPage {
      
   }
 
-   
-   /* loadMap() {
-    //ionic native google maps https://github.com/ionic-team/ionic-native-google-maps/blob/master/documents/README.md
-    let options: GoogleMapOptions = {
-      mapType: 'MAP_TYPE_NORMAL',
-      controls: {
-        'compass': true,
-        'myLocationButton': true,
-        'myLocation': true,   // (blue dot)
-        'indoorPicker': true,
-        'zoom': true,          // android only
-        'mapToolbar': true     // android only
-      },
-      camera: {
-        target: {
-          lat: 46.52863469527167,
-          lng: 2.43896484375
-        }
-      },
-      preferences: {
-        zoom: {
-          minZoom: 1,
-          maxZoom: 23
-        },
-        building: true
-      }
-    };
-    //initialisation de la map
-    this.map = GoogleMaps.create('map', options);
 
-    //attend le chargement de la map pour ajouter des listeners
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      console.log("map ready");
-      this.map.setCameraZoom(5);
-
-      //Listener sur un click maintenu sur la map pour afficher la modale pour ajouter un obstacle
-      this.map.on(GoogleMapsEvent.MAP_LONG_CLICK).subscribe((params: any[]) => {
-        console.log(params[0]);
-      });
-    });
-  }*/
    
 
         addMarker(){
@@ -158,7 +138,7 @@ export class SingleProPage {
     // this.loadMap();
 
 
-
+     //recuperation des infos depuis la page search-jaune
      this.pro= this.navParams.get('pro');
     //this.loadmap();
     //console.log('loadmap',this.loadmap());
@@ -168,17 +148,22 @@ export class SingleProPage {
    this.rs_comp1=this.pro[1].rs_comp;
    this.rs_comp2=this.pro[2].rs_comp;
 
-   this.logo=this.pro[2].logo;
+   this.logo1=this.pro[2].logo;
+   this.logo2=this.pro[3].logo;
+
+
+   this.adresse0=this.pro[2].adresse;
    this.adresse1=this.pro[3].adresse;
    this.adresse2=this.pro[4].adresse;
 
+   this.ville0=this.pro[3].ville;
 
    this.ville1=this.pro[4].ville;
    this.ville2=this.pro[5].ville;
    this.ville3=this.pro[6].ville;
 
 
-
+   this.telephone0=this.pro[4].telephone1;
    this.telephone1=this.pro[5].telephone1;
    this.telephone2=this.pro[6].telephone1;
 
@@ -190,34 +175,42 @@ export class SingleProPage {
    this.email1=this.pro[7].email;
    this.email2=this.pro[8].email;
 
+   this.longitude9=this.pro[7].longitude;
+   this.latitude9=this.pro[8].latitude;
+
    this.web=this.pro[8].web;
    this.rubrique1=this.pro[9].rubrique;
    this.rubrique2=this.pro[10].rubrique;
    this.longitude0=this.pro[9].longitude;
-   this.latitude0=this.pro[10].latitude;
 
+   this.longitude8=this.pro[8].longitude;
+   this.latitude8=this.pro[9].latitude;
+   
+   this.latitude0=this.pro[10].latitude;
+   this.longitude7=this.pro[10].longitude;
+   
 
    this.texte1=this.pro[10].texte;
-   if(this.pro.length>10) {
+   if(this.pro.length>11) {
       this.rubrique3=this.pro[11].rubrique;
       this.texte2=this.pro[11].texte;
       this.longitude1=this.pro[11].longitude;
-
+       this.latitude7=this.pro[11].latitude;
    }
    
 
-   if(this.pro.length>11) {
+   if(this.pro.length>12) {
       this.longitude2=this.pro[12].longitude;
       this.rubrique4=this.pro[12].rubrique;
       this.latitude1=this.pro[12].latitude;
        console.log('latitude1',this.latitude1);
    }
-   if(this.pro.length>12) {
+   if(this.pro.length>13) {
       this.latitude2=this.pro[13].latitude;
       this.longitude3=this.pro[13].longitude;
 
    }
-   if(this.pro.length>13) {
+   if(this.pro.length>14) {
       this.video=this.pro[14].video;
       this.module1=this.pro[14].module;
       this.longitude4=this.pro[14].longitude;
@@ -234,22 +227,19 @@ export class SingleProPage {
       
 
    }
-   if(this.pro.length>15) {
+   if(this.pro.length>16) {
       this.region=this.pro[16].region;
       this.module3=this.pro[16].module;
-      this.longitude5=this.pro[16].longitude;  
+      this.longitude6=this.pro[16].longitude;  
       this.latitude5=this.pro[16].latitude;
-
+      this.longitude6=this.pro[16].longitude; 
       console.log('module 2:',this.module3);
    }
-   if(this.pro.length>16){
-      this.longitude6=this.pro[16].longitude;  
 
-   }
    if(this.pro.length>17){
       this.latitude6=this.pro[17].latitude;
    }
-   if(this.pro.length>19) {
+   if(this.pro.length>18) {
       this.webinfo_link1=this.pro[19].webinfo_link;
    }   
    if(this.pro.length>20) {
@@ -264,31 +254,52 @@ export class SingleProPage {
       // this.map = GoogleMaps.create('map', options);
       this.map.one(GoogleMapsEvent.MAP_READY).then(()=>{
         
+        // le test sur l'existance de longitude et latitude
         if(this.longitude0 && this.latitude0){
           this.location =new LatLng(+this.latitude0,+this.longitude0);
-          console.log('oui ici 0');
+        
         }
         else if(this.longitude1 && this.latitude1){
           this.location =new LatLng(+this.latitude1,+this.longitude1);
-          console.log('oui ici 1');
+         
         }else if(this.longitude2 && this.latitude2){
-           this.location =new LatLng(+this.latitude2,+this.longitude2);  
+           this.location =new LatLng(+this.latitude2,+this.longitude2);
+           
         }else if(this.longitude3 && this.latitude3){
            this.location =new LatLng(+this.latitude3,+this.longitude3);
+          
         } else if(this.longitude4 && this.latitude4){
            this.location =new LatLng(+this.latitude4,+this.longitude4);
+          
         }
          else if(this.longitude5 && this.latitude5){
            this.location =new LatLng(+this.latitude5,+this.longitude5);
-        }else {
-           this.location =new LatLng(+this.latitude6,+this.longitude6);
+           
         }
+         else if(this.longitude6 && this.latitude6){
+           this.location =new LatLng(+this.latitude6,+this.longitude6);
+          
+        }
+        else if(this.longitude7 && this.latitude7){
+           this.location =new LatLng(+this.latitude7,+this.longitude7);
+           
+        }else if(this.longitude8 && this.latitude8){
+           this.location =new LatLng(+this.latitude8,+this.longitude8);
+           
+        }
+        else if(this.longitude9 && this.latitude9){
+           this.location =new LatLng(+this.latitude9,+this.longitude9);
+           
+        }else{
+          this.locateExiste =true;
+        }
+
         //this.location =new LatLng(+this.latitude2,+this.longitude2);
         //this.location =new LatLng(33.512609,-7.659389);
 
         let options ={
           target: this.location,
-          zoom: 18
+          zoom: 16
         };
         this.map.moveCamera(options);
         setTimeout(()=>{this.addMarker()},2000);

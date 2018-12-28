@@ -1,4 +1,7 @@
 page-single-pro {
+   .my-nav{
+     list-style-type: disc;
+   }
    #map {
       width: 100%;
       height: 30%;
@@ -17,7 +20,7 @@ page-single-pro {
    		font-size: 14px;
    		font-weight: 300;
    }
-   .telephone1 span, .email span, .site-web span,.fax, .fax span{
+   .telephone1 span, .email span, .site-web span, .fax span{
    	color: #4a8bfc;
    }
 

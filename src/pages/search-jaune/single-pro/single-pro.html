@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{rs_comp1}} {{rs_comp2}}<br> {{ville1}} {{ville2}} {{ville3}}</ion-title>
+    <ion-title>{{rs_comp1}} {{rs_comp2}}<br> {{ville0}}{{ville1}} {{ville2}} {{ville3}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -27,9 +27,13 @@
       <ion-col col-12>
         <ion-list>
           <hr>
-          <ion-item>
-            <span class="adresse" text-wrap>{{adresse1}}{{adresse2}}</span>
-          </ion-item>         
+          <ion-item *ngIf='adresse1 || adresse2 || adresse0'>
+            <span class="adresse" text-wrap>{{adresse1}}{{adresse2}}{{adresse0}}</span>
+          </ion-item>    
+          <ion-item *ngIf="telephone0">
+            <span class="telephone1"><b>Tel : </b><span>{{telephone0}}</span>
+           </span>
+          </ion-item>               
           <ion-item *ngIf="telephone1">
             <span class="telephone1"><b>Tel : </b><span>{{telephone1}}</span>
            </span>
@@ -38,7 +42,7 @@
             <span class="telephone1"><b>Tel : </b><span>{{telephone2}}</span>
            </span>
           </ion-item>
-          <ion-item >
+          <ion-item *ngIf="fax1 || fax2 || fax3">
             <span *ngIf="fax1">
                <span class="fax"><b>Fax : </b><span>{{fax1}}</span></span>
             </span>
@@ -60,7 +64,7 @@
             <span class="site-web"><b>Site Web : </b><span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span></span>          
           </ion-item>
 
-          <ion-item *ngIf="webinfo_link2">
+          <ion-item *ngIf="webinfo_link2">d
             <span class="site-web"><b>Site Web : </b>
               <span *ngIf="webinfo_link2.length<35" text-wrap>
               <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
@@ -70,19 +74,24 @@
               </span>
             </span>
           </ion-item>
-          <ion-item text-wrap>
-              <span class="logo"><img src="{{logo}}"></span>
+          <ion-item text-wrap *ngIf="logo1 || module1 || module2 || module3">
+              <span class="logo" *ngIf="logo1"><img src="{{logo1}}"></span>
+              <span class="logo" *ngIf="logo2"><img src="{{logo2}}"></span>
+
            
             <div class="module">
               {{module1}}{{module2}}{{module3}}
             </div>
           </ion-item>
        
-          <ion-item text-wrap>
-            <b>Services et prestations: </b><br>
-            <p *ngFor="let p of listPrestations">
-              {{p.title}}              
-            </p>
+          <ion-item text-wrap *ngIf="listPrestations?.length>0">
+               <b>Services et prestations: </b><br>
+            <ion-row>
+           
+            <ion-col  col-6 *ngFor="let p of listPrestations">
+              <li >{{p.title}}      </li>        
+            </ion-col>
+          </ion-row>
 
           </ion-item>
         </ion-list>
