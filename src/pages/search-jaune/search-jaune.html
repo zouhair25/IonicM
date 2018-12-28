@@ -27,11 +27,11 @@
       </ion-col>
       
       <ion-col col-2 >
-      	<div *ngIf='l.d[2].logo' (click)="onDisplayPro(l.d)">
-      	 <img alt="logo" src="{{l.d[2].logo}}" class="logo-ste" />
+      	<div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d)">
+      	 <img alt="logo" src="{{l.d[2].logo}}{{l.d[3].logo}}" class="logo-ste" />
 
       	</div>
-      	<div *ngIf='!l.d[2].logo' (click)="onDisplayPro(l.d)">
+      	<div *ngIf='!l.d[2].logo && !l.d[3].logo' (click)="onDisplayPro(l.d)">
         <img alt="logo" src="http://www.telecontact.ma/pubs/logos/L3182169.png" class="logo-not"/>
         </div>
       </ion-col>
