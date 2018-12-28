@@ -12,7 +12,10 @@ import { HistoriquePage } from '../historique/historique';
 import { BlanchesPage } from '../blanches/blanches';
 
 import { JaunesPage } from '../jaunes/jaunes';
+import { AproximitePage } from '../aproximite/aproximite';
 import { Api } from "../../providers/api";
+import { Category } from "../../providers/category";
+
 
 //declare var $: any;
 
@@ -27,6 +30,69 @@ export class SearchPage {
   //var $: any;
   list;
   count;
+  appareilsList  =[
+    {
+      name: 'Boulangerie',
+      icon: 'ios-cafe-outline',
+      cath: 'cath5',
+    }
+    ,
+     {
+      name: 'Café, bar',
+      icon: 'ios-cafe-outline',
+      cath: 'cath6'
+    },
+    {
+      name: 'Essence',
+      icon: 'ios-cafe-outline',
+      cath: 'cath13',
+    },
+    {
+      name: 'pharmacie',
+      icon: 'ios-flask-outline',
+      cath: 'cath25'      
+     },
+     /*{
+      name: 'Laboratoire',
+      icon: 'ios-flask-outline',
+      cath: ''
+     },
+     {
+      name: 'Restaurants',
+      icon: 'ios-restaurant-outline',
+      cath: ''
+     },*/
+    {
+      name: 'Fleuriste',
+      icon: 'ios-cafe-outline',
+      cath: 'cath14',
+    },
+    {
+      name: 'Hammam & spa',
+      icon: 'ios-cafe-outline',
+      cath: 'cath17',
+    },
+    {
+      name: 'Hôtel',
+      icon: 'ios-cafe-outline',
+      cath: 'cath19',
+    },
+    {
+      name: 'Kiné',
+      icon: 'ios-cafe-outline',
+      cath: 'cath21',
+    },
+    {
+      name: 'Médecin',
+      icon: 'ios-cafe-outline',
+      cath: 'cath23',
+    },
+    /*{
+      name: 'Boulangerie',
+      icon: '',
+      cath: 'cath5',
+    }*/
+  ]  
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController, private api: Api, private http: HttpClient,
               private geolocation: Geolocation) {
@@ -65,98 +131,19 @@ this.geolocation.getCurrentPosition().then((resp)=>{
           console.log("speed   ",data.coords.speed  )   ;      
           console.log("timestamp   ",data.timestamp)   ; */     
 
-       this.onDisplayRaccourcis(data.coords.latitude,data.coords.longitude);
+       //this.onDisplayRaccourcis(data.coords.latitude,data.coords.longitude);
        })
        
    
   /////////////////////////////////////
   }
 
- onDisplayRaccourcis(latitude,longitude){
-   this.raccourcis(latitude,longitude).then((data)=>{
-     this.list = data[0],
-     this.count =data[1];  
-     console.log('data v', data); 
-     console.log('data v', this.count);   
 
-   }
-     )
- } 
- raccourcis(x,y){
-      let list: any =[];
-      let count;
-      return new Promise((resolve, reject) =>{
-       let  start_files_sec =1;
-       let cath ="cath13";
-       var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
-          data_send += '  <methodcall>';
-          data_send += '    <methodname call="cath_approxy">';  
-          data_send += '      <params>';  
-          data_send += '        <value>';
-          data_send += '          <string>'+cath+'</string>';
-          data_send += '            <x>'+x+'</x>';
-          data_send += '            <y>'+y+'</y>';
-          data_send += '            <start>1</start>';
-          data_send += '          <extract>10</extract>';  
-          data_send += '        </value>';
-          data_send += '      </params>';  
-          data_send += '    </methodname>';
-          data_send += '  </methodcall>';
-                                                      
-       $.ajax({
-              
-              type       : "POST",
-              url        : "https://www.telecontact.ma/WsMobTlC2014nVZA",
-              //headers: {accepts: '*'},
-              crossDomain: true,
-              beforeSend : function() {$("#results_loading").append('<div class="noresults"><br /><br />Veuillez patienter<br /><br /><img src="media/images/home/load_result.gif" /></div>');/*$.mobile.loading('show')*/},
-              complete   : function() {$("#results_loading").hide();/*$.mobile.loading('hide')*/},
-              data       : {telecontact : data_send},
-              dataType   : 'text',
-              success    : function(response) {
 
-                let parser =new xml2js.Parser({
-                  trim: true,
-                  explicitArray: true
-                });
-                parser.parseString(response, function(err, result){
-               
-                                        count =result.search_answers.search_answer[0].items[0].$.count;
-                       //count=result.search_answers.search_answer.items[0].$.count;
-                   for(let answers of result.search_answers.search_answer) {                     
-                         if (answers.items[0]=="      ") {
-                                     list.push({'title': 'Aucun resultat'}); 
-                               }else{
-                     for(let item of answers.items){                             
-                      if(item.$.count>0)  {
-                       for(let i of item.item){            
-                         for(let i_data of i.item_data){    
-                              let d: any =[];
-                           for(let data of i_data.data){
-                              let   type=data.$.name;
-                            //console.log('type', type);                              
-                              d.push({[type]: data._});                         
-                             //list.push({key: data.$.name, value: data._});
-                             }
-                            list.push({d});  
-                             //console.log('ici',list);                                                           
-                         }
-                       }
-                      }else{
-                         list.push({'title': 'Aucun resultat'}); 
-                      } 
-                     }
-                 }
-                   }
-                   resolve([list, count]);                
-                })
-              }
-       });
-     });
-  }
 
-    onDisplayByCategory(){
-      
+    onDisplayByCategory(appareil: {name: string, icon: string, cath: string}){
+      this.navCtrl.push(AproximitePage,{
+        appareil: appareil,list: this.list});
     }
   onToggleMenu(){
    this.menuCtrl.open();

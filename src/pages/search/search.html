@@ -81,20 +81,17 @@
 		</ion-row>
 
 		<ion-row class="row-cat" align="center">
-			<ion-col col-4>
-				<button  clear class="color-back-trans">
-			        <ion-icon name="ios-restaurant-outline"  >
+			<ion-col col-4 *ngFor='let appareil of appareilsList'>
+				<button  (click)="onDisplayByCategory(appareil,'list')"
+				        clear class="color-back-trans">
+			        <ion-icon name="{{appareil.icon}}">
 			        </ion-icon>
 
-			        <p class="categorie" (click)="onDisplayByCategory('Boulangerie')">Restaurants</p>
-                </button>  	
-
-			       
-               
-
+			        <p class="categorie" >{{appareil.name}}</p>
+                </button>  				                 
 			</ion-col>
 
-			<ion-col col-4>
+			<!--<ion-col col-4>
 				<button clear class="color-back-trans">
 					<ion-icon name="ios-cafe-outline">
 					</ion-icon>
@@ -107,7 +104,7 @@
 					<ion-icon name="ios-flask-outline" > </ion-icon>
 					<p class="categorie">Laboratoires</p>
 				</button>
-			</ion-col>
+			</ion-col>-->
 
 		</ion-row>
 
