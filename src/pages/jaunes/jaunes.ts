@@ -23,8 +23,8 @@ export class JaunesPage{
   list;
   searchTerm = new Subject<string>();
   searchTermOu = new Subject<string>();
-  quiquoi: string='Camera de surveillance';
-  ou: string ='Casablanca';
+  quiquoi: string='';
+  ou: string ='';
   searching: any =false;
  // @ViewChild('searchbar') searchBox: Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams,

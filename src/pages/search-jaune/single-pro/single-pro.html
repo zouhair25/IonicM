@@ -9,8 +9,33 @@
  
 
 <ion-content >
-  <div #map id="map"></div>
+  <div #map id="map" [@openClose]="isOpen ? 'open' : 'closed'">
+ 
+  </div>
  <ion-grid>
+  <ion-row class="btns">
+    <ion-col col-3> <button  color="light" class="back"><ion-icon name="call" class="icon-size"></ion-icon> </button>
+    </ion-col>
+
+    <ion-col col-3><button  color="light" class="back">
+      <ion-icon name="walk" class="icon-size"></ion-icon>
+</button>
+    </ion-col>
+    <ion-col col-3>
+       <button  color="light" class="back">  <ion-icon name="mail" class="icon-size"></ion-icon>
+</button>
+    </ion-col>
+    <ion-col col-2>
+       <button  (click)="toggle()" color="light" class="back">
+        <div *ngIf="isOpen">  <ion-icon name="arrow-down" class="icon-size"></ion-icon>
+        </div>
+        <div *ngIf="!isOpen">    <ion-icon name="arrow-up" class="icon-size"></ion-icon>
+      </div>
+       </button>
+
+
+    </ion-col>    
+  </ion-row>
 
     <ion-row>
       <ion-col ><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span><br>

@@ -28,6 +28,8 @@ import { SingleProPage } from '../pages/search-jaune/single-pro/single-pro';
 import { Api } from '../providers/api';
 import { Functions } from '../providers/functions';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -52,6 +54,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

@@ -1,4 +1,4 @@
-import { Component,ViewChild,ElementRef } from '@angular/core';
+import { Component,ViewChild,ElementRef, HostBinding } from '@angular/core';
 import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
@@ -14,9 +14,40 @@ import {
   LatLng,
   Environment
 } from '@ionic-native/google-maps';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 @Component({
   selector: 'page-single-pro',
   templateUrl: 'single-pro.html',
+     animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        height: '30%',
+      })),
+      state('closed', style({
+        height: '400px',
+      })),
+      
+    transition('open <=> closed', [
+      animate('0.5s')
+    ]),
+    transition ('* => open', [
+      animate ('1s',
+        style ({ opacity: '*' }),
+      ),
+    ]),
+    transition('* => *', [
+      animate('1s')
+    ])
+    ]),
+  ],
 })
 export class SingleProPage {
     map: GoogleMap;
@@ -103,6 +134,7 @@ export class SingleProPage {
     
     locateExiste: boolean =false;
     listPrestations: any = [];
+    isOpen =true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
@@ -111,8 +143,10 @@ export class SingleProPage {
   }
 
 
-   
-
+  //for up and down div map
+  toggle(){
+    this.isOpen = !this.isOpen;
+  }
         addMarker(){
           let title;
           if(this.rs_comp1){
