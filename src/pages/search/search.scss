@@ -23,7 +23,7 @@ page-search {
     }
     &[class*="custom-pharmacie"] {
         mask-image: url(../../assets/pharmacie.svg);
-    }   
+    }
     &[class*="custom-gas-station"] {
         mask-image: url(../../assets/gas-station.svg);
     }
@@ -36,7 +36,7 @@ page-search {
     &[class*="custom-flower"] {
         mask-image: url(../../assets/flower.svg);
     }
-        
+
 }
 page-search .color-back-trans ion-icon{
 	font-size: 26px;
@@ -45,7 +45,7 @@ page-search .color-back-trans ion-icon{
       background-color: #32db64;
     }*/
     .swiper-pagination-bullet{
-    	    background: #ec0808;
+    	    background: white;
     }
     ion-slide ion-icon {
       height: 70px !important;
