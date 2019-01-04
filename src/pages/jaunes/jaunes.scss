@@ -92,3 +92,26 @@ page-jaunes {
 
   }
 }
+
+page-jaunes .searchbar-md {
+  margin-bottom: 8px;
+}
+
+.button-md:hover:not(.disable-hover) {
+
+    background-color: #ffdb2e;
+
+}
+
+page-jaunes .btn-search {
+
+    height: 95px;
+}
+
+page-jaunes .btn-search ion-icon {
+
+    font-size: 2.4em;
+    padding-right: 0px;
+    padding-left: 0;
+
+}
