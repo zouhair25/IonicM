@@ -72,6 +72,66 @@
 		</ion-row>
 
 		<ion-row>
+<ion-slides pager="true">
+	<ion-slide><ion-col col-12>
+		<button  (click)="onDisplayByCategory('cath5')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-cupcake">B</ion-icon>        
+		    <p class="categorie" >Boulangerie</p>
+	    </button>	     
+		<button  (click)="onDisplayByCategory('cath6')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-coffee" >C</ion-icon>         
+		    <p class="categorie" >Café, bar</p>
+	    </button>
+		<button  (click)="onDisplayByCategory('cath13')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-gas-station" >E</ion-icon>            
+		    <p class="categorie" >Essence</p>
+	    </button>
+	    </ion-col>	      
+	</ion-slide>
+	<ion-slide>
+		<ion-col col-12>
+		<button  (click)="onDisplayByCategory('cath25')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-pharmacie" >ph</ion-icon>     
+		    <p class="categorie" >Pharmacie</p>
+	    </button>
+		<button  (click)="onDisplayByCategory('cath14')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-flower" >F</ion-icon>          
+		    <p class="categorie" >Fleuriste</p>
+	    </button>	     
+		<button  (click)="onDisplayByCategory('cath17')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-spa" >H</ion-icon>          
+		    <p class="categorie" >Hammam & spa</p>
+	    </button>
+	    </ion-col>
+	</ion-slide>
+
+	<ion-slide>
+		<button  (click)="onDisplayByCategory('cath19')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-hotel" >H</ion-icon>         
+		    <p class="categorie" >Hôtel</p>
+	    </button>
+		<button  (click)="onDisplayByCategory('cath21')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-physiotherapy" >K</ion-icon>        
+		    <p class="categorie" >Kiné</p>
+	    </button>	     
+		<button  (click)="onDisplayByCategory('cath23')"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-doctor" >M</ion-icon>        
+		    <p class="categorie" >Médecin</p>
+	    </button>
+
+	</ion-slide>
+
+</ion-slides>
+
 			<!--<ion-col col-1 class="color-wh">
 				  <ion-icon ios="ios-locate" md="md-locate"></ion-icon>
 			</ion-col>
@@ -80,36 +140,26 @@
 			</ion-col>-->
 		</ion-row>
 
-		<ion-row class="row-cat" align="center">
+		<!--<ion-row class="row-cat" align="center">
+	
+				<ion-slides pager="true">
+				<ion-slide >		
 			<ion-col col-4 *ngFor='let appareil of appareilsList'>
-				<button  (click)="onDisplayByCategory(appareil,'list')"
-				        clear class="color-back-trans">
-			        <ion-icon name="{{appareil.icon}}">
-			        </ion-icon>
 
-			        <p class="categorie" >{{appareil.name}}</p>
-                </button>  				                 
-			</ion-col>
+				<button  (click)="onDisplayByCategory(appareil)"
+					        clear class="color-back-trans">
+				    <ion-icon name="{{appareil.icon}}"></ion-icon>        
+				    <p class="categorie" >{{appareil.name}}</p>
+	            </button>  	 
 
-			<!--<ion-col col-4>
-				<button clear class="color-back-trans">
-					<ion-icon name="ios-cafe-outline">
-					</ion-icon>
-					<p class="categorie">Café</p>
-				</button>
-			</ion-col>
+			</ion-col>  			
+	            </ion-slide>  
+	                </ion-slides>  	
+			
 
-			<ion-col col-4>
-				<button clear class="color-back-trans">
-					<ion-icon name="ios-flask-outline" > </ion-icon>
-					<p class="categorie">Laboratoires</p>
-				</button>
-			</ion-col>-->
+		</ion-row>-->
 
-		</ion-row>
 
-		<ion-scroll scrollY="true">
-</ion-scroll>
 
     </ion-grid>
 

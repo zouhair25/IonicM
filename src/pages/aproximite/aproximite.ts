@@ -13,24 +13,19 @@ import {SingleProPage } from '../search-jaune/single-pro/single-pro';
 export class AproximitePage {
   latitude;
   longitude;
-  categorie;
   count;
   noResult: boolean = false; 
   list: any =[];
-    appareil: {
-    name: string,
-    icon: string,
-    cath: string
-  };
+  categorie: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	          private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
-  	this.list=this.navParams.get('list')
-  	this.appareil=this.navParams.get('appareil')
-    this.categorie =this.appareil.cath;
-    console.log('ionViewDidLoad AproximitePage', this.list);
+  	//this.list=this.navParams.get('list')
+  	this.categorie=this.navParams.get('categorie');
+    //this.categorie =this.appareil.cath;
+    //console.log('ionViewDidLoad AproximitePage', this.list);
     console.log('ionViewDidLoad2 categorie', this.categorie);
 
   this.geolocation.getCurrentPosition().then((data)=>{

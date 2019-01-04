@@ -15,7 +15,8 @@ import { JaunesPage } from '../jaunes/jaunes';
 import { AproximitePage } from '../aproximite/aproximite';
 import { Api } from "../../providers/api";
 import { Category } from "../../providers/category";
-
+import { Slides } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
 
 //declare var $: any;
 
@@ -27,7 +28,7 @@ import { Category } from "../../providers/category";
 @Injectable()
 export class SearchPage {
   
-  //var $: any;
+  @ViewChild(Slides) slides: Slides;
   list;
   count;
   appareilsList  =[
@@ -97,7 +98,10 @@ export class SearchPage {
               private menuCtrl: MenuController, private api: Api, private http: HttpClient,
               private geolocation: Geolocation) {
   }
-
+  
+  goToSlide(){
+    this.slides.slideTo(2,100);
+  }
   onGoJaunesPage(){
     this.navCtrl.push(JaunesPage);
   }
@@ -141,9 +145,8 @@ this.geolocation.getCurrentPosition().then((resp)=>{
 
 
 
-    onDisplayByCategory(appareil: {name: string, icon: string, cath: string}){
-      this.navCtrl.push(AproximitePage,{
-        appareil: appareil,list: this.list});
+    onDisplayByCategory(name: string){
+      this.navCtrl.push(AproximitePage,{categorie: name});
     }
   onToggleMenu(){
    this.menuCtrl.open();

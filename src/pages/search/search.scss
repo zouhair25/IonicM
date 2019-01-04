@@ -1,4 +1,56 @@
 page-search {
+
+	ion-icon {
+    &[class*="custom-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        /*width: 1em;
+        height: 1em;*/
+    }
+    &[class*="custom-hotel"] {
+        mask-image: url(../../assets/hotel.svg);
+    }
+    &[class*="custom-coffee"] {
+        mask-image: url(../../assets/coffee-cup.svg);
+    }
+    &[class*="custom-physiotherapy"] {
+        mask-image: url(../../assets/physiotherapy.svg);
+    }
+    &[class*="custom-spa"] {
+        mask-image: url(../../assets/spa.svg);
+    }
+    &[class*="custom-pharmacie"] {
+        mask-image: url(../../assets/pharmacie.svg);
+    }   
+    &[class*="custom-gas-station"] {
+        mask-image: url(../../assets/gas-station.svg);
+    }
+    &[class*="custom-cupcake"] {
+        mask-image: url(../../assets/cupcake.svg);
+    }
+    &[class*="custom-doctor"] {
+        mask-image: url(../../assets/doctor.svg);
+    }
+    &[class*="custom-flower"] {
+        mask-image: url(../../assets/flower.svg);
+    }
+        
+}
+page-search .color-back-trans ion-icon{
+	font-size: 26px;
+}
+ /*ion-slide {
+      background-color: #32db64;
+    }*/
+    .swiper-pagination-bullet{
+    	    background: #ec0808;
+    }
+    ion-slide ion-icon {
+      height: 70px !important;
+      width: auto !important;
+    }
 .pj{
 	border-bottom: 5px solid #ffdd00;
 }
