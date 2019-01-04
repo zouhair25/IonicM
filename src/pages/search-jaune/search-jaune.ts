@@ -7,7 +7,6 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-//import { CompletePageJaunesService } from '../../providers/CompletePageJaunes.service';
 import {SingleProPage } from './single-pro/single-pro';
 @Component({
   selector: 'page-search-jaune',
