@@ -9,7 +9,6 @@ import {
 
 //import { CompletePageJaunesService } from '../../providers/CompletePageJaunes.service';
 import {SingleProPage } from './single-pro/single-pro';
-import { HomePage } from './home/home';
 @Component({
   selector: 'page-search-jaune',
   templateUrl: 'search-jaune.html',
@@ -109,9 +108,7 @@ export class SearchJaunePage implements OnInit{
        return this.list;      
     }
     
-    onGoMaps(){
-       this.navCtrl.push(HomePage);
-    }
+
     onDisplayPro(pro: {rs_comp: string, adresse: string}){
       this.navCtrl.push(SingleProPage, {pro: pro})
     }

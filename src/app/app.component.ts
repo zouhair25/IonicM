@@ -4,15 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-//import { HomePage } from '../pages/home/home';
-import { SearchPage } from '../pages/search/search';
-import { FavorisPage } from '../pages/favoris/favoris';
-import { HistoriquePage } from '../pages/historique/historique';
 import { AppointmentPage } from '../pages/appointment/appointment';
-import { LoginPage } from '../pages/login/login';
-import { OptionsPage } from '../pages/options/options';
 import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
 
@@ -20,12 +13,14 @@ import { JaunesPage } from '../pages/jaunes/jaunes';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  tabsPage:any = TabsPage;
-  searchPage:any = SearchPage;
-  favorisPage:any = FavorisPage;
-  historiquePage:any = HistoriquePage;
-  AppointmentPage:any = AppointmentPage;
-  loginPage:any = LoginPage;
+  tabsPage: any = TabsPage;
+  searchPage: any = 'SearchPage';
+  favorisPage: any = 'FavorisPage';
+  historiquePage: any = 'HistoriquePage';
+  appointmentPage: any = 'AppointmentPage';
+  loginPage: any = 'LoginPage';
+  optionsPage: any = 'OptionsPage';
+  aboutPage: any = 'AboutPage';
   @ViewChild('content') content: NavController;
 
   constructor(platform: Platform, statusBar: StatusBar,

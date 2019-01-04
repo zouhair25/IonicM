@@ -41,11 +41,17 @@ page-search {
 page-search .color-back-trans ion-icon{
 	font-size: 26px;
 }
+.swiper-container-horizontal > .swiper-pagination-bullets{
+    top: 120px;
+}
+.swiper-container-android .swiper-slide{
+    padding-bottom: 30px;
+}
  /*ion-slide {
       background-color: #32db64;
     }*/
     .swiper-pagination-bullet{
-    	    background: #ec0808;
+    	    background: white;
     }
     ion-slide ion-icon {
       height: 70px !important;

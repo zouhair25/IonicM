@@ -3,22 +3,11 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { Geolocation } from '@ionic-native/geolocation';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
-
-import { HttpHeaders } from "@angular/common/http";
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { HistoriquePage } from '../historique/historique';
 import { BlanchesPage } from '../blanches/blanches';
-
 import { JaunesPage } from '../jaunes/jaunes';
-import { AproximitePage } from '../aproximite/aproximite';
-import { Api } from "../../providers/api";
-import { Category } from "../../providers/category";
 import { Slides } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
-
-//declare var $: any;
 
 @IonicPage()
 @Component({
@@ -95,7 +84,7 @@ export class SearchPage {
     }*/
   ]  
   constructor(private navCtrl: NavController, public navParams: NavParams,
-              private menuCtrl: MenuController, private api: Api, private http: HttpClient,
+              private menuCtrl: MenuController,
               private geolocation: Geolocation) {
   }
   
@@ -146,7 +135,7 @@ this.geolocation.getCurrentPosition().then((resp)=>{
 
 
     onDisplayByCategory(name: string){
-      this.navCtrl.push(AproximitePage,{categorie: name});
+      this.navCtrl.push('AproximitePage',{categorie: name});
     }
   onToggleMenu(){
    this.menuCtrl.open();
