@@ -22,10 +22,10 @@
       <ion-col col-10 class="information">
       	<div class="rs_comp" (click)="onDisplayPro(l.d)"><span style="background-color: yellow">{{i+1}}</span>{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
 
-          <span class="adresse">{{l.d[2].adresse}}{{l.d[3].adresse}}{{l.d[4].adresse}}</span> 
+          <span class="adresse" (click)="onDisplayPro(l.d)">{{l.d[2].adresse}}{{l.d[3].adresse}}{{l.d[4].adresse}}</span> 
           &nbsp;&nbsp;
           <span class="ville">{{l.d[3].ville}}{{l.d[4].ville}}{{l.d[5].ville}}</span>
-         <div class="distance">Distance: 
+         <div class="distance" (click)="onDisplayPro(l.d)">Distance: 
       		<span >{{l.d[9].distance}}</span>
       		<span >{{l.d[10].distance}}</span>
       		<span *ngIf="l.d.length>11">{{l.d[11].distance}}</span>
@@ -78,7 +78,7 @@
      
     <ion-grid >
 
-    <ion-row *ngIf="noResult"><ion-col col-12>Aucun resultat</ion-col>
+    <ion-row *ngIf="noResult"><ion-col col-12>Pas de résultats à proximité de vous.</ion-col>
     </ion-row>
     </ion-grid>
  <!--<ion-list>
