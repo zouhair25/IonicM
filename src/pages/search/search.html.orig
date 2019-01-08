@@ -97,13 +97,13 @@
 		<ion-col col-12>
 		<button  (click)="onDisplayByCategory('cath25')"
 					        clear class="color-back-trans">
-
+<<<<<<< HEAD
 			<ion-icon name="custom-pharmacie" >ph</ion-icon>
 		    <p class="categorie">Pharmacie</p>
-
+=======
 			<ion-icon name="custom-pharmacie" class="icon-pharmacie">ph</ion-icon>
 		    <p class="categorie" >Pharmacie</p>
-
+>>>>>>> 67392d8fc22a71bf96bd03ca72fc632a7f0374f9
 	    </button>
 		<button  (click)="onDisplayByCategory('cath14')"
 					        clear class="color-back-trans">
