@@ -19,6 +19,8 @@ import { Api } from '../providers/api';
 import { Functions } from '../providers/functions';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SplashScreen,
     Geolocation,
     GoogleMaps,
+    LaunchNavigator,
+    Diagnostic,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar class="" transparent>
+  <ion-navbar class="" transparent hideBackButton="true">
   	<ion-buttons >
       <button ion-button icon-only  (click)="onToggleMenu()">
         <ion-icon name="menu">
@@ -97,17 +97,22 @@
 		<ion-col col-12>
 		<button  (click)="onDisplayByCategory('cath25')"
 					        clear class="color-back-trans">
+<<<<<<< HEAD
 			<ion-icon name="custom-pharmacie" >ph</ion-icon>
 		    <p class="categorie">Pharmacie</p>
+=======
+			<ion-icon name="custom-pharmacie" class="icon-pharmacie">ph</ion-icon>
+		    <p class="categorie" >Pharmacie</p>
+>>>>>>> 67392d8fc22a71bf96bd03ca72fc632a7f0374f9
 	    </button>
 		<button  (click)="onDisplayByCategory('cath14')"
 					        clear class="color-back-trans">
-			<ion-icon name="custom-flower" >F</ion-icon>
+			<ion-icon name="custom-flower" class="icon-flower">F</ion-icon>
 		    <p class="categorie" >Fleuriste</p>
 	    </button>
 		<button  (click)="onDisplayByCategory('cath17')"
 					        clear class="color-back-trans">
-			<ion-icon name="custom-spa" >H</ion-icon>
+			<ion-icon name="custom-spa" class="icon-spa">H</ion-icon>
 		    <p class="categorie" >Hammam & spa</p>
 	    </button>
 	    </ion-col>
@@ -136,7 +141,7 @@
 
 		<button  (click)="onDisplayByCategory('cath23')"
 					        clear class="color-back-trans">
-			<ion-icon name="custom-doctor" >M</ion-icon>
+			<ion-icon name="custom-doctor" class="icon-doctor">M</ion-icon>
 		    <p class="categorie" >Médecin</p>
 	    </button>
 

@@ -1,5 +1,17 @@
 page-search {
-
+    .icon-pharmacie{
+    font-size:40px !important;
+    }
+        .icon-spa{
+    font-size:56px !important;
+    }
+    .icon-flower{
+        font-size: 64px !important;
+    }
+    .icon-doctor{
+        font-size: 48px !important;
+        padding-top: 10px;
+    }
 	ion-icon {
     &[class*="custom-"] {
         mask-size: contain;
@@ -223,6 +235,6 @@ page-search .color-back-trans ion-icon {
 
 page-search .categorie {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
 }
