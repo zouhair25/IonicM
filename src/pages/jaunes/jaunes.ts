@@ -40,6 +40,9 @@ export class JaunesPage{
       searchVille(term: string): void {
         this.searchTermOu.next(term);
       }
+      back(){
+      	this.navCtrl.push('SearchPage');
+      }
  
     ionViewDidLoad() {
 

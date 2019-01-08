@@ -1,4 +1,8 @@
 page-jaunes {
+  .bar-button-md{
+    height: 0px !important;
+  }
+  
   .searchbar-md{
     padding: 1px !important;
   }
@@ -24,19 +28,25 @@ page-jaunes {
         text-align: center;
         padding: 10px;
     }
+    .button-md{
+
+    }
   .pj{
- 	background-color: #ffdd00;
+ 	 background-color: #ffdd00 !important;
  	text-transform: none;
- 	color: black !important;
- 	width: 41%;
+ 	color: white !important;
+ 	width: 90%;
     border-radius: 27px;
     height: 22px;
-    margin-top: 25px;
+   }
+   .arrow-back{
+    background-color: transparent !important;
    }
   .pb{
+    background-color: transparent !important;
  	color: white;
  	text-transform: none;
-  margin-top: 25px;
+  /*margin-top: 25px;*/
    }
    .header-md{
    	background-color: black;
