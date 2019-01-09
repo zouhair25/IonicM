@@ -1,36 +1,62 @@
-<!--
-  Generated template for the BlanchesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-     	<ion-buttons>
-      <button ion-button class="pj" (click)="onGoJaunesPage()">  Professionnels</button>
-      <button ion-button class="pb" >  Annuaire inversé</button>
-
-  	</ion-buttons>
+     <b>{{tel}}</b> <br>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding >
-    <form>
-    	<ion-row>
-			<ion-col col-10 no-padding>
-				<ion-input type="text" name="" class="inp-search" placeholder="Quoi, n° du téléphone" 
-				class="search" ></ion-input>
-				<!--<ion-input  type="text" name="" placeholder="Ou"   class="search"></ion-input>-->
-			</ion-col>
-			
-			<ion-col col-2  no-padding>	
-				<button ion-button icon-start  class="btn-search" >
-					<ion-icon name="search" color="dark"></ion-icon>
-				</button>
-			</ion-col>
-		</ion-row>
-    </form>
+<ion-content padding class="hist-content">
+
+  <ion-grid *ngIf="count>0">
+    <b> {{count}} Résultats</b>
+    <ion-row  class="hist-row" *ngFor="let l of list;let i= index">
+
+      <ion-col col-10 class="information" (click)="onDisplayInv(l.d)">
+      	<div class="rs_comp" (click)="onDisplayInv(l.d)"><span style="background-color: yellow">{{i+1}}</span> &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
+        <div >
+          <span class="adresse">{{l.d[3].adresse}}{{l.d[4].adresse}}</span> &nbsp;&nbsp;
+          <span class="ville">{{l.d[4].ville}}{{l.d[5].ville}}</span>
+        </div>
+
+      </ion-col>
+
+      <ion-col col-2 (click)="onDisplayInv(l.d)">
+      </ion-col>
+
+
+     <ion-col col-9>
+       <div class="rubrique" (click)="onDisplayInv(l.d)">
+       	<span *ngIf="l.d[6].rubrique">{{l.d[6].rubrique}}<br></span>
+        <span *ngIf="l.d[7].rubrique">{{l.d[7].rubrique}}</span>
+        <span *ngIf="l.d[8].rubrique">{{l.d[8].rubrique}}</span>
+        <span *ngIf="l.d[9].rubrique">{{l.d[9].rubrique}}</span>
+        <div *ngIf="l.d.length>10">
+       	<span *ngIf="l.d[10].rubrique">{{l.d[10].rubrique}}<br></span>
+        </div>
+        <div *ngIf="l.d.length>11">
+        <span *ngIf="l.d[11].rubrique">{{l.d[11].rubrique}}<br></span>
+        </div>
+        <div *ngIf="l.d.length>12">
+        <span *ngIf="l.d[12].rubrique">{{l.d[12].rubrique}}<br></span>
+        </div>
+
+       </div>
+     </ion-col>
+           <div class="space"><br>  <br></div>
+    </ion-row>
+
+    </ion-grid>
+
+    <ion-grid >
+    <ion-row *ngIf="count==0"><ion-col col12>Aucun resultat</ion-col></ion-row>
+    </ion-grid>
+ <!--<ion-list>
+   <ion-item *ngFor="let i of items">{{i}}</ion-item>
+ </ion-list>-->
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content  loadingSpinner="bubbles"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

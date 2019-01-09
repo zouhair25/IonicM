@@ -20,7 +20,7 @@ export class SearchPage {
   @ViewChild(Slides) slides: Slides;
   list;
   count;
-  appareilsList  =[
+   appareilsList  =[
     {
       name: 'Boulangerie',
       icon: 'ios-cafe-outline',
@@ -83,6 +83,7 @@ export class SearchPage {
       cath: 'cath5',
     }*/
   ]  
+    bool: Boolean = true;
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController,
               private geolocation: Geolocation) {
@@ -91,11 +92,11 @@ export class SearchPage {
   goToSlide(){
     this.slides.slideTo(2,100);
   }
-  onGoJaunesPage(){
-    this.navCtrl.push(JaunesPage);
+  onGoJaunesPage(t){
+    this.navCtrl.push(JaunesPage,{type: 'pro'});
   }
-  onGoBlanchesPage(){
-    this.navCtrl.push(BlanchesPage);
+  onGoBlanchesPage(t){
+    this.navCtrl.push(JaunesPage,{type: 'inv'});
   }
 
   onShowList(){
@@ -105,7 +106,7 @@ export class SearchPage {
   ionViewDidLoad() {
  
      
-this.geolocation.getCurrentPosition().then((resp)=>{
+  this.geolocation.getCurrentPosition().then((resp)=>{
      console.log('Location', resp);
     }).catch((error) => {
      console.log('Error getting location', error);
