@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
-import {SingleProPage } from '../search-jaune/single-pro/single-pro';
 
 @IonicPage()
 @Component({
@@ -68,7 +67,7 @@ export class AproximitePage {
      )
  } 
     onDisplayPro(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push(SingleProPage, {pro: pro})
+      this.navCtrl.push('SingleProPage', {pro: pro})
     }
    // 
    raccourcis(x,y,cath){

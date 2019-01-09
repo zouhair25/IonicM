@@ -7,7 +7,6 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import {SingleProPage } from './single-pro/single-pro';
 @Component({
   selector: 'page-search-jaune',
   templateUrl: 'search-jaune.html',
@@ -20,7 +19,7 @@ export class SearchJaunePage implements OnInit{
   count;
   items = [];
   start =0;
-  extract =12;
+  extract =20;
   i=0;
   reste =this.start;
   private searchTerms = new Subject<string>();
@@ -49,13 +48,13 @@ export class SearchJaunePage implements OnInit{
                     console.log('this.start>this.count');
         }else{
 
-          this.start=this.start+13;
+          this.start=this.start+20;
                    console.log('start :', this.start);
          console.log('count :', this.count);
             infiniteScroll.complete();  
             this.i++;
             console.log('i :',this.i); 
-            if(this.count-this.start<12){
+            if(this.count-this.start<20){
               this.extract=this.count-this.start;
                console.log('this.extract',this.extract);
             }
@@ -72,44 +71,43 @@ export class SearchJaunePage implements OnInit{
    
         this.quiquoi =this.navParams.get('quiquoi');
         this.ou =this.navParams.get('ou');
+
   }
   ionViewDidEnter (){
-
-   this.list = this.onSubmitForm(this.quiquoi,this.ou);
-       console.log('quiquoi :', this.quiquoi);
-       console.log('ou :', this.ou);
+       if(this.quiquoi && this.ou){
+          this.list = this.onSubmitForm(this.quiquoi,this.ou);
+          console.log('quiquoi o:', this.quiquoi);
+       }    
   }
 
-        onSubmitForm(quiquoi: string, ou: string){
-      this.listesResultats(quiquoi,ou).then(
-        (data)=>{this.list=data[0],this.count=data[1]
-        console.log('yes now ssss',this.count);
-      }
-        );
-
-    
-      //this.navCtrl.push(SearchJaunePage,{list: this.list});
-      return this.list;      
-    }
-            onSubmitFormScroll(quiquoi: string, ou: string, start,extract){
-            
-      this.listesResultatsScroll(quiquoi,ou, start,extract).then(
-        (data)=>{
-         //console.log('data',data.length);
-          for(let i=0 ; i<data[0].length;i++){
-          this.list.push(data[0][i]);
-        console.log('data[0]',data[0][i]);
+     onSubmitForm(quiquoi: string, ou: string){
+        this.listesResultats(quiquoi,ou).then(
+          (data)=>{this.list=data[0],this.count=data[1]
+          //console.log('yes now ssss',this.count);
         }
-        console.log('this.list.push(data[0])',this.list);
+          );    
+        //this.navCtrl.push(SearchJaunePage,{list: this.list});
+        return this.list;      
+    }
 
-      }
-        );
-       return this.list;      
+      onSubmitFormScroll(quiquoi: string, ou: string, start,extract){
+            
+        this.listesResultatsScroll(quiquoi,ou, start,extract).then(
+          (data)=>{
+           //console.log('data',data.length);
+            for(let i=0 ; i<data[0].length;i++){
+            this.list.push(data[0][i]);
+          console.log('data[0]',data[0][i]);
+          }
+          console.log('this.list.push(data[0])',this.list);
+        }
+          );
+         return this.list;      
     }
     
 
     onDisplayPro(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push(SingleProPage, {pro: pro})
+      this.navCtrl.push('SingleProPage', {pro: pro})
     }
 
   ngOnInit(){
@@ -126,8 +124,8 @@ export class SearchJaunePage implements OnInit{
               var ou = this.ou; 
 
               //let start: number  =6 ; 
-              var first   = 'result'; 
-              var second  ='result'; 
+              var first   = 'complet'; 
+              var second  ='complet'; 
               var third   = 'result'; 
               var pos     = '0'; 
               var extract_sd   = '0'; 
@@ -240,7 +238,7 @@ export class SearchJaunePage implements OnInit{
               var third   = 'result'; 
               var pos     = '0'; 
               var extract_sd   = '0'; 
-              var extract ='12';
+              var extract ='20';
 
 
           var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
@@ -289,6 +287,11 @@ export class SearchJaunePage implements OnInit{
                        console.log('result', result.search_answers.search_answer[0].items[0].$.count);
                         count =result.search_answers.search_answer[0].items[0].$.count;
                        //count=result.search_answers.search_answer.items[0].$.count;
+                       console.log('count1', result.search_answers.search_answer[0].items[0].count_section[0].$.count1);
+                       console.log('count2', result.search_answers.search_answer[0].items[0].count_section[0].$.count2);
+                       console.log('count3', result.search_answers.search_answer[0].items[0].count_section[0].$.count3);
+
+                   
                    for(let answers of result.search_answers.search_answer) {
                           
 
@@ -343,4 +346,6 @@ export class SearchJaunePage implements OnInit{
           });
 
     }
+
+
 }

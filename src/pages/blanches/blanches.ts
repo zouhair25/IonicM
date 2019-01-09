@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
 import { JaunesPage } from '../jaunes/jaunes';
-import {SingleProPage } from '../search-jaune/single-pro/single-pro';
 @Component({
   selector: 'page-blanches',
   templateUrl: 'blanches.html',
@@ -123,9 +122,9 @@ export class BlanchesPage {
         });
        return this.list;
     }
-
+    
 
     onDisplayInv(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push(SingleProPage, {pro: pro})
+      this.navCtrl.push('SingleProPage', {pro: pro})
     }
 }
