@@ -8,7 +8,7 @@ page-jaunes {
   .bar-button-md{
     height: 0px !important;
   }
-  
+
   .searchbar-md{
     padding: 1px !important;
   }
@@ -47,6 +47,8 @@ page-jaunes {
    }
    .arrow-back{
     background-color: transparent !important;
+    font-size: 25px;
+    padding-left: 10px;
    }
   .pb{
     background-color: transparent !important;
@@ -130,4 +132,27 @@ page-jaunes .btn-search ion-icon {
     padding-right: 0px;
     padding-left: 0;
 
+}
+
+page-jaunes .pj {
+
+    background-color: #ffdd00 !important;
+    text-transform: none;
+    color: black !important;
+    width: 100%;
+    border-radius: 27px;
+    height: 37px;
+    font-size: 18px;
+
+}
+
+ion-app.md [padding] .scroll-content {
+
+    padding-top: 16px;
+    padding-top: 22px;
+
+}
+
+.col-1 {
+  padding-left: 16px;
 }
