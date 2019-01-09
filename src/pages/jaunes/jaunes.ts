@@ -10,7 +10,6 @@ import {
  } from 'rxjs/operators';
 import {SearchJaunePage } from '../search-jaune/search-jaune';
 
-
 @Component({
   selector: 'page-jaunes',
   templateUrl: 'jaunes.html',
@@ -18,63 +17,89 @@ import {SearchJaunePage } from '../search-jaune/search-jaune';
 export class JaunesPage{
   @ViewChild('searchBox') searchBox;
   @ViewChild('searchVil') searchVil;
+  @ViewChild('searchTel') searchTel;
   xmlItems$;
   xmlOu$;
   list;
   searchTerm = new Subject<string>();
   searchTermOu = new Subject<string>();
-  quiquoi: string='';
-  ou: string ='';
+  quiquoi: string='Caméra de surveillance';
+  ou: string ='Casablanca';
+  //tel: string ='0522777100';
+  tel: string ='0522664776';
   searching: any =false;
+  showBlanches: boolean = false;
+  showJaune: boolean = false;
+
+  //pro ou inv
+  type: string;
  // @ViewChild('searchbar') searchBox: Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private el: ElementRef) {
   }
 
     onGoBlanchesPage(){
-       this.navCtrl.push(BlanchesPage);
+      this.showBlanches = true;
+      this.showJaune = false;
+      setTimeout(()=>{
+        this.searchTel.setFocus();
+      },500);
     }
-      search(term: string): void {
-        this.searchTerm.next(term);
-      }
-      searchVille(term: string): void {
-        this.searchTermOu.next(term);
-      }
-      back(){
-      	this.navCtrl.push('SearchPage');
-      }
+
+    onGoJaunesPage(){
+      this.showBlanches = false;
+      this.showJaune = true;
+      setTimeout(() => {
+        this.searchBox.setFocus();
+      },500);
+    }
+    search(term: string): void {
+      this.searchTerm.next(term);
+    }
+
+    searchVille(term: string): void {
+      this.searchTermOu.next(term);
+    }
+    back(){
+    	this.navCtrl.push('SearchPage');
+    }
  
     ionViewDidLoad() {
-
-    	     setTimeout(() => {
-             this.searchBox.setFocus();
-            },500);
-
-         this.searching = false;
-         this.xmlItems$ = this.searchTerm.pipe(
-          debounceTime(100),
-          distinctUntilChanged(),
-          switchMap((term: string) => this.auto_quiquoiLoadXML(term)),
-         );
-         this.xmlOu$ =this.searchTermOu.pipe(
+           // recuperation de type pro ou inv pour savoir quel est à afficher
+           this.type=this.navParams.get('type')
+           // ici le test sur pro ou inv 
+           if(this.type==="inv"){
+            this.onGoBlanchesPage();
+            console.log('onGoBlanchesPage');
+           }else{
+            this.onGoJaunesPage();
+            console.log('onGoJaunesPage');
+           } 
+           this.searching = false;
+           this.xmlItems$ = this.searchTerm.pipe(
+            debounceTime(100),
+            distinctUntilChanged(),
+            switchMap((term: string) => this.auto_quiquoiLoadXML(term)),
+           );
+            this.xmlOu$ =this.searchTermOu.pipe(
            debounceTime(100),
            distinctUntilChanged(),
            switchMap((term: string)=> this.auto_ouLoadXML(term)),
-           );
-
+            );
+           
     }
 
     selectValueQuiquoi(item){
-      console.log(item);
-      this.quiquoi = item.title;
-       this.xmlItems$ = this.searchTerm.pipe(
+          console.log(item);
+          this.quiquoi = item.title;
+          this.xmlItems$ = this.searchTerm.pipe(
           debounceTime(1500),
           distinctUntilChanged(),
           switchMap((term: string) => this.auto_quiquoiLoadXML(term)));
     }
     selectValueOu(item){
-      this.ou=item.title;
-      this.xmlOu$ =this.searchTermOu.pipe(
+           this.ou=item.title;
+           this.xmlOu$ =this.searchTermOu.pipe(
            debounceTime(1000),
            distinctUntilChanged(),
            switchMap((term: string)=> this.auto_ouLoadXML(term)),
@@ -86,8 +111,7 @@ export class JaunesPage{
     }
 
         checkFocus(){
-
-                    this.xmlItems$ = this.searchTerm.pipe(
+          this.xmlItems$ = this.searchTerm.pipe(
           debounceTime(1500),
           distinctUntilChanged(),
           switchMap((term: string) => this.auto_quiquoiLoadXML(term)),
@@ -98,26 +122,35 @@ export class JaunesPage{
       
     }*/
 
+        // permet de tester si quiquoi ou ville est vide sinon il redirege vers la page search-jaune
     onDisplay(quiquoi, ou){
-    	      console.log('itemitemitemitem');
-      if(this.quiquoi=='' || this.quiquoi==null){
-          
-                    setTimeout(() => {
-             this.searchBox.setFocus();
-            },10);
-      }
-      else if(this.ou=='' || this.ou==null){
-            
-             setTimeout(() => {
-             this.searchVil.setFocus();
-             console.log('Focus',this.searchVil);
-            },10);
-
-      }       
-        else {
-        this.navCtrl.push(SearchJaunePage,{ou: this.ou, quiquoi: this.quiquoi})
-      }
+    	         console.log('itemitemitemitem');
+           if(this.quiquoi=='' || this.quiquoi==null){        
+               setTimeout(() => {
+                this.searchBox.setFocus();
+               },10);
+           }else if(this.ou=='' || this.ou==null){    
+               setTimeout(() => {
+                this.searchVil.setFocus();
+                console.log('Focus',this.searchVil);
+               },10);
+           }else {
+           this.navCtrl.push(SearchJaunePage,{ou: this.ou, quiquoi: this.quiquoi})
+           }
     }
+      onDisplayBlanches(tel){
+        if(this.tel=='' || this.tel==null){
+          setTimeout(()=>{
+            this.searchTel.setFocus();
+          },10);
+         
+        }else{
+         this.navCtrl.push(BlanchesPage, {tel: this.tel});         
+           //this.navCtrl.push(BlanchesPage);         
+         
+        }
+         console.log('Focus ccc');        
+      }
 
 
     auto_quiquoiLoadXML(term: string){
@@ -291,49 +324,11 @@ export class JaunesPage{
     }
     
 
+
+
    
 
-   /*parse1XML(data)
-   {
-     let yyy: any = [];
-      return new Promise(resolve =>
-      {
-         var k,j,count,i,
-             arr    = [],
-             //item =[],
-
-             parser = new xml2js.Parser(
-             {
-                trim: true,
-                explicitArray: true
-             });
-      parser.parseString(data, function (err, result)
-      {
-
-                     console.log('answers', result);
-         for(let answers of result.search_answers.search_answer) {
-           //console.log('answers', answers);
-           for(let item of answers.items){
-             //console.log('item', item);
-             for(let i of item.item){
-               //console.log('i', i);
-               for(let i_data of i.item_data){
-                 //console.log('i_data', i_data);
-                 for(let data of i_data.data){
-                   this.yyy.push({key: data.$.name, value: data._});
-                   
-                 }
-               }
-             }
-           }
-         }
-    
-
-            resolve(yyy);
-         });
-      });
-   }*/
-
+ 
   
      
   
