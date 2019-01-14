@@ -9,6 +9,7 @@
 
 
 <ion-content padding class="hist-content">
+<div *ngIf="!count"><ion-spinner name="bubbles"></ion-spinner></div>
 
   <ion-grid *ngIf="count>0">
     <b> {{count}} Résultats</b>
@@ -55,7 +56,7 @@
      </ion-col>
            <div class="space"><br>  <br></div>
     </ion-row>
-
+     
     </ion-grid>
 
     <ion-grid >
@@ -64,7 +65,7 @@
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>
  </ion-list>-->
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >
       <ion-infinite-scroll-content  loadingSpinner="bubbles"
       loadingText="Loading more data..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>

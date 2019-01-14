@@ -8,6 +8,7 @@
 
 
 <ion-content padding class="hist-content">
+<div *ngIf="!count"><ion-spinner name="bubbles"></ion-spinner></div>
 
   <ion-grid *ngIf="count>0">
     <b> {{count}} Résultats</b>
