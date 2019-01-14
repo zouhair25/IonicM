@@ -17,38 +17,32 @@ export class AproximitePage {
   list: any =[];
   categorie: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	          private geolocation: Geolocation) {
+              private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
-  	//this.list=this.navParams.get('list')
-  	this.categorie=this.navParams.get('categorie');
-    //this.categorie =this.appareil.cath;
-    //console.log('ionViewDidLoad AproximitePage', this.list);
-    console.log('ionViewDidLoad2 categorie', this.categorie);
+    //this.list=this.navParams.get('list')
+    this.categorie=this.navParams.get('categorie');
+    this.latitude= this.navParams.get('lat');
+    this.longitude= this.navParams.get('lng');
 
-  this.geolocation.getCurrentPosition().then((data)=>{
-     console.log('Location', data);
-     this.onDisplayRaccourcis(data.coords.latitude,data.coords.longitude,this.categorie);
+    //this.categorie =this.appareil.cath;
+    console.log('ionViewDidLoad categorie', this.categorie);
+    console.log('ionViewDidLoad2 latitude', this.latitude);
+    console.log('ionViewDidLoad2 longitude', this.longitude);
+    
+
+  
+     this.onDisplayRaccourcis(this.latitude,this.longitude,this.categorie);
        //this.onDisplayRaccourcis(33.60480040521175,-7.522560798869609,this.categorie);
       
-    }).catch((error) => {
-     console.log('Error getting location', error);
-   });
+  
 
-
-   let watch =this.geolocation.watchPosition();
+   /*let watch =this.geolocation.watchPosition();
        watch.subscribe((data)=>{
-          /*console.log("Latitude ",data.coords.latitude)   ;
-          console.log("longitude ",data.coords.longitude)   ; 
-          console.log("altitude ",data.coords.altitude)   ;      
-          console.log("accuracy ",data.coords.accuracy)   ;      
-          console.log("altitudeAccuracy   ",data.coords.altitudeAccuracy  )   ;      
-          console.log("heading   ",data.coords.heading  )   ;      
-          console.log("speed   ",data.coords.speed  )   ;      
-          console.log("timestamp   ",data.timestamp)   ; */     
+  
 
-       })
+       })*/
        
    
   /////////////////////////////////////
@@ -111,7 +105,7 @@ export class AproximitePage {
                 parser.parseString(response, function(err, result){
                     console.log(result);
                    if (result) {
-                    	
+                      
                     
                                         count =result.search_answers.search_answer[0].items[0].$.count;
                        //count=result.search_answers.search_answer.items[0].$.count;
@@ -142,11 +136,11 @@ export class AproximitePage {
                    }  
 
                   }else{
-                  	list.push();
+                    list.push();
 
-                  	noResult =true;
-                  	console.log('Pas de résultats à proximité de vous.');
-                  	console.log('Pas de résultats à proximité de vous.',noResult);
+                    noResult =true;
+                    console.log('Pas de résultats à proximité de vous.');
+                    console.log('Pas de résultats à proximité de vous.',noResult);
 
                   }
                    resolve([list, count,noResult]);                
