@@ -9,8 +9,9 @@ page-search-jaune {
 	    border-radius: 5px 5px 5px 5px;
 	    webkit-border-radius:5px 5px 5px 5px;
 	    moz-border-radius:5px 5px 5px 5px;
-
-
+      padding-top: 15px;
+      padding-bottom: 15px;
+      margin-bottom: 12px;
 	}
 	.rs_comp{
         font-weight: bold;
@@ -70,6 +71,33 @@ page-search-jaune .space {
 
 page-search-jaune .rs_comp {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     padding-bottom: 5px;
+}
+
+.col-inscription {
+  padding-left: 16px;
+  padding-right: 10px;
+  padding-top: 0;
+}
+
+.border-logo {
+  width: 100%;
+  border: 1px;
+  border-style: solid;
+  border-color: #898a8c;
+  margin-left: 5px;
+}
+
+.col-logos {
+  margin-top: 8px;
+}
+
+.cercle-chiffres {
+  width: 10%;
+border-radius: 50%;
+height: 10%;
+border: 0;
+background-color: #ffef2b;
+text-align: center;
 }

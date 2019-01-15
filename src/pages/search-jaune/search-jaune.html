@@ -15,7 +15,9 @@
     <ion-row  class="hist-row" *ngFor="let l of list;let i= index">
 
       <ion-col col-10 class="information" (click)="onDisplayPro(l.d)">
-      	<div class="rs_comp" (click)="onDisplayPro(l.d)"><span style="background-color: yellow">{{i+1}}</span> &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
+      	<div class="rs_comp" (click)="onDisplayPro(l.d)">
+          <input type="text" name="" value="{{i+1}}" readonly="readonly" class="cercle-chiffres">
+          &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
         <div >
           <span class="adresse">{{l.d[3].adresse}}{{l.d[4].adresse}}</span> &nbsp;&nbsp;
           <span class="ville">{{l.d[4].ville}}{{l.d[5].ville}}</span>
@@ -26,16 +28,19 @@
       <ion-col col-2 (click)="onDisplayPro(l.d)">
       </ion-col>
 
-      <ion-col col-2 (click)="onDisplayPro(l.d)">
+      <ion-col col-2 class="col-logos" (click)="onDisplayPro(l.d)">
+        <div class="border-logo">
+
       	<div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d)">
       	 <img alt="logo" src="{{l.d[2].logo}}{{l.d[3].logo}}" class="logo-ste" />
-
       	</div>
       	<div *ngIf='!l.d[2].logo && !l.d[3].logo' (click)="onDisplayPro(l.d)">
         <img alt="logo" src="http://www.telecontact.ma/pubs/logos/L3182169.png" class="logo-not"/>
         </div>
+
+        </div>
       </ion-col>
-     <ion-col col-9>
+     <ion-col col-10 class="col-inscription">
        <div class="rubrique" (click)="onDisplayPro(l.d)">
        	<span *ngIf="l.d[6].rubrique">{{l.d[6].rubrique}}<br></span>
         <span *ngIf="l.d[7].rubrique">{{l.d[7].rubrique}}</span>
@@ -53,7 +58,6 @@
 
        </div>
      </ion-col>
-           <div class="space"><br>  <br></div>
     </ion-row>
 
     </ion-grid>
