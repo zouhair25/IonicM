@@ -10,6 +10,7 @@ import {
  } from 'rxjs/operators';
 import {SearchJaunePage } from '../search-jaune/search-jaune';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-jaunes',
@@ -24,10 +25,10 @@ export class JaunesPage{
   list;
   searchTerm = new Subject<string>();
   searchTermOu = new Subject<string>();
-  quiquoi: string='Caméra de surveillance';
-  ou: string ='Casablanca';
+  quiquoi: string='';
+  ou: string ='';
   //tel: string ='0522777100';
-  tel: string ='0522664776';
+  tel: string ='';
   searching: any =false;
   showBlanches: boolean = false;
   showJaune: boolean = false;
@@ -38,7 +39,8 @@ export class JaunesPage{
  // @ViewChild('searchbar') searchBox: Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private el: ElementRef,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private storage: Storage) {
 
   }
    getLocation(){
@@ -290,7 +292,7 @@ export class JaunesPage{
 	            data       : {telecontact : data_send},
 	            dataType   : 'text',
 	            success    : function(response) {
-                     console.log('response ville',response);
+                    
 	              let parser = new xml2js.Parser(
 	                     {
 	                        trim: true,
