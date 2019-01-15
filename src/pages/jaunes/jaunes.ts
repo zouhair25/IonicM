@@ -39,7 +39,7 @@ export class JaunesPage{
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private el: ElementRef,
               private geolocation: Geolocation) {
-    this.getLocation();
+
   }
    getLocation(){
         this.geolocation.getCurrentPosition().then((resp)=>{
@@ -79,7 +79,9 @@ export class JaunesPage{
     ionViewDidLoad() {
       this.getLocation();
            // recuperation de type pro ou inv pour savoir quel est à afficher
-           this.type=this.navParams.get('type')
+           this.type=this.navParams.get('type');
+           this.lat =this.navParams.get('lat');
+           this.lng =this.navParams.get('lng');
            // ici le test sur pro ou inv 
            if(this.type==="inv"){
             this.onGoBlanchesPage();

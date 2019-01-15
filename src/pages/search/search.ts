@@ -96,10 +96,10 @@ export class SearchPage {
     this.slides.slideTo(2,100);
   }
   onGoJaunesPage(t){
-    this.navCtrl.push(JaunesPage,{type: 'pro'});
+    this.navCtrl.push(JaunesPage,{type: 'pro',lat: this.lat,lng: this.lng});
   }
   onGoBlanchesPage(t){
-    this.navCtrl.push(JaunesPage,{type: 'inv'});
+    this.navCtrl.push(JaunesPage,{type: 'inv',lat: this.lat,lng: this.lng});
   }
 
   onShowList(){
