@@ -14,7 +14,6 @@ import { SearchJaunePage } from '../pages/search-jaune/search-jaune';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
-import { SingleProPage } from '../pages/search-jaune/single-pro/single-pro';
 import { Api } from '../providers/api';
 import { Functions } from '../providers/functions';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +30,6 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     JaunesPage,
     BlanchesPage,
     SearchJaunePage,
-    SingleProPage,
   ],
   imports: [
     IonicStorageModule.forRoot(),
@@ -50,7 +48,6 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     JaunesPage,
     BlanchesPage,
     SearchJaunePage,
-    SingleProPage,
   ],
   providers: [
     StatusBar,

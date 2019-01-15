@@ -1,4 +1,12 @@
 page-search-jaune {
+	ion-spinner * {
+      width: 28px;
+      height: 28px;
+	  stroke: #444;
+	  fill: #222;
+	  margin-left: 151px;
+      margin-top: 208px;
+    }
   	.hist-content{
 		background-color: #eee !important;
 	}

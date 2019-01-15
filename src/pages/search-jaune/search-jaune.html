@@ -9,6 +9,7 @@
 
 
 <ion-content padding class="hist-content">
+<div *ngIf="!count"><ion-spinner name="bubbles"></ion-spinner></div>
 
   <ion-grid *ngIf="count>0">
     <b> {{count}} Résultats</b>
@@ -35,7 +36,7 @@
       	 <img alt="logo" src="{{l.d[2].logo}}{{l.d[3].logo}}" class="logo-ste" />
       	</div>
       	<div *ngIf='!l.d[2].logo && !l.d[3].logo' (click)="onDisplayPro(l.d)">
-        <img alt="logo" src="http://www.telecontact.ma/pubs/logos/L3182169.png" class="logo-not"/>
+        <img alt="logo" src="assets/imgs/logonot.jpg" class="logo-not"/>
         </div>
 
         </div>
@@ -59,7 +60,7 @@
        </div>
      </ion-col>
     </ion-row>
-
+     
     </ion-grid>
 
     <ion-grid >
@@ -68,7 +69,7 @@
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>
  </ion-list>-->
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >
       <ion-infinite-scroll-content  loadingSpinner="bubbles"
       loadingText="Loading more data..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>

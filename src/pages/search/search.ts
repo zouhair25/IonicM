@@ -19,6 +19,8 @@ export class SearchPage {
   
   @ViewChild(Slides) slides: Slides;
   list;
+  lat;
+  lng;
   count;
    appareilsList  =[
     {
@@ -108,6 +110,8 @@ export class SearchPage {
      
   this.geolocation.getCurrentPosition().then((resp)=>{
      console.log('Location', resp);
+     this.lat = resp.coords.latitude;
+     this.lng = resp.coords.longitude;
     }).catch((error) => {
      console.log('Error getting location', error);
    });
@@ -136,7 +140,7 @@ export class SearchPage {
 
 
     onDisplayByCategory(name: string){
-      this.navCtrl.push('AproximitePage',{categorie: name});
+      this.navCtrl.push('AproximitePage',{categorie: name,lat: this.lat,lng: this.lng});
     }
   onToggleMenu(){
    this.menuCtrl.open();

@@ -22,6 +22,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+@IonicPage()
 @Component({
   selector: 'page-single-pro',
   templateUrl: 'single-pro.html',
@@ -273,7 +274,7 @@ export class SingleProPage {
    if(this.pro.length>17){
       this.latitude6=this.pro[17].latitude;
    }
-   if(this.pro.length>18) {
+   if(this.pro.length>19) {
       this.webinfo_link1=this.pro[19].webinfo_link;
    }   
    if(this.pro.length>20) {
@@ -341,22 +342,26 @@ export class SingleProPage {
 
     });
       
-      // recuperation des prestation
+      // recuperation des prestation et passer le code firme
+      setTimeout(()=>{
       this.listPrestations=this.prestation_dispaly(this.code_firme);
-      console.log('this',this.listPrestations);
+    },500)
+      console.log('this',this.code_firme);
   }
+
+  //suite recuperation et affectation au listpresta
   prestation_dispaly(code_firme){
     this.prestation(code_firme).then((data)=>{
        this.listPrestations=data;
     })
      return this.listPrestations;  
   }
-
+  // pour recuperer les prestation par code firme
  prestation(code_firme){
        let list: any = [];
        return new Promise((resolve,  reject) =>{
        let  start_files_sec =1;
-       //let code_firme =2107435;
+       //let code_firme =;
        var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
           data_send += '  <methodcall>';
           data_send += '    <methodname call="get_prestation_by_cf">';  
@@ -379,7 +384,8 @@ export class SingleProPage {
               data       : {telecontact : data_send},
               dataType   : 'text',
               success    : function(response) {
-                
+        
+                                  console.log('response d',response);  
                  
                 let parser = new xml2js.Parser(
                        {
@@ -389,22 +395,30 @@ export class SingleProPage {
               parser.parseString(response, function (err, result){
                 
                 console.log('response ville',result);
+
                 for(let answers of result.search_answers.search_answer) {
-                                  console.log('answers d',answers);  
+                                  console.log('answers ddd',answers.items[0].length);  
 
-                         if (answers.items[0]=="      ") {
-
+                             if (answers.items[0].length==3) {
+                                  console.log('answers nulll',answers);  
                                      //yyy.push({'title': 'Aucun resultat'}); 
                                }else{
+ console.log('else',answers.items);
                  
                      for(let item of answers.items){
-
+                        if(item !=null)  {
+                           console.log('itemitemitemitemitemitem ',item);
                        for(let i of item.item){
                          //console.log('item d',i);
                          list.push({'title': i.name[0]});
       //console.log('this.listPrestations',list);
 
                        }
+                     }else{
+                     list.push({'title': 'Aucun resultat3'}); 
+                           console.log('itemitemitemitemitemitem 2',item);
+
+                     }
                      }
                    }
                  }

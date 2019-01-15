@@ -14,6 +14,7 @@
 
 
 <ion-content padding class="hist-content"><br>
+<div *ngIf="!count && !noResult"><ion-spinner name="bubbles"></ion-spinner></div>
    
   <ion-grid *ngIf="count>0">
     <b> {{count}} résultats</b>
@@ -49,7 +50,7 @@
 
       	</div>
       	<div *ngIf='!l.d[2].logo' (click)="onDisplayPro(l.d)">
-        <img alt="logo" src="http://www.telecontact.ma/pubs/logos/L3182169.png" class="logo-not"/>
+        <img alt="logo" src="assets/imgs/logonot.jpg" class="logo-not"/>
         </div>
       </ion-col>
      <ion-col col-9 >
