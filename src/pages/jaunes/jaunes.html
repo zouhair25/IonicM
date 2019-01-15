@@ -7,24 +7,28 @@
 <ion-header>
 
   <ion-navbar hideBackButton="true">
-  	<!--<ion-buttons>
-      <button ion-button class="pj">  Professionnels</button>
-      <button ion-button class="pb" (click)="onGoBlanchesPage()">  Annuaire inversé</button>
 
-  	</ion-buttons>-->
   	<ion-row>
 
 
+
+
+
   		<ion-col col-2 >
+<<<<<<< HEAD
     		<button ion-button class="arrow-back" (click)="back(lat,lng)">
+=======
+    		<button ion-button class="arrow-back" (click)="back()">
+
+>>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
     			<ion-icon name="arrow-back" ></ion-icon>
     		</button>
     	</ion-col>
   	</ion-row>
     <ion-row>
-    	<ion-col col-6 >
-    		<button ion-button class="pj" (click)="onGoJaunesPage()" [disabled]="showJaune">  Professionnels</button></ion-col>
-    	<ion-col col-6 class="pb"><button ion-button class="pb" (click)="onGoBlanchesPage()" [disabled]="showBlanches">  Annuaire inversé</button></ion-col>
+    	<ion-col col-6  class="col-1">
+    		<button ion-button class="pj">  Professionnels</button></ion-col>
+    	<ion-col col-6 class="pb"><button ion-button class="pb" (click)="onGoBlanchesPage()">  Annuaire inversé</button></ion-col>
 
     </ion-row>
 
@@ -36,26 +40,19 @@
 <ion-content padding>
 
 
-    	<ion-row  *ngIf="showJaune">
-    	   <!-- <form #f="ngForm" (ngSubmit)="onSubmitForm()">-->
+    	<ion-row>
 
-				<!--<ion-input type="text" name="" placeholder="Quoi, qui..."
-				class="search inp-search" ></ion-input>
-
-					<ion-input type="text" id="quiquoi" ngModel name="quiquoi"  class="input_engine" placeholder="Qui, Quoi"    autocomplete="off" data-role="none" >
-					</ion-input>-->
 					<ion-col col-10>
-			      <ion-searchbar  [(ngModel)]="quiquoi" [ngModelOptions]="{standalone: true}" placeholder="Quoi, qui..." #searchBox id="search-box" (keyup)="search(searchBox.value)"
+			      <ion-searchbar  [(ngModel)]="quiquoi" [ngModelOptions]="{standalone: true}" placeholder="Quoi, qui... ?" #searchBox id="search-box" (keyup)="search(searchBox.value)"
 			      >
 			      </ion-searchbar>
-                    <!--<div *ngIf="searching" class="spinner-container">
-                    	<ion-spinner></ion-spinner>
-                    </div>-->
 
 
 
-                 <ion-searchbar [ngModelOptions]="{standalone: true}" [(ngModel)]="ou" #searchVil id="search-vil" (keyup)="searchVille(searchVil.value)" placeholder="Où"
-				          class="search inp-search" (ionFocus)="checkFocus()"></ion-searchbar>
+
+                 <ion-searchbar [ngModelOptions]="{standalone: true}" [(ngModel)]="ou" #searchVil id="search-vil" (keyup)="searchVille(searchVil.value)" placeholder="Où ?"
+				          class="search inp-search" (ionFocus)="checkFocus()">
+                </ion-searchbar>
 
 				      <ion-list class='search-drop-down'>
 
@@ -78,34 +75,13 @@
 					<ion-icon  name="search" color="dark"></ion-icon>
 				</button>
 			  </ion-col>
-			<!--</form>-->
+
 
 		</ion-row>
 
-    <ion-row *ngIf="showBlanches">
-      <ion-col col-10>
-        <ion-searchbar [ngModelOptions]="{standalone: true}" [(ngModel)]="tel" #searchTel id="search-tel"  placeholder="Où"  class="search inp-search">              
-        </ion-searchbar>
-      </ion-col>
-      <ion-col col-2>
-        <button type="submit" ion-button icon-start
-        class="blanch-search" (click)='onDisplayBlanches("tel")'>
-          <ion-icon  name="search" color="dark"></ion-icon>
-        </button>
-      </ion-col>      
-    </ion-row>
-
 		<ion-row>
 			<ion-col col-12>
-				<!--<ion-list>
-					<ion-item *ngFor="let l of list">
-						<ul >
-							<li>{{l.code_firme}}</li>
-						</ul>
 
-
-					</ion-item>
-				</ion-list>-->
 			</ion-col>
 			</ion-row>
 

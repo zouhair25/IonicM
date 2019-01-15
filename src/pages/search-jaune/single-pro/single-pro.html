@@ -6,38 +6,55 @@
   </ion-navbar>
 
 </ion-header>
- 
+
 
 <ion-content >
   <div #map id="map" [@openClose]="isOpen ? 'open' : 'closed'">
- 
+
   </div>
  <ion-grid>
   <ion-row class="btns">
-    <ion-col col-3> <button  color="light" class="back"><ion-icon name="call" class="icon-size"></ion-icon> </button>
+
+    <ion-col col-3 class="btns-icon">
+      <button  color="light" class="back">
+        <ion-icon name="call" class="icon-size">
+        </ion-icon><br>
+        <p class="name-menu">Appeler</p>
+      </button>
     </ion-col>
 
+<<<<<<< HEAD
     <ion-col col-3><button  color="light" class="back" 
       (click)="navigateLocation()">
       <ion-icon name="walk" class="icon-size"></ion-icon>
      </button>
+=======
+    <ion-col col-3 class="btns-icon">
+      <button  color="light" class="back">
+       <ion-icon name="walk" class="icon-size"></ion-icon>
+      </button>
+>>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
     </ion-col>
-    <ion-col col-3>
-       <button  color="light" class="back">  <ion-icon name="mail" class="icon-size"></ion-icon>
-</button>
-    </ion-col>
-    <ion-col col-2>
-       <button  (click)="toggle()" color="light" class="back">
-        <div *ngIf="isOpen">  <ion-icon name="arrow-down" class="icon-size"></ion-icon>
-        </div>
-        <div *ngIf="!isOpen">    <ion-icon name="arrow-up" class="icon-size"></ion-icon>
-      </div>
+
+    <ion-col col-3 class="btns-icon">
+       <button  color="light" class="back">
+         <ion-icon name="mail" class="icon-size"></ion-icon>
        </button>
+    </ion-col>
 
+    <ion-col col-3 class="btns-icon">
+       <button  (click)="toggle()" color="light" class="back">
+          <div *ngIf="isOpen">
+            <ion-icon name="arrow-down" class="icon-size"></ion-icon>
+          </div>
+          <div *ngIf="!isOpen">    <ion-icon name="arrow-up" class="icon-size"></ion-icon>
+          </div>
+       </button>
+    </ion-col>
 
-    </ion-col>    
   </ion-row>
 
+<<<<<<< HEAD
     <ion-row>
       <ion-col ><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span><br>
              <span class="rubrique" text-wrap> 
@@ -45,6 +62,17 @@
                <span *ngIf="rubrique2">{{rubrique2}}<br></span>
                <span *ngIf="rubrique3">{{rubrique3}}<br></span>
                <span *ngIf="rubrique4">{{rubrique4}}<br></span>
+=======
+  <ion-row>
+      <ion-col class="text"><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span>
+      <br>
+      <br>
+             <span class="rubrique" text-wrap>
+               <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique1">{{rubrique1}}<br></span>
+               <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique2">{{rubrique2}}<br></span>
+               <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique3">{{rubrique3}}<br></span>
+               <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique4">{{rubrique4}}<br></span>
+>>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
              </span>
       </ion-col>
     </ion-row>
@@ -55,17 +83,17 @@
           <hr>
           <ion-item *ngIf='adresse1 || adresse2 || adresse0'>
             <span class="adresse" text-wrap>{{adresse1}}{{adresse2}}{{adresse0}}</span>
-          </ion-item>    
+          </ion-item>
           <ion-item *ngIf="telephone0">
-            <span class="telephone1"><b>Tel : </b><span>{{telephone0}}</span>
+            <span class="telephone1"><b>Tél : </b><span>{{telephone0}}</span>
            </span>
-          </ion-item>               
+          </ion-item>
           <ion-item *ngIf="telephone1">
-            <span class="telephone1"><b>Tel : </b><span>{{telephone1}}</span>
+            <span class="telephone1"><b>Tél : </b><span>{{telephone1}}</span>
            </span>
           </ion-item>
           <ion-item *ngIf="telephone2">
-            <span class="telephone1"><b>Tel : </b><span>{{telephone2}}</span>
+            <span class="telephone1"><b>Tél : </b><span>{{telephone2}}</span>
            </span>
           </ion-item>
           <ion-item *ngIf="fax1 || fax2 || fax3">
@@ -87,11 +115,15 @@
           </ion-item>-->
 
           <ion-item *ngIf="webinfo_link1">
-            <span class="site-web"><b>Site Web : </b><span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span></span>          
+            <span class="site-web"><b>Site Web :</b><span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span></span>
           </ion-item>
 
           <ion-item *ngIf="webinfo_link2">
+<<<<<<< HEAD
             <span class="site-web"><b>Site Web : </b>
+=======
+            <span class="site-web"><b>Site Web :</b>
+>>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
               <span *ngIf="webinfo_link2.length<35" text-wrap>
               <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
               </span>
@@ -101,21 +133,22 @@
             </span>
           </ion-item>
           <ion-item text-wrap *ngIf="logo1 || module1 || module2 || module3">
-              <span class="logo" *ngIf="logo1"><img src="{{logo1}}"></span>
-              <span class="logo" *ngIf="logo2"><img src="{{logo2}}"></span>
+              <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
+              <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
 
-           
+
             <div class="module">
               {{module1}}{{module2}}{{module3}}
             </div>
+
           </ion-item>
-       
+
           <ion-item text-wrap *ngIf="listPrestations?.length>0">
                <b>Services et prestations: </b><br>
             <ion-row>
-           
+
             <ion-col  col-6 *ngFor="let p of listPrestations">
-              <li >{{p.title}}      </li>        
+              <li >{{p.title}}      </li>
             </ion-col>
           </ion-row>
 

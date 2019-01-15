@@ -9,8 +9,8 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
   templateUrl: 'historique.html',
 })
 export class HistoriquePage {
-     
-     
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	          private menuCtrl: MenuController) {
   }
@@ -18,7 +18,7 @@ export class HistoriquePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistoriquePage');
   }
-  
+
   onToggleMenu(){
    this.menuCtrl.open();
   }
