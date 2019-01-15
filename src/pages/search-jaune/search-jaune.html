@@ -15,15 +15,12 @@
     <b> {{count}} Résultats</b>
     <ion-row  class="hist-row" *ngFor="let l of list;let i= index">
 
-<<<<<<< HEAD
+
       <ion-col col-10 class="information" (click)="onDisplayPro(l.d,currentLat,currentLng)">
-      	<div class="rs_comp" (click)="onDisplayPro(l.d,currentLat,currentLng)"><span style="background-color: yellow">{{i+1}}</span> &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
-=======
-      <ion-col col-10 class="information" (click)="onDisplayPro(l.d)">
-      	<div class="rs_comp" (click)="onDisplayPro(l.d)">
+      	<div class="rs_comp" (click)="onDisplayPro(l.d,currentLat,currentLng)">
           <input type="text" name="" value="{{i+1}}" readonly="readonly" class="cercle-chiffres">
           &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
->>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
+
         <div >
           <span class="adresse">{{l.d[3].adresse}}{{l.d[4].adresse}}</span> &nbsp;&nbsp;
           <span class="ville">{{l.d[4].ville}}{{l.d[5].ville}}</span>
@@ -34,15 +31,12 @@
       <ion-col col-2 (click)="onDisplayPro(l.d,currentLat,currentLng)">
       </ion-col>
 
-<<<<<<< HEAD
-      <ion-col col-2 (click)="onDisplayPro(l.d,currentLat,currentLng)">
-      	<div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
-=======
-      <ion-col col-2 class="col-logos" (click)="onDisplayPro(l.d)">
+
+
+      <ion-col col-2 class="col-logos" (click)="onDisplayPro(l.d,currentLat,currentLng)">
         <div class="border-logo">
 
-      	<div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d)">
->>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
+      	<div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
       	 <img alt="logo" src="{{l.d[2].logo}}{{l.d[3].logo}}" class="logo-ste" />
       	</div>
       	<div *ngIf='!l.d[2].logo && !l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
@@ -51,13 +45,10 @@
 
         </div>
       </ion-col>
-<<<<<<< HEAD
-     <ion-col col-9>
-       <div class="rubrique" (click)="onDisplayPro(l.d,currentLat,currentLng)">
-=======
+
      <ion-col col-10 class="col-inscription">
-       <div class="rubrique" (click)="onDisplayPro(l.d)">
->>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
+       <div class="rubrique" (click)="onDisplayPro(l.d,currentLat,currentLng)">
+
        	<span *ngIf="l.d[6].rubrique">{{l.d[6].rubrique}}<br></span>
         <span *ngIf="l.d[7].rubrique">{{l.d[7].rubrique}}</span>
         <span *ngIf="l.d[8].rubrique">{{l.d[8].rubrique}}</span>

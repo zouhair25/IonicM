@@ -23,17 +23,12 @@
       </button>
     </ion-col>
 
-<<<<<<< HEAD
-    <ion-col col-3><button  color="light" class="back" 
-      (click)="navigateLocation()">
-      <ion-icon name="walk" class="icon-size"></ion-icon>
-     </button>
-=======
+
     <ion-col col-3 class="btns-icon">
-      <button  color="light" class="back">
+      <button  color="light" class="back"  (click)="navigateLocation()">
        <ion-icon name="walk" class="icon-size"></ion-icon>
       </button>
->>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
+
     </ion-col>
 
     <ion-col col-3 class="btns-icon">
@@ -54,15 +49,6 @@
 
   </ion-row>
 
-<<<<<<< HEAD
-    <ion-row>
-      <ion-col ><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span><br>
-             <span class="rubrique" text-wrap> 
-               <span *ngIf="rubrique1">{{rubrique1}}<br></span>
-               <span *ngIf="rubrique2">{{rubrique2}}<br></span>
-               <span *ngIf="rubrique3">{{rubrique3}}<br></span>
-               <span *ngIf="rubrique4">{{rubrique4}}<br></span>
-=======
   <ion-row>
       <ion-col class="text"><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span>
       <br>
@@ -72,7 +58,7 @@
                <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique2">{{rubrique2}}<br></span>
                <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique3">{{rubrique3}}<br></span>
                <ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique4">{{rubrique4}}<br></span>
->>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
+
              </span>
       </ion-col>
     </ion-row>
@@ -119,11 +105,9 @@
           </ion-item>
 
           <ion-item *ngIf="webinfo_link2">
-<<<<<<< HEAD
-            <span class="site-web"><b>Site Web : </b>
-=======
+
             <span class="site-web"><b>Site Web :</b>
->>>>>>> 17563fc6ec9cd9c38b61def6440f728ff4d9fa62
+
               <span *ngIf="webinfo_link2.length<35" text-wrap>
               <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
               </span>
