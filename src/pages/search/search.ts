@@ -89,6 +89,7 @@ export class SearchPage {
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController,
               private geolocation: Geolocation) {
+    this.getLocation();
   }
   
   goToSlide(){
@@ -104,17 +105,28 @@ export class SearchPage {
   onShowList(){
 
   }
-
-  ionViewDidLoad() {
- 
-     
-  this.geolocation.getCurrentPosition().then((resp)=>{
+    getLocation(){
+        this.geolocation.getCurrentPosition().then((resp)=>{
      console.log('Location', resp);
      this.lat = resp.coords.latitude;
      this.lng = resp.coords.longitude;
     }).catch((error) => {
      console.log('Error getting location', error);
    });
+    }
+    ionViewDidEntrer(){
+      this.getLocation();
+      console.log('ionViewDidLoad ionViewDidEntrer');
+    }
+  ionViewDidLoad() {
+      
+      this.lat =this.navParams.get('lat');
+      this.lng =this.navParams.get('lng');
+      console.log('lat j',this.lat);
+      console.log('lat j',this.lng);
+      
+      
+ this.getLocation();
     console.log('ionViewDidLoad SearchPage');
 
 

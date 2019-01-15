@@ -6,6 +6,7 @@ import xml2js from 'xml2js';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-search-jaune',
@@ -16,16 +17,24 @@ export class SearchJaunePage implements OnInit{
   ou;
   list;
   listScroll;
-  count;
+  count; count1; count2; count3;
   items = [];
-  start =0;
-  extract =20;
+  start =1;
+  extract =10;
+  pos=0; 
+  extract_sd=0;
+  first   = 'result'; 
+  second  ='result'; 
+  third   = 'result'; 
   i=0;
   reste =this.start;
+
+  currentLat;
+  currentLng;
   private searchTerms = new Subject<string>();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	          ) {
+  	          private geolocation: Geolocation) {
     /*for(let i=0;i<30; i++){
       this.items.push(this.items.length);
     }*/
@@ -43,22 +52,42 @@ export class SearchJaunePage implements OnInit{
         //start = this.x;
 
 
-        if(this.start>this.count){
+        if(this.start>this.count || this.extract<0 || this.count<10){
             infiniteScroll.enable(false);
                     console.log('this.start>this.count');
         }else{
 
-          this.start=this.start+20;
-                   console.log('start :', this.start);
-         console.log('count :', this.count);
+          this.start=this.start+10;
+          this.extract_sd=10;
+           console.log('this.pos :', this.pos);
+           if(this.pos==0){
+             this.pos=this.pos+1;             
+           }else{
+             this.pos=this.pos+10;             
+           }
+
+                  
+
             infiniteScroll.complete();  
             this.i++;
             console.log('i :',this.i); 
-            if(this.count-this.start<20){
+            if(this.count-this.start<10 ){
               this.extract=this.count-this.start;
                console.log('this.extract',this.extract);
             }
-            this.onSubmitFormScroll(this.quiquoi,this.ou, this.start, this.extract)
+            if(this.start>this.count1){
+              this.first='complet';
+                       console.log('first complet :', this.first);
+            }
+            if(this.count2==0){
+              this.second='complet';
+                       
+                       console.log('second complet :', this.second);
+            } 
+            console.log('pos :', this.pos);
+            console.log('extract_sd :', this.extract_sd);
+
+            this.onSubmitFormScroll(this.quiquoi,this.ou, this.start, this.extract,this.first,this.second,this.third,this.pos,this.extract_sd);
 
            
         }
@@ -71,7 +100,13 @@ export class SearchJaunePage implements OnInit{
    
         this.quiquoi =this.navParams.get('quiquoi');
         this.ou =this.navParams.get('ou');
-
+         
+         this.geolocation.getCurrentPosition().then((resp)=>{
+        this.currentLat=resp.coords.latitude;
+        this.currentLng=resp.coords.longitude;
+        console.log('lat',this.currentLat);
+        console.log('lng',this.currentLng);
+         });
   }
   ionViewDidEnter (){
        if(this.quiquoi && this.ou){
@@ -82,22 +117,29 @@ export class SearchJaunePage implements OnInit{
 
      onSubmitForm(quiquoi: string, ou: string){
         this.listesResultats(quiquoi,ou).then(
-          (data)=>{this.list=data[0],this.count=data[1]
-          //console.log('yes now ssss',this.count);
+          (data)=>{this.list=data[0],this.count=data[1],
+            this.count1=data[2],
+            this.count2=data[3],
+            this.count3=data[4]
+          console.log('count1 count1 count1',this.count1);
+          console.log('count3 count3 count3',this.count3);
+
         }
           );    
         //this.navCtrl.push(SearchJaunePage,{list: this.list});
         return this.list;      
     }
 
-      onSubmitFormScroll(quiquoi: string, ou: string, start,extract){
-            
-        this.listesResultatsScroll(quiquoi,ou, start,extract).then(
+      onSubmitFormScroll(quiquoi: string, ou: string, start,extract,first,second,third,pos,extract_sd){
+                  console.log('jss in scrolling',this.count);
+        
+
+        this.listesResultatsScroll(quiquoi,ou, start,extract,first,second,third,pos,extract_sd).then(
           (data)=>{
            //console.log('data',data.length);
             for(let i=0 ; i<data[0].length;i++){
             this.list.push(data[0][i]);
-          console.log('data[0]',data[0][i]);
+    
           }
           console.log('this.list.push(data[0])',this.list);
         }
@@ -107,37 +149,19 @@ export class SearchJaunePage implements OnInit{
     
 
     onDisplayPro(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push('SingleProPage', {pro: pro})
+      this.navCtrl.push('SingleProPage', {pro: pro,lat: this.currentLat, lng: this.currentLng})
     }
 
   ngOnInit(){
 
   }
 
-      listesResultatsScroll(quiqoui,ou,start,extract ){
+      listesResultatsScroll(quiquoi,ou,start=1,extract,first,second,third,pos,extract_sd ){
          let list: any = [];
          let count;
          let i;
           return new Promise((resolve,  reject) =>{
-
-              var quiquoi = this.quiquoi; 
-              var ou = this.ou; 
-
-              //let start: number  =6 ; 
-              var first   = 'complet'; 
-              var second  ='complet'; 
-              var third   = 'result'; 
-              var pos     = '0'; 
-              var extract_sd   = '0'; 
-              //var extract ='12';
-              console.log('avant for',start);
-             /* for(i=6; i<this.count;i+6){
-                start =i;
-                              console.log('apres for',start);
-              }*/
-             // ++start;
-             //var start   = 6; 
-
+            
               console.log('apres for',start);
           var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
           data_send += '  <methodcall>';
@@ -226,7 +250,7 @@ export class SearchJaunePage implements OnInit{
     }
       listesResultats(quiqoui,ou){
          let list: any = [];
-         let count;
+         let count,count1,count2,count3;
           return new Promise((resolve,  reject) =>{
 
               var quiquoi = this.quiquoi; 
@@ -237,8 +261,8 @@ export class SearchJaunePage implements OnInit{
               var second  ='result'; 
               var third   = 'result'; 
               var pos     = '0'; 
-              var extract_sd   = '0'; 
-              var extract ='20';
+              var extract_sd   = '10'; 
+              var extract ='10';
 
 
           var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
@@ -285,7 +309,11 @@ export class SearchJaunePage implements OnInit{
                    parser.parseString(response, function (err, result)
                   {
                        console.log('result', result.search_answers.search_answer[0].items[0].$.count);
-                        count =result.search_answers.search_answer[0].items[0].$.count;
+                        count  = result.search_answers.search_answer[0].items[0].$.count;
+                        count1 = result.search_answers.search_answer[0].items[0].count_section[0].$.count1;
+                        count2 = result.search_answers.search_answer[0].items[0].count_section[0].$.count2;
+                        count3 = result.search_answers.search_answer[0].items[0].count_section[0].$.count3;
+
                        //count=result.search_answers.search_answer.items[0].$.count;
                        console.log('count1', result.search_answers.search_answer[0].items[0].count_section[0].$.count1);
                        console.log('count2', result.search_answers.search_answer[0].items[0].count_section[0].$.count2);
@@ -331,7 +359,7 @@ export class SearchJaunePage implements OnInit{
                      }
                  }
                    }
-                   resolve([list,count]);
+                   resolve([list,count,count1,count2,count3]);
                    console.log('dd :',list);
                              //this.list=list;
 

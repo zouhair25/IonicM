@@ -17,9 +17,10 @@
     <ion-col col-3> <button  color="light" class="back"><ion-icon name="call" class="icon-size"></ion-icon> </button>
     </ion-col>
 
-    <ion-col col-3><button  color="light" class="back">
+    <ion-col col-3><button  color="light" class="back" 
+      (click)="navigateLocation()">
       <ion-icon name="walk" class="icon-size"></ion-icon>
-</button>
+     </button>
     </ion-col>
     <ion-col col-3>
        <button  color="light" class="back">  <ion-icon name="mail" class="icon-size"></ion-icon>
@@ -41,9 +42,9 @@
       <ion-col ><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span><br>
              <span class="rubrique" text-wrap> 
                <span *ngIf="rubrique1">{{rubrique1}}<br></span>
-               <span *ngIf="rubrique2">{{rubrique2}}</span>
-               <span *ngIf="rubrique3">{{rubrique3}}</span>
-               <span *ngIf="rubrique4">{{rubrique4}}</span>
+               <span *ngIf="rubrique2">{{rubrique2}}<br></span>
+               <span *ngIf="rubrique3">{{rubrique3}}<br></span>
+               <span *ngIf="rubrique4">{{rubrique4}}<br></span>
              </span>
       </ion-col>
     </ion-row>
@@ -89,7 +90,7 @@
             <span class="site-web"><b>Site Web : </b><span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span></span>          
           </ion-item>
 
-          <ion-item *ngIf="webinfo_link2">d
+          <ion-item *ngIf="webinfo_link2">
             <span class="site-web"><b>Site Web : </b>
               <span *ngIf="webinfo_link2.length<35" text-wrap>
               <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>

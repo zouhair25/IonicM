@@ -14,14 +14,10 @@ import {
   LatLng,
   Environment
 } from '@ionic-native/google-maps';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
+import {  trigger,  state,
+        style,  animate,  transition,} from '@angular/animations';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+
 @IonicPage()
 @Component({
   selector: 'page-single-pro',
@@ -136,14 +132,34 @@ export class SingleProPage {
     locateExiste: boolean =false;
     listPrestations: any = [];
     isOpen =true;
-
+    
+    currentLat;
+    currentLng;
+    destinationLat;
+    destinationLng;
+    
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
-              private platform: Platform) {
+              private platform: Platform,
+              private launchNavigator: LaunchNavigator) {
      
   }
 
+   //for y aller
+   navigateLocation(){
+     let options: LaunchNavigatorOptions = {
+     start: [this.currentLat,this.currentLng],
+     app: this.launchNavigator.APP.GOOGLE_MAPS
+      };
 
+      this.launchNavigator.navigate([this.destinationLat,this.destinationLng],options)
+       .then(success =>{
+        console.log(success);
+        },error=>{
+        console.log(error);
+      })
+       console.log('success');
+   }
   //for up and down div map
   toggle(){
     this.isOpen = !this.isOpen;
@@ -169,12 +185,20 @@ export class SingleProPage {
           });
         })
       }
+      ionViewDidEnter(){
+
+      }
   ionViewDidLoad() {
     // this.loadMap();
 
 
      //recuperation des infos depuis la page search-jaune
      this.pro= this.navParams.get('pro');
+     this.currentLat=this.navParams.get('lat');
+     this.currentLng=this.navParams.get('lng');
+     console.log('single pro lat',this.currentLat);
+     console.log('single pro lng',this.currentLng);
+
     //this.loadmap();
     //console.log('loadmap',this.loadmap());
 
@@ -292,39 +316,49 @@ export class SingleProPage {
         // le test sur l'existance de longitude et latitude
         if(this.longitude0 && this.latitude0){
           this.location =new LatLng(+this.latitude0,+this.longitude0);
-        
+          this.destinationLat=+this.latitude0;
+          this.destinationLng=+this.longitude0;
         }
         else if(this.longitude1 && this.latitude1){
           this.location =new LatLng(+this.latitude1,+this.longitude1);
-         
+          this.destinationLat=+this.latitude1;
+          this.destinationLng=+this.longitude1;          
         }else if(this.longitude2 && this.latitude2){
            this.location =new LatLng(+this.latitude2,+this.longitude2);
-           
+           this.destinationLat=+this.latitude2;
+           this.destinationLng=+this.longitude2;           
         }else if(this.longitude3 && this.latitude3){
            this.location =new LatLng(+this.latitude3,+this.longitude3);
-          
+           this.destinationLat=+this.latitude3;
+           this.destinationLng=+this.longitude3;          
         } else if(this.longitude4 && this.latitude4){
            this.location =new LatLng(+this.latitude4,+this.longitude4);
-          
+           this.destinationLat=+this.latitude4;
+           this.destinationLng=+this.longitude4;          
         }
          else if(this.longitude5 && this.latitude5){
            this.location =new LatLng(+this.latitude5,+this.longitude5);
-           
+           this.destinationLat=+this.latitude5;
+           this.destinationLng=+this.longitude5;           
         }
          else if(this.longitude6 && this.latitude6){
            this.location =new LatLng(+this.latitude6,+this.longitude6);
-          
+           this.destinationLat=+this.latitude6;
+           this.destinationLng=+this.longitude6;          
         }
         else if(this.longitude7 && this.latitude7){
            this.location =new LatLng(+this.latitude7,+this.longitude7);
-           
+           this.destinationLat=+this.latitude7;
+           this.destinationLng=+this.longitude7;           
         }else if(this.longitude8 && this.latitude8){
            this.location =new LatLng(+this.latitude8,+this.longitude8);
-           
+           this.destinationLat=+this.latitude8;
+           this.destinationLng=+this.longitude8;           
         }
         else if(this.longitude9 && this.latitude9){
            this.location =new LatLng(+this.latitude9,+this.longitude9);
-           
+           this.destinationLat=+this.latitude9;
+           this.destinationLng=+this.longitude9;           
         }else{
           this.locateExiste =true;
         }
@@ -385,7 +419,7 @@ export class SingleProPage {
               dataType   : 'text',
               success    : function(response) {
         
-                                  console.log('response d',response);  
+                              
                  
                 let parser = new xml2js.Parser(
                        {
@@ -394,7 +428,7 @@ export class SingleProPage {
                        });
               parser.parseString(response, function (err, result){
                 
-                console.log('response ville',result);
+               // console.log('response ville',result);
 
                 for(let answers of result.search_answers.search_answer) {
                                   console.log('answers ddd',answers.items[0].length);  

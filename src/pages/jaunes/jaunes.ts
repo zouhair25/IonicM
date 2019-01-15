@@ -9,6 +9,7 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 import {SearchJaunePage } from '../search-jaune/search-jaune';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-jaunes',
@@ -30,14 +31,25 @@ export class JaunesPage{
   searching: any =false;
   showBlanches: boolean = false;
   showJaune: boolean = false;
-
+  lat;
+  lng;
   //pro ou inv
   type: string;
  // @ViewChild('searchbar') searchBox: Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private geolocation: Geolocation) {
+    this.getLocation();
   }
-
+   getLocation(){
+        this.geolocation.getCurrentPosition().then((resp)=>{
+     console.log('Location', resp);
+     this.lat = resp.coords.latitude;
+     this.lng = resp.coords.longitude;
+    }).catch((error) => {
+     console.log('Error getting location', error);
+   });
+    }
     onGoBlanchesPage(){
       this.showBlanches = true;
       this.showJaune = false;
@@ -60,11 +72,12 @@ export class JaunesPage{
     searchVille(term: string): void {
       this.searchTermOu.next(term);
     }
-    back(){
-    	this.navCtrl.push('SearchPage');
+    back(lat,lng){
+    	this.navCtrl.push('SearchPage',{lat: this.lat,lng: this.lng});
     }
  
     ionViewDidLoad() {
+      this.getLocation();
            // recuperation de type pro ou inv pour savoir quel est à afficher
            this.type=this.navParams.get('type')
            // ici le test sur pro ou inv 
