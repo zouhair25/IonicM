@@ -59,12 +59,17 @@
                   {{ville.title}}
                 </ion-item>
               </ion-list>
+              <ion-list *ngIf="hasFocus && !ou">
+                <ion-item (click)='selectValueOuHistorique(ville)' *ngFor="let ville of storageVille;">
+                  {{ville}}
+                </ion-item>
+              </ion-list>              
 
 
 			</ion-col>
 			<ion-col col-2>
 				<button type="submit" ion-button icon-start
-				class="btn-search" (click)='onDisplay(ville,item)'>
+				class="btn-search" (click)='onDisplay(ville,item,lat,lng)'>
 					<ion-icon  name="search" color="dark"></ion-icon>
 				</button>
 			  </ion-col>
