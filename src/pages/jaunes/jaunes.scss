@@ -39,11 +39,11 @@ page-jaunes {
     }
   .pj{
  	 background-color: #ffdd00 !important;
- 	text-transform: none;
- 	color: white !important;
- 	width: 90%;
-    border-radius: 27px;
-    height: 22px;
+ 	 text-transform: none;
+ 	 color: white !important;
+ 	 width: 95%;
+   border-radius: 27px;
+   height: 22px;
    }
    .arrow-back{
     background-color: transparent !important;
@@ -51,11 +51,14 @@ page-jaunes {
     padding-left: 10px;
    }
   .pb{
-    background-color: transparent !important;
- 	color: white;
- 	text-transform: none;
-  /*margin-top: 25px;*/
+    background-color: #ffdd00 !important;
+  	text-transform: none;
+  	color: white !important;
+  	 width: 95%;
+    border-radius: 27px;
+    height: 22px;
    }
+
    .header-md{
    	background-color: black;
    }
@@ -139,7 +142,19 @@ page-jaunes .pj {
     background-color: #ffdd00 !important;
     text-transform: none;
     color: black !important;
-    width: 100%;
+    width: 95%;
+    border-radius: 27px;
+    height: 37px;
+    font-size: 18px;
+
+}
+
+page-jaunes .pb {
+
+    background-color: white !important;
+    text-transform: none;
+    color: black !important;
+    width: 95%;
     border-radius: 27px;
     height: 37px;
     font-size: 18px;
@@ -155,4 +170,8 @@ ion-app.md [padding] .scroll-content {
 
 .col-1 {
   padding-left: 16px;
+}
+
+.padding-button {
+  padding: 0 5px 5px 14px;
 }

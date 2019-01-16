@@ -105,20 +105,19 @@
           </ion-item>-->
 
           <ion-item *ngIf="webinfo_link1">
-            <span class="site-web"><b>Site Web :</b><span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span></span>
+            <span class="site-web">
+              <span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span>
+            </span>
           </ion-item>
 
           <ion-item *ngIf="webinfo_link2">
 
-            <span class="site-web"><b>Site Web :</b>
-
               <span *ngIf="webinfo_link2.length<35" text-wrap>
               <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
               </span>
-              <span *ngIf="webinfo_link2.length>35" text-wrap><br>
+              <span *ngIf="webinfo_link2.length>35" text-wrap>
               <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
               </span>
-            </span>
           </ion-item>
           <ion-item text-wrap *ngIf="logo1 || module1 || module2 || module3">
               <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
@@ -132,7 +131,7 @@
           </ion-item>
 
           <ion-item text-wrap *ngIf="listPrestations?.length>0">
-               <b class="p-s">Services et prestations:</b><br>
+               <b class="p-s">Prestations et produits :</b><br>
             <ion-row class="pres-serv">
             <ion-col  col-12 *ngFor="let p of listPrestations">
               <li ><ion-icon name="checkmark" class="check-mark"></ion-icon>{{p.title}}</li>
