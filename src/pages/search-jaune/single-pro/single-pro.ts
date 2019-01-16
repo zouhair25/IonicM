@@ -17,6 +17,7 @@ import {
 import {  trigger,  state,
         style,  animate,  transition,} from '@angular/animations';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+import { CallNumber } from '@ionic-native/call-number';
 
 @IonicPage()
 @Component({
@@ -137,11 +138,13 @@ export class SingleProPage {
     currentLng;
     destinationLat;
     destinationLng;
+    telAppeler;
     
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
               private platform: Platform,
-              private launchNavigator: LaunchNavigator) {
+              private launchNavigator: LaunchNavigator,
+              private callNumber: CallNumber) {
      
   }
 
@@ -160,6 +163,18 @@ export class SingleProPage {
       })
        console.log('success');
    }
+   callNumbers(){
+   if(this.telephone0){
+     this.telAppeler=this.telephone0;
+   }  else if(this.telephone1){
+     this.telAppeler=this.telephone1;
+   }else{
+     this.telAppeler=this.telephone2;
+   }
+     this.callNumber.callNumber(this.telAppeler, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+      }
   //for up and down div map
   toggle(){
     this.isOpen = !this.isOpen;

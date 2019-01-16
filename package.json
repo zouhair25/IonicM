@@ -20,6 +20,7 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/call-number": "^4.19.0",
     "@ionic-native/core": "^4.18.0",
     "@ionic-native/diagnostic": "^4.19.0",
     "@ionic-native/geolocation": "^4.18.0",
@@ -29,6 +30,7 @@
     "@ionic-native/status-bar": "~4.17.0",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
+    "call-number": "1.0.1",
     "cordova-browser": "5.0.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -69,7 +71,8 @@
       "cordova-plugin-geolocation": {},
       "uk.co.workingedge.phonegap.plugin.launchnavigator": {},
       "cordova.plugins.diagnostic": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "browser"
