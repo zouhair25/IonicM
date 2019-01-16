@@ -55,8 +55,20 @@
 
   <ion-row>
       <ion-col class="text"><span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span>
-      <br>
-      <br>
+         <!-- logo et description -->
+         <hr>
+        <ion-item text-wrap *ngIf="logo1 || module1 || module2 || module3">
+              <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
+              <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
+      
+
+            <div class="module">
+              {{module1}}{{module2}}{{module3}}
+            </div>
+
+        </ion-item>
+          <!-- les rubriques -->
+            <b class="p-s">Activités:</b><br>
              <span class="rubrique" text-wrap>
                <ion-icon *ngIf="rubrique1" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique1">{{rubrique1}}<br></span>
                <ion-icon *ngIf="rubrique2" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique2">{{rubrique2}}<br></span>
@@ -120,16 +132,7 @@
               </span>
             </span>
           </ion-item>
-          <ion-item text-wrap *ngIf="logo1 || module1 || module2 || module3">
-              <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
-              <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
 
-
-            <div class="module">
-              {{module1}}{{module2}}{{module3}}
-            </div>
-
-          </ion-item>
 
           <ion-item text-wrap *ngIf="listPrestations?.length>0">
                <b class="p-s">Services et prestations:</b><br>
