@@ -63,7 +63,7 @@
               </ion-list>
               <ion-list *ngIf="hasFocus && !ou">
                 <ion-item (click)='selectValueOuHistorique(ville)' *ngFor="let ville of storageVille;">
-                  {{ville}}
+                 <ion-icon name="{{ville.icon}}" class="icon-hist"></ion-icon> {{ville.ville}}
                 </ion-item>
               </ion-list>              
 

@@ -26,7 +26,7 @@ export class JaunesPage{
   searchTerm = new Subject<string>();
   searchTermOu = new Subject<string>();
   quiquoi: string='';
-  ou: string ='autour de moi';
+  ou: string ='';
   //tel: string ='0522777100';
   tel: string ='';
   searching: any =false;
@@ -37,7 +37,7 @@ export class JaunesPage{
   //pro ou inv
   type: string;
 
-  storageVille: any =['Autour de moi'];
+  storageVille: any =[{icon: 'locate',ville: 'Autour de moi'}];
   hasFocus: boolean =false;
  // @ViewChild('searchbar') searchBox: Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -58,10 +58,7 @@ export class JaunesPage{
     }
 
      
-    storeHistoriqueVille(){
-      //initialiser historique ville par autour de moi
-      //this.storage.set('storeVil','Autour de moi');
-    }
+
     getHistoriqueVille(){
         this.storage.get('storeVil').then((val) => {
             this.storageVille=val;
@@ -81,7 +78,7 @@ export class JaunesPage{
     onGoJaunesPage(){
       this.showBlanches = false;
       this.showJaune = true;
-      
+
       setTimeout(() => {
         this.searchBox.setFocus();
 
@@ -138,7 +135,7 @@ export class JaunesPage{
     }
     selectValueOu(item){
 
-      this.storageVille.push(item.title);
+      this.storageVille.push({icon: 'undo',ville: item.title});
       this.storage.set('storeVil',this.storageVille);
       console.log('iieiei',item);
            this.ou=item.title;
@@ -150,7 +147,7 @@ export class JaunesPage{
     }
         selectValueOuHistorique(item){
             console.log('iieiei',item);
-            this.ou=item;
+            this.ou=item.ville;
             this.storageVille=[];
            //this.storage.set('storeVille',item.storeVille);
     }
@@ -190,8 +187,13 @@ export class JaunesPage{
                 this.searchVil.setFocus();
                 console.log('Focus',this.searchVil);
                },10);
-           }else {
-           this.navCtrl.push(SearchJaunePage,{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
+           }else if(this.ou=='autour de moi' || this.ou=="Autour de moi"){
+              this.navCtrl.push('AutourMoiPage',{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
+          console.log('AutourMoiPage oui');
+           }else{
+         this.navCtrl.push(SearchJaunePage,{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
+          console.log('SearchJaunePage oui');
+          
            }
     }
       onDisplayBlanches(tel){
@@ -260,16 +262,15 @@ export class JaunesPage{
                     
                         
                      
+                       console.log('result',result);
                        console.log('err',err);
+
+
                    for(let answers of result.search_answers.search_answer) {
                         // console.log('answers d',answers.items[0].$.count);
-                         
-
-                           if (answers.items[0]=="      ") {
-
-                                      // yyy.push({'title': 'Aucun resultat'}); 
-                            }else{
-
+                       
+                           if (answers.items[0].item) {
+                          console.log('result resultat');
                          for(let item of answers.items){
                                           
                            for(let i of item.item){
@@ -344,10 +345,7 @@ export class JaunesPage{
                    for(let answers of result.search_answers.search_answer) {
                                           console.log('answers d',answers);  
 
-                         if (answers.items[0]=="      ") {
-
-                                     //yyy.push({'title': 'Aucun resultat'}); 
-                               }else{
+                         if (answers.items[0].item) {
                  
                      for(let item of answers.items){
                        
