@@ -7,7 +7,7 @@ page-blanches {
     margin-left: 151px;
       margin-top: 208px;
     }
-  .hist-content{
+    .hist-content{
     background-color: #eee !important;
   }
 
@@ -17,8 +17,9 @@ page-blanches {
       border-radius: 5px 5px 5px 5px;
       webkit-border-radius:5px 5px 5px 5px;
       moz-border-radius:5px 5px 5px 5px;
-
-
+      padding-top: 15px;
+      padding-bottom: 15px;
+      margin-bottom: 12px;
   }
   .rs_comp{
         font-weight: bold;
@@ -38,8 +39,8 @@ page-blanches {
   .logo-ste{
       max-width: 87% !important;
       width: 80px;
-
       padding-left: 5px;
+      padding-top: 8px;
   }
   .logo-not{
       max-width: 87% !important;
@@ -61,7 +62,7 @@ page-blanches {
   .info{
     width: 100%;
   }
-
+}
 
 b, strong {
     font-weight: normal;
@@ -78,8 +79,34 @@ page-search-jaune .space {
 
 page-search-jaune .rs_comp {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     padding-bottom: 5px;
 }
 
+.col-inscription {
+  padding-left: 16px;
+  padding-right: 10px;
+  padding-top: 0;
 }
+
+.border-logo {
+  width: 100%;
+  border: 1px;
+  border-style: solid;
+  border-color: #898a8c;
+  margin-left: 5px;
+}
+
+.col-logos {
+  margin-top: 8px;
+}
+
+.cercle-chiffres {
+  width: 28px;
+border-radius: 50%;
+height: 28px;
+border: 0;
+background-color: #ffef2b;
+text-align: center;
+}
+

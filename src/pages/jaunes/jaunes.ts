@@ -28,7 +28,7 @@ export class JaunesPage{
   quiquoi: string='';
   ou: string ='';
   //tel: string ='0522777100';
-  tel: string ='';
+  tel: string ='0522777100';
   searching: any =false;
   showBlanches: boolean = false;
   showJaune: boolean = false;
@@ -196,14 +196,14 @@ export class JaunesPage{
           
            }
     }
-      onDisplayBlanches(tel){
+      onDisplayBlanches(tel,lat,lng){
         if(this.tel=='' || this.tel==null){
           setTimeout(()=>{
             this.searchTel.setFocus();
           },10);
          
         }else{
-         this.navCtrl.push(BlanchesPage, {tel: this.tel});         
+         this.navCtrl.push(BlanchesPage, {tel: this.tel,lat: this.lat,lng: this.lng});         
            //this.navCtrl.push(BlanchesPage);         
          
         }

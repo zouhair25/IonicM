@@ -106,14 +106,16 @@ export class SearchJaunePage implements OnInit{
         console.log('lat',this.currentLat);
         console.log('lng',this.currentLng);
          });*/
+
+        if(this.quiquoi && this.ou){
+          this.list = this.onSubmitForm(this.quiquoi,this.ou);
+          console.log('je ss in Autour de moi:', this.ou);
+          console.log('lat',this.currentLat);
+          console.log('lng',this.currentLng);
+       }  
   }
   ionViewDidEnter (){
-       if(this.quiquoi && this.ou){
-             this.list = this.onSubmitForm(this.quiquoi,this.ou);
-          console.log('je ss in Autour de moi:', this.ou);
-                 console.log('lat',this.currentLat);
-        console.log('lng',this.currentLng);
-       }   
+ 
   }
 
      onSubmitForm(quiquoi: string, ou: string){

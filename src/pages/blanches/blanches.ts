@@ -13,11 +13,17 @@ export class BlanchesPage {
   list;
   tel;
   count;
+  lat;
+  lng;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
             this.tel =this.navParams.get('tel');
+            this.lat =this.navParams.get('lat');
+            this.lng =this.navParams.get('lng');
+
+            
          console.log('tel o:', this.tel);
          this.list=this.listeResultatTelToArray(this.tel);
           console.log('tel o:', this.list);
@@ -42,7 +48,7 @@ export class BlanchesPage {
             data_send += '        <value>';
             data_send += '          <numero>'+tel+'</numero>';
             data_send += '          <start>'+start+'</start>';
-            data_send += '          <extract>10</extract>';  
+            data_send += '          <extract>30</extract>';  
             data_send += '        </value>';
             data_send += '      </params>';  
             data_send += '    </methodname>';
@@ -124,7 +130,7 @@ export class BlanchesPage {
     }
     
 
-    onDisplayInv(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push('SingleProPage', {pro: pro})
+       onDisplayPro(pro: {rs_comp: string, adresse: string}){
+      this.navCtrl.push('SingleProPage', {pro: pro,lat: this.lat, lng: this.lng})
     }
 }
