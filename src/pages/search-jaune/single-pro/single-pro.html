@@ -63,17 +63,17 @@
         </ion-item>
 
         <!-- logo et description -->
-        <ion-item text-wrap *ngIf="logo1 || module1 || module2 || module3">
+        <ion-item text-wrap *ngIf="logo1 ||module0|| module1 || module2 || module3">
             <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
             <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
             <div class="module">
-              {{module1}}{{module2}}{{module3}}
+              {{module1}}{{module2}}{{module3}}{{module3}}
             </div>
         </ion-item>
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="rubrique0 || rubrique1||rubrique2||rubrique3||rubrique4">
         <ion-col col-12>
        <!-- les rubriques -->
         <ion-item class="activite">
@@ -81,6 +81,7 @@
         </ion-item>
         <ion-item>
           <span class="rubrique" text-wrap>
+            <ion-icon *ngIf="rubrique0" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique0">{{rubrique0}}<br></span>
             <ion-icon *ngIf="rubrique1" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique1">{{rubrique1}}<br></span>
             <ion-icon *ngIf="rubrique2" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique2">{{rubrique2}}<br></span>
             <ion-icon *ngIf="rubrique3" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique3">{{rubrique3}}<br></span>
@@ -91,12 +92,12 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="listPrestations?.length>0">
       <ion-col col-12>
           <ion-item class="Prestations">
             <p class="p-s">Prestations et produits</p>
           </ion-item>
-          <ion-item class="Prestations-liste" text-wrap *ngIf="listPrestations?.length>0">
+          <ion-item class="Prestations-liste" text-wrap >
             <span *ngFor="let p of listPrestations">
               <li ><ion-icon name="checkmark" class="check-mark" style="color: #617178;"></ion-icon>{{p.title}}</li>
             </span>
@@ -128,7 +129,10 @@
             <ion-icon ios="ios-call" md="md-call" class="icon-coordonees"></ion-icon><span class="telephone1"><span>{{telephone2}}</span>
            </span>
           </ion-item>
-          <ion-item *ngIf="fax1 || fax2 || fax3">
+          <ion-item *ngIf="fax0 ||fax1 || fax2 || fax3">
+            <span *ngIf="fax0">
+               <ion-icon ios="ios-print" md="md-print" class="icon-coordonees"></ion-icon><span class="fax"><span>{{fax0}}</span></span>
+            </span>
             <span *ngIf="fax1">
                <ion-icon ios="ios-print" md="md-print" class="icon-coordonees"></ion-icon><span class="fax"><span>{{fax1}}</span></span>
             </span>
@@ -148,17 +152,45 @@
 
           <ion-item *ngIf="webinfo_link1">
             <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon><span class="site-web">
-              <span><a href="{{webinfo_link1}}">{{webinfo_link1}}</a></span>
+              <span><a href="{{webinfo_link_orig1}}">{{webinfo_link1}}</a></span>
             </span>
             <hr>          
           </ion-item>
 
           <ion-item *ngIf="webinfo_link2">
-              <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon><span *ngIf="webinfo_link2.length<35" text-wrap>
-              <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
+              <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
+              <span class="site-web"  text-wrap>
+              <a target="_blank" href="{{webinfo_link_orig2}}">{{webinfo_link2}}</a>
               </span>
-              <span *ngIf="webinfo_link2.length>35" text-wrap>
-              <a target="_blank" href="{{webinfo_link2}}">{{webinfo_link2}}</a>
+          </ion-item>
+          <ion-item *ngIf="webinfo_link3">
+              <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
+              <span class="site-web"  text-wrap>
+              <a target="_blank" href="{{webinfo_link_orig3}}">{{webinfo_link3}}</a>
+              </span>
+          </ion-item>
+          <ion-item *ngIf="webinfo_link4">
+              <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
+              <span class="site-web"  text-wrap>
+              <a target="_blank" href="{{webinfo_link_orig4}}">{{webinfo_link4}}</a>
+              </span>
+          </ion-item>
+          <ion-item *ngIf="web1">
+            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
+              <span class="site-web" text-wrap>
+              <a target="_blank" href="{{web1}}">{{web1}}</a>
+              </span>
+          </ion-item>
+          <ion-item *ngIf="web2">
+            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>            
+              <span class="site-web" text-wrap>
+              <a target="_blank" href="{{web2}}">{{web2}}</a>
+              </span>
+          </ion-item>
+          <ion-item *ngIf="web3">
+            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>   
+             <span class="site-web" text-wrap>
+              <a target="_blank" href="{{web3}}">{{web3}}</a>
               </span>
           </ion-item>
         </ion-list>
