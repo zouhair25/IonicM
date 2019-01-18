@@ -28,7 +28,7 @@ export class JaunesPage{
   quiquoi: string='';
   ou: string ='';
   //tel: string ='0522777100';
-  tel: string ='0522777100';
+  tel: string ='';
   searching: any =false;
   showBlanches: boolean = false;
   showJaune: boolean = false;
