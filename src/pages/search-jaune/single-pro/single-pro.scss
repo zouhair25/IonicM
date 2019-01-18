@@ -25,12 +25,13 @@ page-single-pro {
    }
    .rs_comp{
    	font-weight: bold;
-   	font-size: 15px;
+   	font-size: 22px;
    }
+
    .rubrique{
    		font-size: 14px;
    		font-weight: 400;
-      line-height: 22px;
+      line-height: 25px;
    }
    .telephone1 span, .email span, .site-web span, .fax span{
    	color: #4a8bfc;
@@ -67,9 +68,11 @@ page-single-pro {
 
 .img {
   float: left;
-  margin-right: 14px;
+  margin-right: 22px;
   border: 1px solid #898a8c;
   margin-top: 6px;
+  width: 80px;
+  height: 80px;
 }
 
 [text-wrap] .label-md {
@@ -87,7 +90,7 @@ page-single-pro .rs_comp {
   padding-right: 8px;
 }
 
-.border-logo {
+.rasion-sociale {
   border: 1px;
   width: 100%;
   border-style: solid;
@@ -114,4 +117,63 @@ page-single-pro .rs_comp {
 
 .grid {
   padding: 0;
+}
+
+.item-md.item-block .item-inner {
+    padding-right: 0;
+    border-bottom: 0;
+}
+
+.activite {
+  background-color: #eaeff1;
+  margin-top: 20px;
+  margin-bottom: 14px;
+}
+
+.Prestations{
+  background-color: #eaeff1;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+
+.activite p, .Prestations p {
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #617178;
+  font-size: 19px;
+  margin: 0;
+}
+
+page-single-pro [col-12] {
+  padding: 0;
+}
+
+.label-md {
+    margin: 0;
+}
+
+.item-md {
+  padding-right: 16px;
+}
+.ligne {
+  margin-top: 16px;
+}
+
+.rasion-sociale {
+  padding-top: 22px;
+  border: 0;
+  margin-left: 0;
+}
+
+.ligne-2 {
+  height: 1px;
+  background-color: #919fa6;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.icon-coordonees {
+  padding-right: 12px;
+  font-size: 18px;
+  color: #83939a;
 }
