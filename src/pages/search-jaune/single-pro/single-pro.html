@@ -63,11 +63,12 @@
         </ion-item>
 
         <!-- logo et description -->
-        <ion-item text-wrap *ngIf="logo1 ||module0|| module1 || module2 || module3">
+        <ion-item text-wrap *ngIf="logo1 ||module0|| module1 || module2 || module3 ||module4|| module5">
             <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
             <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
             <div class="module">
-              {{module1}}{{module2}}{{module3}}{{module3}}
+              {{module0}}{{module1}}{{module2}}{{module3}}{{module4}}{{module5}}
+              {{module6}}
             </div>
         </ion-item>
       </ion-col>
@@ -175,6 +176,18 @@
               <a target="_blank" href="{{webinfo_link_orig4}}">{{webinfo_link4}}</a>
               </span>
           </ion-item>
+          <ion-item *ngIf="webinfo_link5">
+              <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
+              <span class="site-web"  text-wrap>
+              <a target="_blank" href="{{webinfo_link_orig5}}">{{webinfo_link5}}</a>
+              </span>
+          </ion-item>
+          <ion-item *ngIf="webinfo_link6">
+              <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
+              <span class="site-web"  text-wrap>
+              <a target="_blank" href="{{webinfo_link_orig6}}">{{webinfo_link6}}</a>
+              </span>
+          </ion-item>
           <ion-item *ngIf="web1">
             <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
               <span class="site-web" text-wrap>
@@ -193,6 +206,7 @@
               <a target="_blank" href="{{web3}}">{{web3}}</a>
               </span>
           </ion-item>
+          
         </ion-list>
       </ion-col>
     </ion-row>

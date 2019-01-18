@@ -124,7 +124,14 @@ export class SingleProPage {
     module1;
     module2;
     module3;
+    module4;
+    module5;
+    module6;
+    module7;
+    module8;
+    module9;
 
+    
     video;
     poids;
     region;
@@ -132,6 +139,9 @@ export class SingleProPage {
     webinfo_link2;
     webinfo_link3;
     webinfo_link4;
+    webinfo_link5;
+    webinfo_link6;
+
 
     web1;
     web2;
@@ -141,7 +151,10 @@ export class SingleProPage {
     webinfo_link_orig1;
     webinfo_link_orig2;    
     webinfo_link_orig3;
-    webinfo_link_orig4;    
+    webinfo_link_orig4;
+    webinfo_link_orig5;    
+    webinfo_link_orig6;    
+
 
 
     motcle;
@@ -282,9 +295,13 @@ export class SingleProPage {
    this.latitude0=this.pro[10].latitude;
    this.longitude7=this.pro[10].longitude;
    this.web2=this.pro[7].web;
+
    
    this.web1=this.pro[9].web;
    this.web3=this.pro[10].web;
+   if(this.pro[8]){
+     this.web1=this.pro[8].web;
+   }
  console.log('weeee',this.web3);
   
    this.texte1=this.pro[10].texte;
@@ -292,7 +309,9 @@ export class SingleProPage {
       this.rubrique3=this.pro[11].rubrique;
       this.texte2=this.pro[11].texte;
       this.longitude1=this.pro[11].longitude;
-       this.latitude7=this.pro[11].latitude;
+      this.latitude7=this.pro[11].latitude;
+      this.module6=this.pro[11].module;
+
    }
    
 
@@ -331,14 +350,53 @@ export class SingleProPage {
       this.longitude6=this.pro[16].longitude;  
       this.latitude5=this.pro[16].latitude;
       this.longitude6=this.pro[16].longitude; 
+      this.webinfo_link6=this.pro[16].webinfo_link;
+      
+    if(this.webinfo_link6){
+        let l=this.webinfo_link6.length;
+      if((this.webinfo_link6.includes('http://www.'))){
+        this.webinfo_link6 =this.webinfo_link6.substring(11,l);
+         console.log('http');
+      }
+      if((this.webinfo_link6.includes('https://www.'))){
+        this.webinfo_link6 =this.webinfo_link6.substring(12,l);
+         console.log('https');
+      }
+      if(this.webinfo_link6.includes('/index.html')){
+        this.webinfo_link6 =this.webinfo_link6.substring(0,l-22);
+        console.log('/index.html');
+      }
+    }
       console.log('module 2:',this.module3);
    }
 
    if(this.pro.length>17){
       this.latitude6=this.pro[17].latitude;
+      this.module5=this.pro[17].module;
+      this.webinfo_link5=this.pro[17].webinfo_link;
+      this.webinfo_link_orig5=this.pro[17].webinfo_link;
+
+    if(this.webinfo_link5){
+        let l=this.webinfo_link5.length;
+      if((this.webinfo_link5.includes('http://www.'))){
+        this.webinfo_link5 =this.webinfo_link5.substring(11,l);
+         console.log('http');
+      }
+      if((this.webinfo_link5.includes('https://www.'))){
+        this.webinfo_link5 =this.webinfo_link5.substring(12,l);
+         console.log('https');
+      }
+      if(this.webinfo_link5.includes('/index.html')){
+        this.webinfo_link5 =this.webinfo_link5.substring(0,l-22);
+        console.log('/index.html');
+      }
+    }
    }
    if(this.pro.length>18){
+      this.module4=this.pro[18].module;
+
       this.webinfo_link4=this.pro[18].webinfo_link;
+      this.webinfo_link_orig4=this.pro[18].webinfo_link;
          console.log('webinfo_link4',this.webinfo_link4);
      
     if(this.webinfo_link4){
