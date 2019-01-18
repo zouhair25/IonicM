@@ -85,7 +85,7 @@ export class JaunesPage{
       },500);
     }
     search(term: string): void {
-      this.searchTerm.next(term);
+      this.searchTerm.next(term);    
     }
 
     searchVille(term: string): void {
@@ -135,7 +135,7 @@ export class JaunesPage{
     }
     selectValueOu(item){
 
-      this.storageVille.push({icon: 'undo',ville: item.title});
+      this.storageVille.push({icon: 'refresh',ville: item.title});
       this.storage.set('storeVil',this.storageVille);
       console.log('iieiei',item);
            this.ou=item.title;
@@ -151,7 +151,22 @@ export class JaunesPage{
             this.storageVille=[];
            //this.storage.set('storeVille',item.storeVille);
     }
-
+   //pour initialiser la liste de resultats quiquoi
+    onClearQuiquoi(){
+          this.xmlItems$ = this.searchTerm.pipe(
+          debounceTime(1500),
+          distinctUntilChanged(),
+          switchMap((term: string) => this.auto_quiquoiLoadXML(term)),
+         );
+    }
+       //pour initialiser la liste de resultats ou
+    onClearOu(){
+           this.xmlOu$ =this.searchTermOu.pipe(
+           debounceTime(1000),
+           distinctUntilChanged(),
+           switchMap((term: string)=> this.auto_ouLoadXML(term)),
+           );
+    }
     onSearchInput(){
         this.searching = true;
     }

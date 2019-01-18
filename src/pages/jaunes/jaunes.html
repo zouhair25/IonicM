@@ -38,15 +38,16 @@
     	<ion-row  *ngIf="showJaune">
 
 					<ion-col col-10>
-			      <ion-searchbar  [(ngModel)]="quiquoi" [ngModelOptions]="{standalone: true}" placeholder="Quoi, qui... ?" #searchBox id="search-box" (keyup)="search(searchBox.value)"
-			      >
+			      <ion-searchbar  [(ngModel)]="quiquoi" [ngModelOptions]="{standalone: true}" placeholder="Quoi, qui... ?" #searchBox id="search-box" (keyup)="search(searchBox.value)" (ionFocus)="checkFocusQuiquoi()"
+            (ionClear)="onClearQuiquoi()"  >
 			      </ion-searchbar>
 
 
 
 
                  <ion-searchbar [ngModelOptions]="{standalone: true}" [(ngModel)]="ou" #searchVil id="search-vil" (keyup)="searchVille(searchVil.value)" placeholder="Où ?"
-				          class="search inp-search" (ionFocus)="checkFocus()">
+				          class="search inp-search" (ionFocus)="checkFocus()"
+                  (ionClear)="onClearOu()" >
                 </ion-searchbar>
 
 				      <ion-list class='search-drop-down'>
