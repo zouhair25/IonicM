@@ -31,6 +31,7 @@ export class SearchJaunePage implements OnInit{
 
   currentLat;
   currentLng;
+  noResult: boolean = false; 
   private searchTerms = new Subject<string>();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -44,13 +45,6 @@ export class SearchJaunePage implements OnInit{
     console.log('Begin async operation');
 
       setTimeout(() => {
-        
-
-
-         
-
-        //start = this.x;
-
 
         if(this.start>this.count || this.extract<0 || this.count<10){
             infiniteScroll.enable(false);
@@ -100,19 +94,28 @@ export class SearchJaunePage implements OnInit{
    
         this.quiquoi =this.navParams.get('quiquoi');
         this.ou =this.navParams.get('ou');
+        this.currentLat =this.navParams.get('lat');
+        this.currentLng =this.navParams.get('lng');
+                  console.log('lat',this.currentLat);
+        console.log('lng',this.currentLng);
+        console.log('ou de recherche',this.ou);
          
-         this.geolocation.getCurrentPosition().then((resp)=>{
+        /* this.geolocation.getCurrentPosition().then((resp)=>{
         this.currentLat=resp.coords.latitude;
         this.currentLng=resp.coords.longitude;
         console.log('lat',this.currentLat);
         console.log('lng',this.currentLng);
-         });
+         });*/
+
+        if(this.quiquoi && this.ou){
+          this.list = this.onSubmitForm(this.quiquoi,this.ou);
+          console.log('je ss in Autour de moi:', this.ou);
+          console.log('lat',this.currentLat);
+          console.log('lng',this.currentLng);
+       }  
   }
   ionViewDidEnter (){
-       if(this.quiquoi && this.ou){
-          this.list = this.onSubmitForm(this.quiquoi,this.ou);
-          console.log('quiquoi o:', this.quiquoi);
-       }    
+ 
   }
 
      onSubmitForm(quiquoi: string, ou: string){
@@ -374,6 +377,7 @@ export class SearchJaunePage implements OnInit{
           });
 
     }
+
 
 
 }

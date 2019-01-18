@@ -38,15 +38,16 @@
     	<ion-row  *ngIf="showJaune">
 
 					<ion-col col-10>
-			      <ion-searchbar  [(ngModel)]="quiquoi" [ngModelOptions]="{standalone: true}" placeholder="Quoi, qui... ?" #searchBox id="search-box" (keyup)="search(searchBox.value)"
-			      >
+			      <ion-searchbar  [(ngModel)]="quiquoi" [ngModelOptions]="{standalone: true}" placeholder="Quoi, qui... ?" #searchBox id="search-box" (keyup)="search(searchBox.value)" (ionFocus)="checkFocusQuiquoi()"
+            (ionClear)="onClearQuiquoi()"  >
 			      </ion-searchbar>
 
 
 
 
                  <ion-searchbar [ngModelOptions]="{standalone: true}" [(ngModel)]="ou" #searchVil id="search-vil" (keyup)="searchVille(searchVil.value)" placeholder="Où ?"
-				          class="search inp-search" (ionFocus)="checkFocus()">
+				          class="search inp-search" (ionFocus)="checkFocus()"
+                  (ionClear)="onClearOu()" >
                 </ion-searchbar>
 
 				      <ion-list class='search-drop-down'>
@@ -61,12 +62,17 @@
                   {{ville.title}}
                 </ion-item>
               </ion-list>
+              <ion-list *ngIf="hasFocus && !ou">
+                <ion-item (click)='selectValueOuHistorique(ville)' *ngFor="let ville of storageVille;">
+                 <ion-icon name="{{ville.icon}}" class="icon-hist"></ion-icon> {{ville.ville}}
+                </ion-item>
+              </ion-list>              
 
 
 			</ion-col>
 			<ion-col col-2>
 				<button type="submit" ion-button icon-start
-				class="btn-search" (click)='onDisplay(ville,item)'>
+				class="btn-search" (click)='onDisplay(ville,item,lat,lng)'>
 					<ion-icon  name="search" color="dark"></ion-icon>
 				</button>
 			  </ion-col>
@@ -81,7 +87,7 @@
       </ion-col>
       <ion-col col-2>
         <button type="submit" ion-button icon-start
-        class="blanch-search" (click)='onDisplayBlanches("tel")'>
+        class="blanch-search" (click)='onDisplayBlanches("tel",lat,lng)'>
           <ion-icon  name="search" color="dark"></ion-icon>
         </button>
       </ion-col>

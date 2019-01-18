@@ -1,8 +1,8 @@
 <ion-header>
 
   <ion-navbar>
-     <b>{{quiquoi}}</b> <br>
-     {{ou}}
+     <b>{{quiquoi}} à votre proximité !</b> <br>
+      
   </ion-navbar>
 
 </ion-header>
@@ -25,7 +25,20 @@
           <span class="adresse">{{l.d[2].adresse}}{{l.d[3].adresse}}{{l.d[4].adresse}}</span> &nbsp;&nbsp;
           <span class="ville">{{l.d[3].ville}}{{l.d[4].ville}}{{l.d[5].ville}}</span>
         </div>
+         <div class="distance" (click)="onDisplayPro(l.d)">Distance: 
+      		<span >{{l.d[9].distance}}</span>
+      		<span >{{l.d[10].distance}}</span>
+      		<span *ngIf="l.d.length>11">{{l.d[11].distance}}</span>
+      		<span *ngIf="l.d.length>12">{{l.d[12].distance}}</span>
+      		<span *ngIf="l.d.length>13">{{l.d[13].distance}}</span>
+      		<span *ngIf="l.d.length>14">{{l.d[14].distance}}</span>
+      		<span *ngIf="l.d.length>15">{{l.d[15].distance}}</span>
+      		<span *ngIf="l.d.length>16">{{l.d[16].distance}}</span>
+      		<span *ngIf="l.d.length>17">{{l.d[17].distance}}</span>
+      		<span *ngIf="l.d.length>18">{{l.d[18].distance}}</span>
 
+      		m
+      	 </div>
       </ion-col>
 
       <ion-col col-2 (click)="onDisplayPro(l.d,currentLat,currentLng)">
@@ -75,7 +88,7 @@
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>
  </ion-list>-->
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf='count>10'>
       <ion-infinite-scroll-content  loadingSpinner="bubbles"
       loadingText="Loading more data..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
