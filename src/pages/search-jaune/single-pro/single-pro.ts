@@ -53,8 +53,7 @@ export class SingleProPage {
     private location: LatLng; 
    
     pro;
-    rs_comp1;
-    rs_comp2;
+    rs_comp;
     
     rs_abr1;
     rs_abr2;
@@ -74,16 +73,15 @@ export class SingleProPage {
     ville2;
     ville3;
 
-    telephone0;
-    telephone1;
-    telephone2;
+    telephone;
+
     fax0;
     fax1;
     fax2;
     fax3;
 
-    email1;
-    email2;
+    email;
+
 
     web;
     rubrique0;
@@ -91,6 +89,8 @@ export class SingleProPage {
     rubrique2;
     rubrique3;
     rubrique4;
+    rubrique5;
+
     texte1;
     texte2;
 
@@ -193,14 +193,8 @@ export class SingleProPage {
        console.log('success');
    }
    callNumbers(){
-   if(this.telephone0){
-     this.telAppeler=this.telephone0;
-   }  else if(this.telephone1){
-     this.telAppeler=this.telephone1;
-   }else{
-     this.telAppeler=this.telephone2;
-   }
-     this.callNumber.callNumber(this.telAppeler, true)
+
+     this.callNumber.callNumber(this.telephone, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
       }
@@ -210,11 +204,7 @@ export class SingleProPage {
   }
         addMarker(){
           let title;
-          if(this.rs_comp1){
-            title =this.rs_comp1;
-          }else{
-            title =this.rs_comp2;
-          }
+            title =this.rs_comp;          
         this.map.addMarker({
            title: title,
            icon: '#ffdd00',
@@ -248,8 +238,13 @@ export class SingleProPage {
 
 
    this.code_firme=this.pro[0].code_firme;
-   this.rs_comp1=this.pro[1].rs_comp;
-   this.rs_comp2=this.pro[2].rs_comp;
+   if(this.pro[1].rs_comp){
+    this.rs_comp=this.pro[1].rs_comp;
+  }else{
+    this.rs_comp=this.pro[2].rs_comp;
+  }
+   
+   
 
    this.logo1=this.pro[2].logo;
    this.logo2=this.pro[3].logo;
@@ -265,24 +260,40 @@ export class SingleProPage {
    this.ville2=this.pro[5].ville;
    this.ville3=this.pro[6].ville;
 
-
-   this.telephone0=this.pro[4].telephone1;
-   this.telephone1=this.pro[5].telephone1;
-   this.telephone2=this.pro[6].telephone1;
-
+   if(this.pro[4].telephone1){
+     this.telephone=this.pro[4].telephone1;
+   }else if(this.pro[5].telephone1) {
+     this.telephone=this.pro[5].telephone1;
+   }else{
+     this.telephone=this.pro[6].telephone1;
+   }
    this.fax0=this.pro[5].fax;
    this.fax1=this.pro[6].fax;
    this.fax2=this.pro[7].fax;
    this.fax3=this.pro[8].fax;
 
-   this.email1=this.pro[7].email;
-   this.email2=this.pro[8].email;
+   if(this.pro[6].email){
+      this.email=this.pro[6].email;
+   }
+   else if(this.pro[7].email){
+      this.email=this.pro[7].email;
+   }else if(this.pro[8].email){
+      this.email=this.pro[8].email;
+   }else{
+      this.email=this.pro[9].email;
+   }
+   
+   
 
    this.longitude9=this.pro[7].longitude;
    this.latitude9=this.pro[8].latitude;
 
    this.web=this.pro[8].web;
-   this.rubrique0=this.pro[8].rubrique;
+   if(this.pro[7].rubrique){
+    this.rubrique0=this.pro[7].rubrique;
+   }else if(this.pro[8].rubrique){
+    this.rubrique0=this.pro[8].rubrique;
+   }
    console.log('rubrique0',this.rubrique0);
 
    this.rubrique1=this.pro[9].rubrique;
@@ -295,12 +306,17 @@ export class SingleProPage {
    this.latitude0=this.pro[10].latitude;
    this.longitude7=this.pro[10].longitude;
    this.web2=this.pro[7].web;
-
+   if(this.pro[10].module){
+      this.module0=this.pro[10].module;
+      console.log('this.module12',this.module0);
+   }
    
    this.web1=this.pro[9].web;
    this.web3=this.pro[10].web;
-   if(this.pro[8]){
+   if(this.pro[8].web){
      this.web1=this.pro[8].web;
+   }else if(this.pro[9].web){
+     this.web1=this.pro[9].web;     
    }
  console.log('weeee',this.web3);
   
@@ -319,13 +335,19 @@ export class SingleProPage {
       this.longitude2=this.pro[12].longitude;
       this.rubrique4=this.pro[12].rubrique;
       this.latitude1=this.pro[12].latitude;
-
+      if(this.pro[12].module){
+        this.module0=this.pro[12].module;
+      }
+     
    }
    if(this.pro.length>13) {
       this.latitude2=this.pro[13].latitude;
       this.longitude3=this.pro[13].longitude;
-      this.module0=this.pro[13].module;
-             console.log('module0',this.module0);
+      if(this.pro[13].module){
+        this.module0=this.pro[13].module;
+      }
+      this.rubrique5=this.pro[13].rubrique;
+      
    }
    if(this.pro.length>14) {
       this.video=this.pro[14].video;

@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{rs_comp1}} {{rs_comp2}}<br> {{ville0}}{{ville1}} {{ville2}} {{ville3}}</ion-title>
+    <ion-title>{{rs_comp}}<br> {{ville0}}{{ville1}} {{ville2}} {{ville3}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,8 +15,8 @@
  <ion-grid class="grid">
   <ion-row class="btns">
 
-    <ion-col col-3 class="btns-icon">
-      <button  color="light" class="back" align="center">
+    <ion-col col-3 class="btns-icon" *ngIf="telephone">
+      <button  color="light" class="back" align="center" (click)="callNumbers()">
         <ion-icon name="call" class="icon-size">
         </ion-icon><br>
         <p class="name-menu">Appeler</p>
@@ -32,7 +32,7 @@
 
     </ion-col>
 
-    <ion-col col-3 class="btns-icon">
+    <ion-col col-3 class="btns-icon" *ngIf="email">
        <button  color="light" class="back">
          <ion-icon name="mail" class="icon-size"></ion-icon><br>
          <p class="name-menu">E-mail</p>
@@ -58,12 +58,12 @@
 
         <!-- raison sociale -->
         <ion-item class="rasion-sociale">
-          <span class="rs_comp">{{rs_comp1}}{{rs_comp2}}</span>
-          <hr class="ligne">
+          <span class="rs_comp">{{rs_comp}}</span>
         </ion-item>
 
         <!-- logo et description -->
         <ion-item text-wrap *ngIf="logo1 ||module0|| module1 || module2 || module3 ||module4|| module5">
+          <hr class="ligne">
             <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
             <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
             <div class="module">
@@ -74,7 +74,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row *ngIf="rubrique0 || rubrique1||rubrique2||rubrique3||rubrique4">
+    <ion-row *ngIf="rubrique0 || rubrique1 || rubrique2 || rubrique3 ||              rubrique4 || rubrique5">
         <ion-col col-12>
        <!-- les rubriques -->
         <ion-item class="activite">
@@ -87,6 +87,7 @@
             <ion-icon *ngIf="rubrique2" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique2">{{rubrique2}}<br></span>
             <ion-icon *ngIf="rubrique3" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique3">{{rubrique3}}<br></span>
             <ion-icon *ngIf="rubrique4" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique4">{{rubrique4}}<br></span>
+            <ion-icon *ngIf="rubrique5" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique4">{{rubrique5}}<br></span>
           </span>
         </ion-item>
 
@@ -118,18 +119,12 @@
           <ion-item *ngIf='adresse1 || adresse2 || adresse0'>
             <ion-icon ios="ios-pin" md="md-pin" class="icon-coordonees"></ion-icon><span class="adresse" text-wrap>{{adresse1}}{{adresse2}}{{adresse0}}</span>
           </ion-item>
-          <ion-item *ngIf="telephone0">
-           <ion-icon ios="ios-call" md="md-call" class="icon-coordonees"></ion-icon><span class="telephone1"><span>{{telephone0}}</span>
+          <ion-item *ngIf="telephone">
+           <ion-icon ios="ios-call" md="md-call" class="icon-coordonees"></ion-icon><span class="telephone1"><span>{{telephone}}</span>
            </span>
           </ion-item>
-          <ion-item *ngIf="telephone1">
-            <ion-icon ios="ios-call" md="md-call" class="icon-coordonees"></ion-icon><span class="telephone1"><span>{{telephone1}}</span>
-           </span>
-          </ion-item>
-          <ion-item *ngIf="telephone2">
-            <ion-icon ios="ios-call" md="md-call" class="icon-coordonees"></ion-icon><span class="telephone1"><span>{{telephone2}}</span>
-           </span>
-          </ion-item>
+
+
           <ion-item *ngIf="fax0 ||fax1 || fax2 || fax3">
             <span *ngIf="fax0">
                <ion-icon ios="ios-print" md="md-print" class="icon-coordonees"></ion-icon><span class="fax"><span>{{fax0}}</span></span>
@@ -144,18 +139,13 @@
                <ion-icon ios="ios-print" md="md-print" class="icon-coordonees"></ion-icon><span class="fax"><span>{{fax3}}</span></span>
             </span>
           </ion-item>
-          <!--<ion-item *ngIf="email1">
-            <span class="email"><b>Email : </b><span>{{email1}}</span></span>
-          </ion-item>
-          <ion-item *ngIf="email2">
-            <span class="email"><b>Email : </b><span>{{email2}}</span></span>
-          </ion-item>-->
+
 
           <ion-item *ngIf="webinfo_link1">
             <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon><span class="site-web">
               <span><a href="{{webinfo_link_orig1}}">{{webinfo_link1}}</a></span>
             </span>
-            <hr>          
+                    
           </ion-item>
 
           <ion-item *ngIf="webinfo_link2">
@@ -206,7 +196,7 @@
               <a target="_blank" href="{{web3}}">{{web3}}</a>
               </span>
           </ion-item>
-          
+           <hr> 
         </ion-list>
       </ion-col>
     </ion-row>
