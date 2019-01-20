@@ -8,7 +8,6 @@ import { Observable, Subject } from 'rxjs';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
-import {SearchJaunePage } from '../search-jaune/search-jaune';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 
@@ -206,7 +205,7 @@ export class JaunesPage{
               this.navCtrl.push('AutourMoiPage',{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
           console.log('AutourMoiPage oui');
            }else{
-         this.navCtrl.push(SearchJaunePage,{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
+         this.navCtrl.push('SearchJaunePage',{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
           console.log('SearchJaunePage oui');
           
            }

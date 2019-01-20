@@ -10,7 +10,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { SearchJaunePage } from '../pages/search-jaune/search-jaune';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
@@ -29,7 +28,6 @@ import { CallNumber } from '@ionic-native/call-number';
     TabsPage,
     JaunesPage,
     BlanchesPage,
-    SearchJaunePage,
   ],
   imports: [
     IonicStorageModule.forRoot(),
@@ -47,7 +45,6 @@ import { CallNumber } from '@ionic-native/call-number';
     TabsPage,
     JaunesPage,
     BlanchesPage,
-    SearchJaunePage,
   ],
   providers: [
     StatusBar,

@@ -7,7 +7,7 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation';
-
+@IonicPage()
 @Component({
   selector: 'page-search-jaune',
   templateUrl: 'search-jaune.html',

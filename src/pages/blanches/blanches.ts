@@ -15,6 +15,7 @@ export class BlanchesPage {
   count;
   lat;
   lng;
+  noResult: boolean = false; 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -37,6 +38,7 @@ export class BlanchesPage {
       listeResultatTel(tel){
          let list: any = [];
          let count;
+        let noResult: boolean = false;
           return new Promise((resolve,  reject) =>{
 
             //var tel = '0522777100';
@@ -76,6 +78,7 @@ export class BlanchesPage {
 
                    parser.parseString(response, function (err, result)
                   {
+                    if (result) {
                        console.log('result', result);
                         count =result.search_answers.search_answer[0].items[0].$.count;
                        //count=result.search_answers.search_answer.items[0].$.count;
@@ -106,7 +109,15 @@ export class BlanchesPage {
                      }
                  }
                    }
-                   resolve([list,count]);
+                                     }else{
+                    list.push();
+
+                    noResult =true;
+                    console.log('Pas de résultats à proximité de vous.');
+                    console.log('Pas de résultats à proximité de vous.',noResult);
+
+                  }
+                   resolve([list,count,noResult]);
                    console.log('dd :',list);
                              //this.list=list;
 
@@ -123,7 +134,8 @@ export class BlanchesPage {
 
     listeResultatTelToArray(tel: string){
        this.listeResultatTel(tel).then(
-          (data)=>{this.list=data[0],this.count=data[1]
+          (data)=>{this.list=data[0],this.count=data[1],
+            this.noResult=data[2];  
           console.log('yes nows ssss',this.count);
         });
        return this.list;
