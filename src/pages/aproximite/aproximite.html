@@ -22,7 +22,7 @@
 
 
       <ion-col col-10 class="information" (click)="onDisplayPro(l.d,currentLat,currentLng)">
-        <div class="rs_comp" (click)="onDisplayPro(l.d,currentLat,currentLng)">
+        <div class="rs_comp" >
           <input type="text" name="" value="{{i+1}}" readonly="readonly" class="cercle-chiffres">
           &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
 
@@ -30,7 +30,7 @@
           <span class="adresse">{{l.d[2].adresse}}{{l.d[3].adresse}}{{l.d[4].adresse}}</span> &nbsp;&nbsp;
           <span class="ville">{{l.d[3].ville}}{{l.d[4].ville}}{{l.d[5].ville}}</span>
         </div>
-        <div class="distance" (click)="onDisplayPro(l.d)">Distance: 
+        <div class="distance" >Distance: 
          <span >{{l.d[9].distance}}</span>
          <span >{{l.d[10].distance}}</span>
          <span *ngIf="l.d.length>11">{{l.d[11].distance}}</span>
@@ -48,10 +48,10 @@
       <ion-col col-2 class="col-logos" (click)="onDisplayPro(l.d,currentLat,currentLng)">
         <div class="border-logo">
 
-        <div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
+        <div *ngIf='l.d[2].logo || l.d[3].logo' >
          <img alt="logo" src="{{l.d[2].logo}}{{l.d[3].logo}}" class="logo-ste" />
         </div>
-        <div *ngIf='!l.d[2].logo && !l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
+        <div *ngIf='!l.d[2].logo && !l.d[3].logo'>
         <img alt="logo" src="assets/imgs/logonot.jpg" class="logo-not"/>
         </div>
 
