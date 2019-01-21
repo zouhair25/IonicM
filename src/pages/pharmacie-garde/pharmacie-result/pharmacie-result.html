@@ -1,0 +1,27 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>pharmacie-result</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card *ngFor='let l of result; let i=index'>
+		<div>{{l[5].quartier}}{{l[4].quartier}}</div>
+	  <ion-card-header>
+	    <input type="text" name="" value="{{i+1}}" readonly="readonly" class="cercle-chiffres"> {{l[1].rs_comp}}{{l[2].rs_comp}}
+	  </ion-card-header>
+	  <ion-card-content>
+
+       <div>
+          <span class="adresse">{{l[2].adresse}}{{l[3].adresse}}{{l[4].adresse}}</span> 
+       </div>
+       <div>
+       	<strong>Ouverture : </strong>{{l[8].perm_type}}{{l[8].perm_type}}
+       </div>
+	  </ion-card-content>
+	</ion-card>
+</ion-content>
