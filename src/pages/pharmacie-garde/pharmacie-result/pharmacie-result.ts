@@ -14,7 +14,7 @@ export class PharmacieResultPage {
   ville;
   numero;
   result;
-
+  count;
   list_quartier;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -31,7 +31,8 @@ export class PharmacieResultPage {
     go_build_pharmacies_de_garde_liste(ville,  start){
     	this.go_search_pharmacies_de_garde_liste(ville,start).then((data)=>{
        
-        this.result =data;
+        this.result =data[0];
+        this.count =data[1];
         	console.log('result :',this.result);
 
         for(let i of  this.result){
@@ -44,6 +45,7 @@ console.log('list apres',this.transform(this.result,'this.result[5].quartier'));
     
 	go_search_pharmacies_de_garde_liste(ville,  start){
 		let list: any = [];
+    let count;
 		return new Promise((resolve,reject)=>{
 			var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
 			data_send += '	<methodcall>';
@@ -72,6 +74,7 @@ console.log('list apres',this.transform(this.result,'this.result[5].quartier'));
 		                    explicitArray: true                  
 		                });
 		                parser.parseString(response, function (err, result){
+                        count =result.search_answers.search_answer[0].items[0].$.count;
                           for(let answers of result.search_answers.search_answer) {
                             for(let item of answers.items){
                               for(let i of item.item){  
@@ -88,7 +91,7 @@ console.log('list apres',this.transform(this.result,'this.result[5].quartier'));
                             }                       
                           }
 		                });
-                    resolve(list);
+                    resolve([list,count]);
                    }
 
 
