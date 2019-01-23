@@ -2,6 +2,7 @@ import { Component,Pipe, PipeTransform  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
+//var groupArray = require('group-array');
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class PharmacieResultPage {
 
   list_quartier;
   currentLat;
-  currentLng
+  currentLng;
+  count;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -38,14 +40,16 @@ export class PharmacieResultPage {
     go_build_pharmacies_de_garde_liste(ville,  start){
     	this.go_search_pharmacies_de_garde_liste(ville,start).then((data)=>{
        
-        this.result =this.transform(data,'quartier');
-        	console.log('result :',this.result);
+        this.result =this.transform(data[0],'quartier');
+         this.count =data[1];
+          console.log('count :',this.count);
      
     	});
     }
     
 	go_search_pharmacies_de_garde_liste(ville,  start){
 		let list: any = [];
+     let count;
 		return new Promise((resolve,reject)=>{
 			var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
 			data_send += '	<methodcall>';
@@ -74,6 +78,7 @@ export class PharmacieResultPage {
 		                    explicitArray: true                  
 		                });
 		                parser.parseString(response, function (err, result){
+                        count =result.search_answers.search_answer[0].items[0].$.count;
                           for(let answers of result.search_answers.search_answer) {
                             for(let item of answers.items){
                               for(let i of item.item){  
@@ -102,7 +107,7 @@ export class PharmacieResultPage {
                           }
 		                });
                     
-                    resolve(list);
+                    resolve([list,count]);
                    }
 
 

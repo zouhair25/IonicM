@@ -22,6 +22,7 @@ export class SearchPage {
   lat;
   lng;
   count;
+  list_ville;
    appareilsList  =[
     {
       name: 'Boulangerie',
@@ -85,7 +86,6 @@ export class SearchPage {
       cath: 'cath5',
     }*/
   ]  
-   list_ville;
     bool: Boolean = true;
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController,
@@ -120,18 +120,17 @@ export class SearchPage {
       console.log('ionViewDidLoad ionViewDidEntrer');
     }
   ionViewDidLoad() {
-      
       this.lat =this.navParams.get('lat');
       this.lng =this.navParams.get('lng');
       console.log('lat j',this.lat);
       console.log('lat j',this.lng);
-      
+   
       this.go_build_pharmacie_garde();
  this.getLocation();
     console.log('ionViewDidLoad SearchPage');
 
 
-   let watch =this.geolocation.watchPosition();
+     let watch =this.geolocation.watchPosition();
        watch.subscribe((data)=>{
           /*console.log("Latitude ",data.coords.latitude)   ;
           console.log("longitude ",data.coords.longitude)   ; 
@@ -155,9 +154,12 @@ export class SearchPage {
     onDisplayByCategory(name: string){
       this.navCtrl.push('AproximitePage',{categorie: name,lat: this.lat,lng: this.lng});
     }
-  onToggleMenu(){
-   this.menuCtrl.open();
-  }
+
+
+    onToggleMenu(){
+     this.menuCtrl.open();
+    }
+    
 
     onDisplayPharmacieGarde(list,lat,lng){
       this.navCtrl.push('PharmacieGardePage',{list: this.list_ville,lat: this.lat,lng: this.lng});

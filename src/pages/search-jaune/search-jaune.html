@@ -17,7 +17,7 @@
 
 
       <ion-col col-10 class="information" (click)="onDisplayPro(l.d,currentLat,currentLng)">
-      	<div class="rs_comp" (click)="onDisplayPro(l.d,currentLat,currentLng)">
+      	<div class="rs_comp" >
           <input type="text" name="" value="{{i+1}}" readonly="readonly" class="cercle-chiffres">
           &nbsp;{{l.d[2].rs_comp}} {{l.d[1].rs_comp}}</div>
 
@@ -36,10 +36,10 @@
       <ion-col col-2 class="col-logos" (click)="onDisplayPro(l.d,currentLat,currentLng)">
         <div class="border-logo">
 
-      	<div *ngIf='l.d[2].logo || l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
+      	<div *ngIf='l.d[2].logo || l.d[3].logo'>
       	 <img alt="logo" src="{{l.d[2].logo}}{{l.d[3].logo}}" class="logo-ste" />
       	</div>
-      	<div *ngIf='!l.d[2].logo && !l.d[3].logo' (click)="onDisplayPro(l.d,currentLat,currentLng)">
+      	<div *ngIf='!l.d[2].logo && !l.d[3].logo' >
         <img alt="logo" src="assets/imgs/logonot.jpg" class="logo-not"/>
         </div>
 

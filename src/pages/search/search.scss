@@ -14,6 +14,9 @@ page-search {
         font-size: 48px !important;
         padding-top: 10px;
     }
+    .icon-pharmacie-garde{
+        font-size: 48px !important;
+    }
 	ion-icon {
     &[class*="custom-"] {
         mask-size: contain;
@@ -50,6 +53,10 @@ page-search {
     &[class*="custom-flower"] {
         mask-image: url(../../assets/flower.svg);
     }
+    &[class*="custom-phar-garde"] {
+        mask-image: url(../../assets/pharmacy-garde.svg);
+    }
+
 
 }
 page-search .color-back-trans ion-icon{
