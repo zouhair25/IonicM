@@ -85,6 +85,7 @@ export class SearchPage {
       cath: 'cath5',
     }*/
   ]  
+   list_ville;
     bool: Boolean = true;
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController,
@@ -125,7 +126,7 @@ export class SearchPage {
       console.log('lat j',this.lat);
       console.log('lat j',this.lng);
       
-      
+      this.go_build_pharmacie_garde();
  this.getLocation();
     console.log('ionViewDidLoad SearchPage');
 
@@ -158,4 +159,64 @@ export class SearchPage {
    this.menuCtrl.open();
   }
 
+    onDisplayPharmacieGarde(list,lat,lng){
+      this.navCtrl.push('PharmacieGardePage',{list: this.list_ville,lat: this.lat,lng: this.lng});
+    }
+    go_build_pharmacie_garde(){
+       this.pharmacies_garde_load_city().then((data)=>{
+         console.log('garde',data);
+         this.list_ville =data;
+       });
+      return this.list_ville;
+    }
+    pharmacies_garde_load_city(){
+       let list: any =[];
+       let noResult: boolean = false;
+      return new Promise((resolve,reject)=>{
+          var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
+              data_send += '  <methodcall>';
+              data_send += '    <methodname call="pharmacies_garde_villes">';  
+              data_send += '      <params>';  
+              data_send += '        <value>';
+              data_send += '        </value>';
+              data_send += '      </params>';  
+              data_send += '    </methodname>';
+              data_send += '  </methodcall>';
+          $.ajax({
+             type: "POST",
+             url: "https://www.telecontact.ma/WsMobTlC2014nVZA",
+             crossDomain: true,
+             data: {telecontact: data_send},
+             dataType: 'text',
+             success: function(response){
+                response =response.replace(/&(?!(?:apos|quot|[gl]t|amp);|#)/g, '&amp;');
+                let parser =new xml2js.Parser({
+                    trim: true,
+                    explicitArray: true                  
+                });
+
+                parser.parseString(response,function(err,result){
+                console.log('pharm de garde',result);
+                  if (result) {
+                    for(let answers of result.search_answers.search_answer) { 
+                      for(let item of answers.items){  
+                        for(let i of item.item){   
+                          for(let i_data of i.item_data){
+                            list.push({titre: i_data.data[0]._,numero: i_data.data[1]._}); 
+
+                              
+                          } 
+                        }
+                      }
+                    }
+                  }else{
+                    list.push();
+                    noResult =true;
+                  }
+                 resolve(list);
+                });
+             }
+          });
+      });
+    }
 }

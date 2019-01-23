@@ -230,7 +230,7 @@ export class SingleProPage {
      this.pro= this.navParams.get('pro');
      this.currentLat=this.navParams.get('lat');
      this.currentLng=this.navParams.get('lng');
-     console.log('single pro lat',this.currentLat);
+     console.log('single pro',this.pro);
      console.log('single pro lng',this.currentLng);
 
     //this.loadmap();
@@ -264,8 +264,14 @@ export class SingleProPage {
      this.telephone=this.pro[4].telephone1;
    }else if(this.pro[5].telephone1) {
      this.telephone=this.pro[5].telephone1;
-   }else{
+   }else if(this.pro[6].telephone1){
      this.telephone=this.pro[6].telephone1;
+   }else if (this.pro[7].telephone1){
+     this.telephone=this.pro[7].telephone1;
+   }else if(this.pro[8].telephone1){
+     this.telephone=this.pro[8].telephone1;
+   }else {
+     this.telephone=this.pro[9].telephone1;
    }
    this.fax0=this.pro[5].fax;
    this.fax1=this.pro[6].fax;

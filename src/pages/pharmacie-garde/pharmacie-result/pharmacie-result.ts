@@ -16,29 +16,31 @@ export class PharmacieResultPage {
   result;
 
   list_quartier;
+  currentLat;
+  currentLng
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     this.list  = this.navParams.get('list');
+    this.currentLat =this.navParams.get('lat');
+    this.currentLng =this.navParams.get('lng');
     this.ville = this.list.titre;
     this.numero = this.list.numero;
-    console.log('ionViewDidLoad PharmacieResultPage',this.list.numero);
     this.go_build_pharmacies_de_garde_liste(this.ville,1);
 
-  }
+         // console.log('data',groupArray(this.arr,'tag'));
 
+  }
+    onDisplayPro(pro: {rs_comp: string, adresse: string}){
+      this.navCtrl.push('SingleProPage', {pro: pro,lat: this.currentLat, lng: this.currentLng})
+    }
     go_build_pharmacies_de_garde_liste(ville,  start){
     	this.go_search_pharmacies_de_garde_liste(ville,start).then((data)=>{
        
-        this.result =data;
+        this.result =this.transform(data,'quartier');
         	console.log('result :',this.result);
-
-        for(let i of  this.result){
-        	console.log('i :',i[5].quartier);
-        }
-console.log('list apres',this.transform(this.result,'this.result[5].quartier'));
-
+     
     	});
     }
     
@@ -79,15 +81,27 @@ console.log('list apres',this.transform(this.result,'this.result[5].quartier'));
                                     let d: any =[];
 			                        for(let data of i_data.data){
 			                            let   type=data.$.name;
-			                            d.push({[type]: data._});                         
+			                            d.push( {[type]: data._});
+
 			                            //list.push({key: data.$.name, value: data._});
-			                        }                             
-                                  list.push(d);
+			                        
+                              }          
+                              if(d[4].quartier){
+                                 list.push({quartier: d[4].quartier,d});
+                                                
+                              }else{
+                                                 
+                                 list.push({quartier: d[5].quartier,d});
+
+                              }
+
+                                 
                                  }
                               }
                             }                       
                           }
 		                });
+                    
                     resolve(list);
                    }
 
