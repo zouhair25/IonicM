@@ -20,11 +20,6 @@
     border-width: 0;
 }
 
-
-
-
-
-
 .btn {
   padding-left: 0px;
   border: 0;
@@ -36,8 +31,9 @@ button.item-ios:not([detail-none]) .item-inner {
 
 [icon-left] ion-icon, [icon-start] ion-icon{
   padding-left: 20px;
-  line-height: 1.67;
+  line-height: 53px!important;
   padding-right: 0.8em;
+  font-size: 28px;
 }
 
 .toolbar-background-ios {
@@ -58,4 +54,12 @@ button.item-ios:not([detail-none]) .item-inner {
 
 .toolbar-ios ion-title {
   padding: 37px;
+}
+
+[icon-left] ion-icon, [icon-start] ion-icon {
+    padding-left: 10px;
+    line-height: 1.67;
+    padding-right: 10px;
+    font-size: 28px!important;
+    color: black;
 }
