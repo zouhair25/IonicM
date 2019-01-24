@@ -101,7 +101,7 @@
           </ion-item>
           <ion-item class="Prestations-liste" text-wrap >
             <span *ngFor="let p of listPrestations">
-              <li ><ion-icon name="checkmark" class="check-mark" style="color: #617178;"></ion-icon>{{p.title}}</li>
+              <li><ion-icon name="checkmark" class="check-mark" style="color: #617178;"></ion-icon>{{p.title}}</li>
             </span>
           </ion-item>
         </ion-col>
@@ -145,7 +145,6 @@
             <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon><span class="site-web">
               <span><a href="{{webinfo_link_orig1}}">{{webinfo_link1}}</a></span>
             </span>
-                    
           </ion-item>
 
           <ion-item *ngIf="webinfo_link2">
@@ -185,18 +184,18 @@
               </span>
           </ion-item>
           <ion-item *ngIf="web2">
-            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>            
+            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
               <span class="site-web" text-wrap>
               <a target="_blank" href="{{web2}}">{{web2}}</a>
               </span>
           </ion-item>
           <ion-item *ngIf="web3">
-            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>   
+            <ion-icon ios="ios-globe" md="md-globe" class="icon-coordonees"></ion-icon>
              <span class="site-web" text-wrap>
               <a target="_blank" href="{{web3}}">{{web3}}</a>
               </span>
           </ion-item>
-           <hr> 
+           <hr>
         </ion-list>
       </ion-col>
     </ion-row>
