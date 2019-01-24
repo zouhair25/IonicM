@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { CallNumber } from '@ionic-native/call-number';
+import { NgPipesModule } from 'ngx-pipes';
 @NgModule({
   declarations: [
     MyApp,
@@ -35,6 +36,7 @@ import { CallNumber } from '@ionic-native/call-number';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgPipesModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
