@@ -34,7 +34,7 @@ export class SearchJaunePage implements OnInit{
   thirdScroll   ;
   i=0;
   reste =this.start;
-
+  posTest;
   currentLat;
   currentLng;
   noResult: boolean = false; 
@@ -155,6 +155,7 @@ infiniteScroll.complete();
        
         this.listesResultatsScroll(quiquoi,ou, start,extract,first,second,third,pos,extract_sd).then(
           (data)=>{
+            this.posTest =this.posScroll;
             console.log('posScroll scrollllll avant',this.posScroll);
             this.posScroll=data[2];
            console.log('posScroll scrollllll',this.posScroll);
@@ -167,12 +168,17 @@ infiniteScroll.complete();
 
             this.thirdScroll =data[5],
            console.log('thirdScroll scrollllll',this.thirdScroll);
-
+          if(this.posTest ==this.posScroll && this.posTest!=1 && this.posScroll!=1){
+           console.log('this.posTest ==this.posScroll');
+     this.start=this.start-10;
+          }else{
             for(let i=0 ; i<data[0].length;i++){
             this.list.push(data[0][i]);
     
-          }
-          
+            }
+                       console.log('this.start--10');
+       
+          }          
         }
           );
          return this.list;      

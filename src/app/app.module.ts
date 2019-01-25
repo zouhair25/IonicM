@@ -21,6 +21,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { CallNumber } from '@ionic-native/call-number';
 import { NgPipesModule } from 'ngx-pipes';
+import { Market } from '@ionic-native/market';
 @NgModule({
   declarations: [
     MyApp,
