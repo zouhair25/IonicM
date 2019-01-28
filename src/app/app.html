@@ -1,7 +1,9 @@
 <ion-menu [content]="content" type="">
   <ion-header>
     <ion-toolbar align="center">
-      <ion-title menuClose><img src="../assets/img/logo.png"></ion-title>
+      <ion-title (click)="onNavigate(searchPage)">
+        <img src="../assets/img/logo.png">
+      </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -18,12 +20,12 @@
             <ion-icon name="search" ></ion-icon>Rechercher
 
         </button>-->
-        <button class="btn" ion-item icon-start (click)="onNavigate(historiquePage)">
+        <button class="btn" ion-item icon-start >
             <ion-icon name="ios-undo"></ion-icon>
             Historique
         </button>
 
-        <button class="btn" ion-item icon-start (click)="onNavigate(favorisPage)">
+        <button class="btn" ion-item icon-start >
             <ion-icon name="heart"></ion-icon>
             Favoris
         </button>
@@ -32,7 +34,7 @@
 
             Favoris
         </button>-->
-        <button class="btn" ion-item icon-start (click)="onNavigate(loginPage)">
+        <button class="btn" ion-item icon-start >
             <ion-icon name="md-person"></ion-icon>
             Mon compte
         </button>
@@ -40,11 +42,11 @@
             <ion-icon name="md-create"></ion-icon>
             Vos avis
         </button>
-        <button class="btn" ion-item icon-start (click)="onNavigate(optionsPage)">
+        <button class="btn" ion-item icon-start >
             <ion-icon name="ios-settings"></ion-icon>
             Paramètres
         </button>
-        <button class="btn" ion-item icon-start (click)="onNavigate(optionsPage)">
+        <button class="btn" ion-item icon-start (click)="onNavigate(aboutPage)">
             <ion-icon name="ios-information-circle"></ion-icon>
             A propos
         </button>

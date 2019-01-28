@@ -10,21 +10,24 @@ import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
 import { Api } from '../providers/api';
 import { HttpClient } from '@angular/common/http';
-import { Market } from '@ionic-native/market';
+import { AboutPage } from '../pages/about/about';
+
+declare let window: any;
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  tabsPage: any = TabsPage;
+  //tabsPage: any = TabsPage;
+  tabsPage: any = 'SearchPage';
   searchPage: any = 'SearchPage';
   favorisPage: any = 'FavorisPage';
   historiquePage: any = 'HistoriquePage';
   appointmentPage: any = 'AppointmentPage';
   loginPage: any = 'LoginPage';
   optionsPage: any = 'OptionsPage';
-  aboutPage: any = 'AboutPage';
+  aboutPage: any = AboutPage;
   
-  version_actuell="0.1";
+  version_actuell="0.0.1";
   version;
   mandatory;
   @ViewChild('content') content: NavController;
@@ -35,7 +38,7 @@ export class MyApp {
               private api: Api,
               private http: HttpClient,
               private alertController: AlertController,
-              private market: Market) {
+              ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -45,9 +48,9 @@ export class MyApp {
           
           //recuperation de version
    this.http.get("https://www.telecontact.ma/trouver/version_mobile.php").subscribe((data)=>{
-    this.version =data.v;
-    this.mandatory =data.m;
-console.log('ver serv',this.version);
+    this.version =data[0];
+    this.mandatory =data[1];
+console.log('ver serv',data);
     
    });
 // test de version actuell et l'autre version
@@ -55,15 +58,19 @@ setTimeout(()=>{
 console.log('ver actuell',this.version_actuell);
 console.log('ver serv',this.version);
 
-  if(this.version!=this.version_actuell){
+  if(this.version!=this.version_actuell && this.mandatory==0){
 
-   this.presentAlert();
+   this.alertNotObilgatoire();
+  }
+    if(this.version!=this.version_actuell && this.mandatory==1){
+
+   this.alertIsObilgatoire();
   }
 },500)
   }
 
   //alert
-   presentAlert(){
+   alertNotObilgatoire(){
      let alert=this.alertController.create({
        title: "Mise à jour",
        subTitle: "Voulez-vous faire la Mise à jour",
@@ -78,7 +85,27 @@ console.log('ver serv',this.version);
        {
          text: 'Mise à jour',
          handler: ()=>{
-         this.market.open('telecontact');
+           window.location.href='http://play.google.com/store/apps/details?id=com.telecontact.cover&hl=fr';
+         //market: '//details?id=telecontact';
+         }
+       }
+       ]
+     });
+     alert.present();
+   }
+
+     //alert
+   alertIsObilgatoire(){
+     let alert=this.alertController.create({
+       title: "Mise à jour",
+       subTitle: "Voulez-vous faire la Mise à jour",
+       enableBackdropDismiss: false,
+       buttons: [
+       {
+         text: 'Mise à jour',
+         handler: ()=>{
+           window.location.href='http://play.google.com/store/apps/details?id=com.telecontact.cover&hl=fr';
+         //market: '//details?id=telecontact';
          }
        }
        ]
