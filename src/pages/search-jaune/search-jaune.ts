@@ -6,6 +6,7 @@ import xml2js from 'xml2js';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
+
 import { Geolocation } from '@ionic-native/geolocation';
 @IonicPage()
 @Component({
@@ -21,17 +22,23 @@ export class SearchJaunePage implements OnInit{
   items = [];
   start =1;
   extract =10;
-  pos=0; 
-  extract_sd=0;
-  first   = 'result'; 
-  second  ='result'; 
-  third   = 'result'; 
+  pos;
+  posScroll;
+
+  extract_sd;
+  first   ; 
+  second  ; 
+  third   ; 
+  firstScroll   ; 
+  secondScroll  ; 
+  thirdScroll   ;
   i=0;
   reste =this.start;
-
+  posTest;
   currentLat;
   currentLng;
   noResult: boolean = false; 
+  arrScroll: any =[];
   private searchTerms = new Subject<string>();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -43,51 +50,53 @@ export class SearchJaunePage implements OnInit{
   
   doInfinite(infiniteScroll) {
     console.log('Begin async operation');
+          console.log('this.list.push(data[0])',this.list.length);
 
       setTimeout(() => {
 
-        if(this.start>this.count || this.extract<0 || this.count<10){
+        if(this.extract!=10||this.start>this.count  ||   this.extract<0 || this.count<10 || (this.start-this.count<10 &&this.start-this.count>0)){
+          
             infiniteScroll.enable(false);
                     console.log('this.start>this.count');
-        }else{
+                  }   
+        else{
 
           this.start=this.start+10;
           this.extract_sd=10;
            console.log('this.pos :', this.pos);
-           if(this.pos==0){
-             this.pos=this.pos+1;             
-           }else{
-             this.pos=this.pos+10;             
-           }
-
-                  
-
-            infiniteScroll.complete();  
+                                    
             this.i++;
             console.log('i :',this.i); 
             if(this.count-this.start<10 ){
               this.extract=this.count-this.start;
                console.log('this.extract',this.extract);
-            }
-            if(this.start>this.count1){
-              this.first='complet';
-                       console.log('first complet :', this.first);
-            }
-            if(this.count2==0){
-              this.second='complet';
-                       
-                       console.log('second complet :', this.second);
-            } 
-            console.log('pos :', this.pos);
-            console.log('extract_sd :', this.extract_sd);
-
-            this.onSubmitFormScroll(this.quiquoi,this.ou, this.start, this.extract,this.first,this.second,this.third,this.pos,this.extract_sd);
-
+}
            
-        }
+
+            if(!this.posScroll){
+              this.posScroll=this.pos;
+            }
+            if(!this.firstScroll){
+              this.firstScroll =this.first;
+            }
+            if(!this.secondScroll){
+              this.secondScroll =this.second;
+            }          
+            if(!this.thirdScroll){
+              this.thirdScroll =this.third;
+            }
+            console.log('posScroll :', this.posScroll);
+            console.log('extract_sd :', this.extract_sd);
+            console.log('first :', this.firstScroll);
+            console.log('second :', this.secondScroll);
+            console.log('third :', this.thirdScroll); 
+            this.onSubmitFormScroll(this.quiquoi,this.ou, this.start, this.extract,this.firstScroll,this.secondScroll,this.thirdScroll,this.posScroll,this.extract_sd);
+infiniteScroll.complete();  
+                       }
+        
 
         
-      }, 500);
+      },500);
    
   }
   ionViewDidLoad() {
@@ -108,6 +117,7 @@ export class SearchJaunePage implements OnInit{
          });*/
 
         if(this.quiquoi && this.ou){
+          
           this.list = this.onSubmitForm(this.quiquoi,this.ou);
           console.log('je ss in Autour de moi:', this.ou);
           console.log('lat',this.currentLat);
@@ -120,12 +130,17 @@ export class SearchJaunePage implements OnInit{
 
      onSubmitForm(quiquoi: string, ou: string){
         this.listesResultats(quiquoi,ou).then(
-          (data)=>{this.list=data[0],this.count=data[1],
-            this.count1=data[2],
-            this.count2=data[3],
-            this.count3=data[4]
-          console.log('count1 count1 count1',this.count1);
-          console.log('count3 count3 count3',this.count3);
+          (data)=>{this.list=data[0],
+            this.count=data[1],
+            this.pos =data[2],
+            this.first =data[3],
+            this.second =data[4],
+            this.third =data[5],
+          console.log('this.posScroll',this.pos);
+
+          console.log('this.first',this.first);
+          console.log('this.second',this.second);
+          console.log('this.third',this.third);
 
         }
           );    
@@ -134,17 +149,36 @@ export class SearchJaunePage implements OnInit{
     }
 
       onSubmitFormScroll(quiquoi: string, ou: string, start,extract,first,second,third,pos,extract_sd){
-                  console.log('jss in scrolling',this.count);
+               
+           console.log('posScroll scrollllll avant',this.posScroll);
         
-
+       
         this.listesResultatsScroll(quiquoi,ou, start,extract,first,second,third,pos,extract_sd).then(
           (data)=>{
-           //console.log('data',data.length);
+            this.posTest =this.posScroll;
+            console.log('posScroll scrollllll avant',this.posScroll);
+            this.posScroll=data[2];
+           console.log('posScroll scrollllll',this.posScroll);
+
+            this.firstScroll =data[3],
+           console.log('firstScroll scrollllll',data[3]);
+
+            this.secondScroll =data[4],
+           console.log('secondScroll scrollllll',this.secondScroll);
+
+            this.thirdScroll =data[5],
+           console.log('thirdScroll scrollllll',this.thirdScroll);
+          if(this.posTest ==this.posScroll && this.posTest!=1 && this.posScroll!=1){
+           console.log('this.posTest ==this.posScroll');
+     this.start=this.start-10;
+          }else{
             for(let i=0 ; i<data[0].length;i++){
             this.list.push(data[0][i]);
     
-          }
-          console.log('this.list.push(data[0])',this.list);
+            }
+                       console.log('this.start--10');
+       
+          }          
         }
           );
          return this.list;      
@@ -159,13 +193,13 @@ export class SearchJaunePage implements OnInit{
 
   }
 
-      listesResultatsScroll(quiquoi,ou,start=1,extract,first,second,third,pos,extract_sd ){
+      listesResultatsScroll(quiquoi,ou,start=1,extract,f,s,t,pos1,extract_sd ){
          let list: any = [];
          let count;
-         let i;
+         let i, posScroll;
+         let firstScroll,secondScroll, thirdScroll;
           return new Promise((resolve,  reject) =>{
             
-              console.log('apres for',start);
           var data_send  = '<?xml version="1.0" encoding="UTF-8" ?>';
           data_send += '  <methodcall>';
           data_send += '    <methodname call="hmida">';  
@@ -176,10 +210,10 @@ export class SearchJaunePage implements OnInit{
           data_send += '          <region>Rabat-Salé-Zemmour-Zaër</region>';
           data_send += '          <start>'+start+'</start>';
           data_send += '          <extract>'+extract+'</extract>';  
-          data_send += '          <first>'+first+'</first>';  
-          data_send += '          <second>'+second+'</second>';  
-          data_send += '          <third>'+third+'</third>';
-          data_send += '          <pos>'+pos+'</pos>';
+          data_send += '          <first>'+f+'</first>';  
+          data_send += '          <second>'+s+'</second>';  
+          data_send += '          <third>'+t+'</third>';
+          data_send += '          <pos>'+pos1+'</pos>';
           data_send += '          <extract_sd>'+extract_sd+'</extract_sd>';
           data_send += '        </value>';
           data_send += '      </params>';  
@@ -209,15 +243,24 @@ export class SearchJaunePage implements OnInit{
 
                    parser.parseString(response, function (err, result)
                   {
+                    if(result){
                        console.log('result', result);
+                        posScroll = result.search_answers.search_answer[0].items[0].$.pos;
                         count =result.search_answers.search_answer[0].items[0].$.count;
+                        firstScroll  = result.search_answers.search_answer[0].items[0].$.first;
+                        secondScroll  = result.search_answers.search_answer[0].items[0].$.second;
+                        thirdScroll  = result.search_answers.search_answer[0].items[0].$.third;
+console.log('firstScroll', firstScroll);
+console.log('secondScroll', secondScroll);
+console.log('thirdScroll', thirdScroll);
+
                        //count=result.search_answers.search_answer.items[0].$.count;
                    for(let answers of result.search_answers.search_answer) {                     
                          if (answers.items[0]=="      ") {
                                      list.push({'title': 'Aucun resultat'}); 
                                }else{
                      for(let item of answers.items){                             
-                      if(item.$.count>0)  {
+                      if(item.item)  {
                        for(let i of item.item){            
                          for(let i_data of i.item_data){    
                               let d: any =[];
@@ -236,10 +279,10 @@ export class SearchJaunePage implements OnInit{
                      }
                  }
                    }
-                   resolve([list,count]);
+                   resolve([list,count,posScroll,firstScroll,secondScroll,thirdScroll]);
                    console.log('dd :',list);
                              //this.list=list;
-
+                 }
                   });
               }, 
               error: function(error){
@@ -254,15 +297,17 @@ export class SearchJaunePage implements OnInit{
       listesResultats(quiqoui,ou){
          let list: any = [];
          let count,count1,count2,count3;
+         let pos,extract_sd;
+         let first,second, third;
           return new Promise((resolve,  reject) =>{
 
               var quiquoi = this.quiquoi; 
               var ou = this.ou; 
 
               var start   = '1'; 
-              var first   = 'result'; 
-              var second  ='result'; 
-              var third   = 'result'; 
+              var f   = 'result'; 
+              var s  ='result'; 
+              var t   = 'result'; 
               var pos     = '0'; 
               var extract_sd   = '10'; 
               var extract ='10';
@@ -278,9 +323,9 @@ export class SearchJaunePage implements OnInit{
           data_send += '          <region>Rabat-Salé-Zemmour-Zaër</region>';
           data_send += '          <start>'+start+'</start>';
           data_send += '          <extract>'+extract+'</extract>';  
-          data_send += '          <first>'+first+'</first>';  
-          data_send += '          <second>'+second+'</second>';  
-          data_send += '          <third>'+third+'</third>';
+          data_send += '          <first>'+f+'</first>';  
+          data_send += '          <second>'+s+'</second>';  
+          data_send += '          <third>'+t+'</third>';
           data_send += '          <pos>'+pos+'</pos>';
           data_send += '          <extract_sd>'+extract_sd+'</extract_sd>';
           data_send += '        </value>';
@@ -316,13 +361,15 @@ export class SearchJaunePage implements OnInit{
                         count1 = result.search_answers.search_answer[0].items[0].count_section[0].$.count1;
                         count2 = result.search_answers.search_answer[0].items[0].count_section[0].$.count2;
                         count3 = result.search_answers.search_answer[0].items[0].count_section[0].$.count3;
-
+                        pos  = result.search_answers.search_answer[0].items[0].$.pos;
+                        first  = result.search_answers.search_answer[0].items[0].$.first;
+                        second  = result.search_answers.search_answer[0].items[0].$.second;
+                        third  = result.search_answers.search_answer[0].items[0].$.third;
+console.log('first', first);
+console.log('second', second);
+console.log('third', third);
                        //count=result.search_answers.search_answer.items[0].$.count;
-                       console.log('count1', result.search_answers.search_answer[0].items[0].count_section[0].$.count1);
-                       console.log('count2', result.search_answers.search_answer[0].items[0].count_section[0].$.count2);
-                       console.log('count3', result.search_answers.search_answer[0].items[0].count_section[0].$.count3);
-
-                   
+                     
                    for(let answers of result.search_answers.search_answer) {
                           
 
@@ -362,7 +409,7 @@ export class SearchJaunePage implements OnInit{
                      }
                  }
                    }
-                   resolve([list,count,count1,count2,count3]);
+                   resolve([list,count,pos,first,second,third]);
                    console.log('dd :',list);
                              //this.list=list;
 
