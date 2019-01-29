@@ -85,7 +85,7 @@ console.log('ver serv',this.version);
        {
          text: 'Mise à jour',
          handler: ()=>{
-           window.location.href='http://play.google.com/store/apps/details?id=com.telecontact.cover&hl=fr';
+           window.location.href='http://play.google.com/store/apps/details?id=com.telecontact&hl=fr';
          //market: '//details?id=telecontact';
          }
        }

@@ -62,19 +62,21 @@
         </ion-item>
 
         <!-- logo et description -->
-        <ion-item text-wrap *ngIf="logo1 ||module0|| module1 || module2 || module3 ||module4|| module5">
+        <ion-item text-wrap *ngIf="logo1 ||module0|| module1 || module2 || module3 ||module4|| module5 || module6 || module7">
           <hr class="ligne">
             <span class="logo" *ngIf="logo1"><img src="{{logo1}}" class="img"></span>
             <span class="logo" *ngIf="logo2"><img src="{{logo2}}" class="img"></span>
             <div class="module">
-              {{module0}}{{module1}}{{module2}}{{module3}}{{module4}}{{module5}}
-              {{module6}}
+              {{module0}}{{module1}}{{module2}}{{module3}}{{module4}}
+              {{module5}}
+              {{module6}}{{module7}}
             </div>
         </ion-item>
       </ion-col>
     </ion-row>
 
-    <ion-row *ngIf="rubrique0 || rubrique1 || rubrique2 || rubrique3 ||              rubrique4 || rubrique5">
+    <ion-row *ngIf="rubrique0 || rubrique1 || rubrique2 || rubrique3    ||rubrique4 || rubrique5 || rubrique6 ||
+        rubrique7 || rubrique8">
         <ion-col col-12>
        <!-- les rubriques -->
         <ion-item class="activite">
@@ -87,7 +89,13 @@
             <ion-icon *ngIf="rubrique2" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique2">{{rubrique2}}<br></span>
             <ion-icon *ngIf="rubrique3" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique3">{{rubrique3}}<br></span>
             <ion-icon *ngIf="rubrique4" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique4">{{rubrique4}}<br></span>
-            <ion-icon *ngIf="rubrique5" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique4">{{rubrique5}}<br></span>
+            <ion-icon *ngIf="rubrique5" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique5">{{rubrique5}}<br></span>
+
+            <ion-icon *ngIf="rubrique6" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique6">{{rubrique6}}<br></span>
+
+            <ion-icon *ngIf="rubrique7" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique7">{{rubrique7}}<br></span>
+
+            <ion-icon *ngIf="rubrique8" ios="ios-arrow-dropright" md="md-arrow-dropright" class="icon-rubrique"></ion-icon><span *ngIf="rubrique8">{{rubrique8}}<br></span>            
           </span>
         </ion-item>
 

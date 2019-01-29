@@ -90,6 +90,9 @@ export class SingleProPage {
     rubrique3;
     rubrique4;
     rubrique5;
+    rubrique6;
+    rubrique7;
+    rubrique8;
 
     texte1;
     texte2;
@@ -104,6 +107,7 @@ export class SingleProPage {
     longitude7;
     longitude8;
     longitude9;
+    longitude10;
 
 
     
@@ -117,6 +121,7 @@ export class SingleProPage {
     latitude7;
     latitude8;
     latitude9;
+    latitude10;
 
 
 
@@ -295,10 +300,13 @@ export class SingleProPage {
    this.latitude9=this.pro[8].latitude;
 
    this.web=this.pro[8].web;
-   if(this.pro[7].rubrique){
+   if(this.pro[6].rubrique){
+    this.rubrique0=this.pro[6].rubrique;
+   }
+   else if(this.pro[7].rubrique){
     this.rubrique0=this.pro[7].rubrique;
    }else if(this.pro[8].rubrique){
-    this.rubrique0=this.pro[8].rubrique;
+    this.rubrique1=this.pro[8].rubrique;
    }
    console.log('rubrique0',this.rubrique0);
 
@@ -360,7 +368,8 @@ export class SingleProPage {
       this.module1=this.pro[14].module;
       this.longitude4=this.pro[14].longitude;
       this.latitude3=this.pro[14].latitude;
-      
+      this.rubrique6=this.pro[14].rubrique;
+      console.log('rubrique 6',this.rubrique6);
 
    }
    if(this.pro.length>15) {
@@ -369,6 +378,8 @@ export class SingleProPage {
       this.module2=this.pro[15].module;
       this.latitude4=this.pro[15].latitude;
       this.longitude5=this.pro[15].longitude;
+      this.rubrique7=this.pro[15].rubrique;
+      console.log('rubrique 7',this.rubrique7);
       
 
    }
@@ -379,6 +390,7 @@ export class SingleProPage {
       this.latitude5=this.pro[16].latitude;
       this.longitude6=this.pro[16].longitude; 
       this.webinfo_link6=this.pro[16].webinfo_link;
+      this.rubrique8=this.pro[16].rubrique;
       
     if(this.webinfo_link6){
         let l=this.webinfo_link6.length;
@@ -399,6 +411,8 @@ export class SingleProPage {
    }
 
    if(this.pro.length>17){
+      this.longitude10=this.pro[17].longitude;  
+
       this.latitude6=this.pro[17].latitude;
       this.module5=this.pro[17].module;
       this.webinfo_link5=this.pro[17].webinfo_link;
@@ -426,6 +440,7 @@ export class SingleProPage {
       this.webinfo_link4=this.pro[18].webinfo_link;
       this.webinfo_link_orig4=this.pro[18].webinfo_link;
          console.log('webinfo_link4',this.webinfo_link4);
+      this.latitude10=this.pro[18].latitude;
      
     if(this.webinfo_link4){
         let l=this.webinfo_link4.length;
@@ -446,6 +461,7 @@ export class SingleProPage {
    if(this.pro.length>19) {
       this.webinfo_link1=this.pro[19].webinfo_link;
       this.webinfo_link_orig1=this.pro[19].webinfo_link;
+      this.module7=this.pro[19].module;
 
 
     if(this.webinfo_link1){
@@ -563,6 +579,11 @@ export class SingleProPage {
            this.location =new LatLng(+this.latitude9,+this.longitude9);
            this.destinationLat=+this.latitude9;
            this.destinationLng=+this.longitude9;           
+        }
+        else if(this.longitude10 && this.latitude10){
+           this.location =new LatLng(+this.latitude10,+this.longitude10);
+           this.destinationLat=+this.latitude10;
+           this.destinationLng=+this.longitude10;           
         }else{
           this.locateExiste =true;
         }

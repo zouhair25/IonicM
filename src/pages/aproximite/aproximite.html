@@ -60,11 +60,11 @@
 
      <ion-col col-10 class="col-inscription">
        <div class="rubrique" (click)="onDisplayPro(l.d,currentLat,currentLng)">
-
+        <span *ngIf="l.d[5].rubrique">{{l.d[5].rubrique}}<br></span>
         <span *ngIf="l.d[6].rubrique">{{l.d[6].rubrique}}<br></span>
-        <span *ngIf="l.d[7].rubrique">{{l.d[7].rubrique}}</span>
-        <span *ngIf="l.d[8].rubrique">{{l.d[8].rubrique}}</span>
-        <span *ngIf="l.d[9].rubrique">{{l.d[9].rubrique}}</span>
+        <span *ngIf="l.d[7].rubrique">{{l.d[7].rubrique}}<br></span>
+        <span *ngIf="l.d[8].rubrique">{{l.d[8].rubrique}}<br></span>
+        <span *ngIf="l.d[9].rubrique">{{l.d[9].rubrique}}<br></span>
         <div *ngIf="l.d.length>10">
         <span *ngIf="l.d[10].rubrique">{{l.d[10].rubrique}}<br></span>
         </div>
@@ -82,7 +82,8 @@
     </ion-grid>
 
     <ion-grid >
-    <ion-row *ngIf="count==0 ||noResult"><ion-col col12>Aucun resultat</ion-col></ion-row>
+    <ion-row *ngIf="count==0 ||noResult">
+      <ion-col col-12 class="not-result">Pas de résultats à proximité de vous.</ion-col></ion-row>
     </ion-grid>
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>
