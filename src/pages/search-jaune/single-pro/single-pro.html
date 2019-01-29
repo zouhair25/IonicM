@@ -117,12 +117,9 @@
 
     <ion-row>
       <ion-col col-12>
-          <div class="ligne-2"></div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-12>
+        <ion-item class="Prestations">
+          <p class="p-s">Contactez-nous</p>
+        </ion-item>
         <ion-list>
           <ion-item *ngIf='adresse1 || adresse2 || adresse0'>
             <ion-icon ios="ios-pin" md="md-pin" class="icon-coordonees"></ion-icon><span class="adresse" text-wrap>{{adresse1}}{{adresse2}}{{adresse0}}</span>
