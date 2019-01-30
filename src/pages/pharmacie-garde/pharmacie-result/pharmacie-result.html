@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<!--<ion-content padding>
   {{count}} Résultats
   <div *ngFor='let l of result;  '>
     <ion-grid>
@@ -41,4 +41,49 @@
   </ion-col>
 </ion-grid>
   </div>
+</ion-content>-->
+<ion-content padding class="hist-content">
+<div *ngIf="!count && !noResult"><ion-spinner name="bubbles"></ion-spinner></div>
+
+  <ion-grid *ngIf="count>0">
+    <b> {{count}} Résultats</b>
+    <div *ngFor='let l of result;  '>
+     <ion-row  class="hist-row" *ngFor="let k of l.value;let j=index">
+
+
+      <ion-col col-10 class="information" (click)="onDisplayPro(k.d,currentLat,currentLng)">
+        <div class="rs_comp" >
+          <input type="text" name="" value="{{j+1}}" readonly="readonly" class="cercle-chiffres">
+          &nbsp;{{k.d[2].rs_comp}} {{k.d[1].rs_comp}}</div>
+
+        <div >
+          <span class="adresse">{{k.d[2].adresse}}{{k.d[3].adresse}}{{k.d[4].adresse}}</span> &nbsp;&nbsp; 
+        </div>
+        <div>
+          <strong>Ouverture : </strong>{{k.d[8].perm_type}}{{k.d[7].perm_type}}
+        </div>
+      </ion-col>
+
+      <ion-col col-2 (click)="onDisplayPro(k.d,currentLat,currentLng)">
+      </ion-col>
+
+
+
+
+
+
+    </ion-row>
+   </div>
+    </ion-grid>
+
+    <ion-grid >
+    <ion-row *ngIf="count==0 ||noResult"><ion-col col12>Aucun resultat</ion-col></ion-row>
+    </ion-grid>
+ <!--<ion-list>
+   <ion-item *ngFor="let i of items">{{i}}</ion-item>
+ </ion-list>-->
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >
+      <ion-infinite-scroll-content  loadingSpinner="bubbles"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

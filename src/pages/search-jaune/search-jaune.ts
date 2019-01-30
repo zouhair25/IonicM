@@ -85,10 +85,15 @@ export class SearchJaunePage implements OnInit{
             if(!this.thirdScroll){
               this.thirdScroll =this.third;
             }
+            //pour gerer le deuxieme panier
+            if(this.firstScroll!='result' &&this.secondScroll=='result'){
+              this.secondScroll='complet';
+            console.log('second :', this.secondScroll);
+
+            }
             console.log('posScroll :', this.posScroll);
             console.log('extract_sd :', this.extract_sd);
             console.log('first :', this.firstScroll);
-            console.log('second :', this.secondScroll);
             console.log('third :', this.thirdScroll); 
             this.onSubmitFormScroll(this.quiquoi,this.ou, this.start, this.extract,this.firstScroll,this.secondScroll,this.thirdScroll,this.posScroll,this.extract_sd);
 infiniteScroll.complete();  

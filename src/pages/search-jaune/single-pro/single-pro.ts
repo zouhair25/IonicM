@@ -74,6 +74,8 @@ export class SingleProPage {
     ville3;
 
     telephone;
+    telephone2;
+
 
     fax0;
     fax1;
@@ -93,6 +95,9 @@ export class SingleProPage {
     rubrique6;
     rubrique7;
     rubrique8;
+    rubrique9;
+    rubrique10;
+
 
     texte1;
     texte2;
@@ -203,6 +208,12 @@ export class SingleProPage {
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
       }
+     callNumbers2(){
+
+     this.callNumber.callNumber(this.telephone2, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+      }
   //for up and down div map
   toggle(){
     this.isOpen = !this.isOpen;
@@ -278,12 +289,31 @@ export class SingleProPage {
    }else {
      this.telephone=this.pro[9].telephone1;
    }
+
+
+   if(this.pro[4].telephone2){
+     this.telephone2=this.pro[4].telephone2;
+   }else if(this.pro[5].telephone2) {
+     this.telephone2=this.pro[5].telephone2;
+   }else if(this.pro[6].telephone2){
+     this.telephone2=this.pro[6].telephone2;
+   }else if (this.pro[7].telephone2){
+     this.telephone2=this.pro[7].telephone2;
+   }else if(this.pro[8].telephone2){
+     this.telephone2=this.pro[8].telephone2;
+   }else {
+     this.telephone2=this.pro[9].telephone2;
+   }
+
    this.fax0=this.pro[5].fax;
    this.fax1=this.pro[6].fax;
    this.fax2=this.pro[7].fax;
    this.fax3=this.pro[8].fax;
 
-   if(this.pro[6].email){
+   if(this.pro[5].email){
+      this.email=this.pro[5].email;
+   }
+   else if(this.pro[6].email){
       this.email=this.pro[6].email;
    }
    else if(this.pro[7].email){
@@ -300,18 +330,19 @@ export class SingleProPage {
    this.latitude9=this.pro[8].latitude;
 
    this.web=this.pro[8].web;
-   if(this.pro[6].rubrique){
+   
+
     this.rubrique0=this.pro[6].rubrique;
-   }
-   else if(this.pro[7].rubrique){
-    this.rubrique0=this.pro[7].rubrique;
-   }else if(this.pro[8].rubrique){
-    this.rubrique1=this.pro[8].rubrique;
-   }
+   
+  
+    this.rubrique1=this.pro[7].rubrique;
+   
+    this.rubrique2=this.pro[8].rubrique;
+   
    console.log('rubrique0',this.rubrique0);
 
-   this.rubrique1=this.pro[9].rubrique;
-   this.rubrique2=this.pro[10].rubrique;
+   this.rubrique3=this.pro[9].rubrique;
+   this.rubrique4=this.pro[10].rubrique;
    this.longitude0=this.pro[9].longitude;
 
    this.longitude8=this.pro[8].longitude;
@@ -320,8 +351,11 @@ export class SingleProPage {
    this.latitude0=this.pro[10].latitude;
    this.longitude7=this.pro[10].longitude;
    this.web2=this.pro[7].web;
-   if(this.pro[10].module){
-      this.module0=this.pro[10].module;
+   if(this.pro[9].module){
+      this.module0=this.pro[9].module;
+      console.log('this.module12',this.module0);
+   }else if(this.pro[10].module){
+           this.module0=this.pro[10].module;
       console.log('this.module12',this.module0);
    }
    
@@ -336,7 +370,7 @@ export class SingleProPage {
   
    this.texte1=this.pro[10].texte;
    if(this.pro.length>11) {
-      this.rubrique3=this.pro[11].rubrique;
+      this.rubrique5=this.pro[11].rubrique;
       this.texte2=this.pro[11].texte;
       this.longitude1=this.pro[11].longitude;
       this.latitude7=this.pro[11].latitude;
@@ -347,7 +381,7 @@ export class SingleProPage {
 
    if(this.pro.length>12) {
       this.longitude2=this.pro[12].longitude;
-      this.rubrique4=this.pro[12].rubrique;
+      this.rubrique6=this.pro[12].rubrique;
       this.latitude1=this.pro[12].latitude;
       if(this.pro[12].module){
         this.module0=this.pro[12].module;
@@ -360,7 +394,7 @@ export class SingleProPage {
       if(this.pro[13].module){
         this.module0=this.pro[13].module;
       }
-      this.rubrique5=this.pro[13].rubrique;
+      this.rubrique7=this.pro[13].rubrique;
       
    }
    if(this.pro.length>14) {
@@ -368,7 +402,7 @@ export class SingleProPage {
       this.module1=this.pro[14].module;
       this.longitude4=this.pro[14].longitude;
       this.latitude3=this.pro[14].latitude;
-      this.rubrique6=this.pro[14].rubrique;
+      this.rubrique8=this.pro[14].rubrique;
       console.log('rubrique 6',this.rubrique6);
 
    }
@@ -378,7 +412,7 @@ export class SingleProPage {
       this.module2=this.pro[15].module;
       this.latitude4=this.pro[15].latitude;
       this.longitude5=this.pro[15].longitude;
-      this.rubrique7=this.pro[15].rubrique;
+      this.rubrique9=this.pro[15].rubrique;
       console.log('rubrique 7',this.rubrique7);
       
 
@@ -390,7 +424,7 @@ export class SingleProPage {
       this.latitude5=this.pro[16].latitude;
       this.longitude6=this.pro[16].longitude; 
       this.webinfo_link6=this.pro[16].webinfo_link;
-      this.rubrique8=this.pro[16].rubrique;
+      this.rubrique10=this.pro[16].rubrique;
       
     if(this.webinfo_link6){
         let l=this.webinfo_link6.length;
@@ -605,13 +639,14 @@ export class SingleProPage {
       setTimeout(()=>{
       this.listPrestations=this.prestation_dispaly(this.code_firme);
     },500)
-      console.log('this',this.code_firme);
   }
 
   //suite recuperation et affectation au listpresta
   prestation_dispaly(code_firme){
     this.prestation(code_firme).then((data)=>{
        this.listPrestations=data;
+      console.log('this',this.listPrestations);
+
     })
      return this.listPrestations;  
   }
