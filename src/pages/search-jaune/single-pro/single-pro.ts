@@ -424,14 +424,12 @@ export class SingleProPage {
       this.latitude5=this.pro[16].latitude;
       this.longitude6=this.pro[16].longitude; 
       this.webinfo_link6=this.pro[16].webinfo_link;
-<<<<<<< HEAD
+
       this.rubrique10=this.pro[16].rubrique;
-=======
+
       this.webinfo_link_orig6=this.pro[16].webinfo_link;
 
-      this.rubrique8=this.pro[16].rubrique;
->>>>>>> 4e4dd0ce6108dfe7ab0a275052822e1ed21c5357
-      
+
     if(this.webinfo_link6){
         let l=this.webinfo_link6.length;
       if((this.webinfo_link6.includes('http://www.'))){
