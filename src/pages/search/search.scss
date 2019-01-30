@@ -166,7 +166,6 @@ ion-icon{
 
 
 @media only screen and (min-width: 768px) {
-
     .col-logo {
           max-width: 12%;
     }
@@ -194,7 +193,7 @@ page-search .logo {
 }
 
 .logo{
-	width: 90%;
+	width: 100%;
 	height: 100%;
 	background: none;
 	margin-top: 0;
@@ -225,6 +224,7 @@ page-search .btn-search {
     height: 46px;
     margin-top: 0px;
     border-radius: 0 2px 2px 0;
+    width: 100%;
 }
 
 [icon-left] ion-icon, [icon-start] ion-icon {
@@ -254,4 +254,19 @@ page-search .categorie {
 
 page-search .icon-pharmacie-garde {
     font-size: 45px !important;
+}
+
+.inverse{
+  padding-left: 12px!important;
+}
+
+.picto-1 {
+  display: inline-block;
+  color: white;
+}
+
+.picto-2 {
+  display: inline-block;
+  color: white;
+  padding-left: 10px;
 }
