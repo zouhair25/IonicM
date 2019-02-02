@@ -54,12 +54,12 @@
 
 		<ion-row class="input-recherche">
 			<ion-col col-10 no-padding>
-				<ion-input type="text" name="" placeholder="Quoi, qui... ?" class="search" (focus)="onGoJaunesPage()" autocomplete="on"></ion-input>
+				<ion-input type="text" name="" placeholder="Quoi, qui... ?" class="search" (ionFocus)="onGoJaunesPage('pro',lat,lng)" autocomplete="on"></ion-input>
 			</ion-col>
 
 			<ion-col col-2 no-padding>
 				<button ion-button icon-start  class="color btn-search"
-				(click)="onGoJaunesPage()">
+				(click)="onGoJaunesPage('pro',lat,lng)">
 					<ion-icon name="ios-search" ></ion-icon>
 				</button>
 			</ion-col>

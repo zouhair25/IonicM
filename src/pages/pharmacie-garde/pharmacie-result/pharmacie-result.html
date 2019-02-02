@@ -47,7 +47,14 @@
 
   <ion-grid *ngIf="count>0">
     <b> {{count}} Résultats</b>
-    <div *ngFor='let l of result;  '>
+    <div *ngFor='let l of result;let i=index  '>
+     
+        <ion-item class="quartier" *ngIf="l.key!='ZZZZZ'">
+          <div class="p-s" >{{l.key}}
+          </div>
+          
+        </ion-item>
+
      <ion-row  class="hist-row" *ngFor="let k of l.value;let j=index">
 
 
@@ -81,9 +88,9 @@
     </ion-grid>
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>
- </ion-list>-->
+ </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >
       <ion-infinite-scroll-content  loadingSpinner="bubbles"
       loadingText="Loading more data..."></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    </ion-infinite-scroll>-->
 </ion-content>
