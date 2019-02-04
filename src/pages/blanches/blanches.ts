@@ -142,7 +142,7 @@ export class BlanchesPage {
     }
     
 
-       onDisplayPro(pro: {rs_comp: string, adresse: string}){
-      this.navCtrl.push('SingleProPage', {pro: pro,lat: this.lat, lng: this.lng})
+       onDisplayAnv(code_firme,lat, lng){
+      this.navCtrl.push('SingleAnvPage', {code_firme: code_firme,lat: this.lat, lng: this.lng})
     }
 }
