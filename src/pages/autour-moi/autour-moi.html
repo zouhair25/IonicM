@@ -86,7 +86,14 @@
     </ion-grid>
 
     <ion-grid >
-    <ion-row *ngIf="count==0 ||noResult"><ion-col col12>Aucun resultat</ion-col></ion-row>
+    <ion-row *ngIf="count==0 ||noResult">
+      <ion-col col-1></ion-col>
+      <ion-col col-10>
+        <p>Pas de résultats pour votre recherche </p>
+        <p>veuillez essayer avec un autre mot-clé.</p>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
     </ion-grid>
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>
