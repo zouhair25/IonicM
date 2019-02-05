@@ -108,16 +108,13 @@ export class SearchPage {
   }
     getLocation(){
         this.geolocation.getCurrentPosition().then((resp)=>{
-     console.log('Location', resp);
      this.lat = resp.coords.latitude;
      this.lng = resp.coords.longitude;
     }).catch((error) => {
-     console.log('Error getting location', error);
    });
     }
     ionViewDidEntrer(){
       this.getLocation();
-      console.log('ionViewDidLoad ionViewDidEntrer');
     }
   ionViewDidLoad() {
       this.lat =this.navParams.get('lat');

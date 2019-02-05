@@ -115,6 +115,7 @@ export class SingleAnvPage {
     longitude8;
     longitude9;
     longitude10;
+    longitude11;
 
 
     
@@ -129,6 +130,8 @@ export class SingleAnvPage {
     latitude8;
     latitude9;
     latitude10;
+    latitude11;
+
 
 
 
@@ -284,9 +287,13 @@ export class SingleAnvPage {
               this.telephone2=data[0].d[7].telephone2;
             }else if(data[0].d[8].telephone2){
               this.telephone2=data[0].d[8].telephone2;
-            }else {
-              this.telephone2=data[0].d[9].telephone2;
             }
+
+              if(data[0].d.length>9) {
+                if(data[0].d[9].telephone2){
+                 this.telephone2=data[0].d[9].telephone2;
+                }
+              }
               this.fax0=data[0].d[5].fax;
               this.fax1=data[0].d[6].fax;
               this.fax2=data[0].d[7].fax;
@@ -296,17 +303,23 @@ export class SingleAnvPage {
               this.email=data[0].d[5].email;
             }
             else if(data[0].d[6].email){
-              this.email=data[6].email;
+              this.email=data[0].d[6].email;
             }
             else if(data[0].d[7].email){
               this.email=data[0].d[7].email;
             }else if(data[0].d[8].email){
               this.email=data[0].d[8].email;
             }else{
+              if(data[0].d.length>9) {
               this.email=data[0].d[9].email;
+            }
             }   
 
-
+   this.longitude11=data[0].d[6].longitude;
+   this.latitude11=data[0].d[7].latitude;
+  
+           console.log('longitude11',this.longitude11);
+           console.log('latitude11',this.latitude11); 
    this.longitude9=data[0].d[7].longitude;
    this.latitude9=data[0].d[8].latitude;
 
@@ -320,34 +333,42 @@ export class SingleAnvPage {
    
     this.rubrique2=data[0].d[8].rubrique;
    
-   console.log('rubrique0',this.rubrique0);
-
-   this.rubrique3=data[0].d[9].rubrique;
-   this.longitude0=data[0].d[9].longitude;
-
+   if(data[0].d.length>9) {
+     this.rubrique3=data[0].d[9].rubrique;
+     this.longitude0=data[0].d[9].longitude;
+     this.latitude8=data[0].d[9].latitude;
+   }
    this.longitude8=data[0].d[8].longitude;
-   this.latitude8=data[0].d[9].latitude;
+   
+   console.log('longitude8 ',this.longitude8);
+   console.log('latitude8 ',this.latitude8);
+
    
 
    this.web2=data[0].d[7].web;
-   if(data[0].d[9].module){
-      this.module0=data[0].d[9].module;
-      console.log('this.module12',this.module0);
+   if(data[0].d.length>9) {
+     if(data[0].d[9].module){
+        this.module0=data[0].d[9].module;
+        console.log('this.module12',this.module0);
+     }
    }
-
-      if(data[0].d[8].web){
+   if(data[0].d[8].web){
      this.web1=data[0].d[8].web;
-   }else if(data[0].d[9].web){
-     this.web1=data[0].d[9].web;     
    }
- console.log('weeee',this.web3);
+     if(data[0].d.length>9) {
+        if(data[0].d[9].web){
+         this.web1=data[0].d[9].web;     
+       }
+     }
+ console.log('weeee',data[0].d.length);
   
    
-   if(data[0].d[0].length>10){
+   if(data[0].d.length>10){
      this.texte1=data[0].d[10].texte;
      this.web3=data[0].d[10].web;
      this.latitude0=data[0].d[10].latitude;
      this.longitude7=data[0].d[10].longitude;
+     console.log('this.latitude0 10',this.latitude0);
 
      this.rubrique4=data[0].d[10].rubrique;
      if(data[0].d[10].module){
@@ -360,12 +381,13 @@ export class SingleAnvPage {
       this.texte2=data[0].d[11].texte;
       this.longitude1=data[0].d[11].longitude;
       this.latitude7=data[0].d[11].latitude;
+      console.log('this.longitude1',this.latitude7);
       this.module6=data[0].d[11].module;
 
    }
-
+    if(data[0].d.length>9) {
       this.web1=data[0].d[9].web;
-
+    }
    if(data[0].d.length>12) {
       this.longitude2=data[0].d[12].longitude;
       this.rubrique6=data[0].d[12].rubrique;
@@ -596,11 +618,7 @@ export class SingleAnvPage {
 
 
 
-  
- 
 
-   
-   
 
     this.platform.ready().then(()=>{
       let element = this.mapElement.nativeElement;
@@ -613,6 +631,7 @@ export class SingleAnvPage {
           this.location =new LatLng(+this.latitude0,+this.longitude0);
           this.destinationLat=+this.latitude0;
           this.destinationLng=+this.longitude0;
+
         }
         else if(this.longitude1 && this.latitude1){
           this.location =new LatLng(+this.latitude1,+this.longitude1);
@@ -659,7 +678,16 @@ export class SingleAnvPage {
            this.location =new LatLng(+this.latitude10,+this.longitude10);
            this.destinationLat=+this.latitude10;
            this.destinationLng=+this.longitude10;           
-        }else{
+        }
+        else if(this.longitude11 && this.latitude11){
+           this.location =new LatLng(+this.latitude11,+this.longitude11);
+           this.destinationLat=+this.latitude11;
+           this.destinationLng=+this.longitude11;   
+           console.log('destinationLat',this.destinationLat);
+           console.log('destinationLng',this.destinationLng);        
+
+        }
+        else{
           this.locateExiste =true;
         }
 
