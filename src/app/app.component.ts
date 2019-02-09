@@ -27,7 +27,7 @@ export class MyApp {
   optionsPage: any = 'OptionsPage';
   aboutPage: any = AboutPage;
   
-  version_actuell="0.0.1";
+  version_actuell="1000";
   version;
   mandatory;
   @ViewChild('content') content: NavController;
@@ -55,8 +55,6 @@ console.log('ver serv',data);
    });
 // test de version actuell et l'autre version
 setTimeout(()=>{
-console.log('ver actuell',this.version_actuell);
-console.log('ver serv',this.version);
 
   if(this.version!=this.version_actuell && this.mandatory==0){
 
@@ -85,7 +83,7 @@ console.log('ver serv',this.version);
        {
          text: 'Mise à jour',
          handler: ()=>{
-           window.location.href='http://play.google.com/store/apps/details?id=com.telecontact&hl=fr';
+           window.location.href='http://play.google.com/store/apps/details?id=com.telecontact.cover&hl=fr';
          //market: '//details?id=telecontact';
          }
        }
