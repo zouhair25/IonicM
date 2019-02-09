@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.telecontact" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.telecontact.cover" version="7.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Telecontact</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>Telecontact (Les Pages Jaunes du Maroc).</description>
+    <author email="zouhair.fassih@gmail.com" href="https://www.telecontact.ma/">Telecontact</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
