@@ -77,7 +77,7 @@ export class JaunesPage{
     onGoJaunesPage(){
       this.showBlanches = false;
       this.showJaune = true;
-
+      
       setTimeout(() => {
         this.searchBox.setFocus();
 
@@ -95,7 +95,10 @@ export class JaunesPage{
     }
  
     ionViewDidLoad() {
+      setTimeout(() => {
+        this.searchBox.setFocus();
 
+      },100);
       this.getLocation();
            // recuperation de type pro ou inv pour savoir quel est à afficher
            this.type=this.navParams.get('type');
