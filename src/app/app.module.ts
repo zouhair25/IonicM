@@ -13,7 +13,6 @@ import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
-import { Api } from '../providers/api';
 import { Functions } from '../providers/functions';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,7 +51,6 @@ import { NgPipesModule } from 'ngx-pipes';
   providers: [
     StatusBar,
     SplashScreen,
-    Api,   
     Functions,
     StatusBar,
     SplashScreen,

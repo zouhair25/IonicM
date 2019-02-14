@@ -23,70 +23,7 @@ export class SearchPage {
   lng;
   count;
   list_ville;
-   appareilsList  =[
-    {
-      name: 'Boulangerie',
-      icon: 'ios-cafe-outline',
-      cath: 'cath5',
-    }
-    ,
-     {
-      name: 'Café, bar',
-      icon: 'ios-cafe-outline',
-      cath: 'cath6'
-    },
-    {
-      name: 'Essence',
-      icon: 'ios-cafe-outline',
-      cath: 'cath13',
-    },
-    {
-      name: 'pharmacie',
-      icon: 'ios-flask-outline',
-      cath: 'cath25'      
-     },
-     /*{
-      name: 'Laboratoire',
-      icon: 'ios-flask-outline',
-      cath: ''
-     },
-     {
-      name: 'Restaurants',
-      icon: 'ios-restaurant-outline',
-      cath: ''
-     },*/
-    {
-      name: 'Fleuriste',
-      icon: 'ios-cafe-outline',
-      cath: 'cath14',
-    },
-    {
-      name: 'Hammam & spa',
-      icon: 'ios-cafe-outline',
-      cath: 'cath17',
-    },
-    {
-      name: 'Hôtel',
-      icon: 'ios-cafe-outline',
-      cath: 'cath19',
-    },
-    {
-      name: 'Kiné',
-      icon: 'ios-cafe-outline',
-      cath: 'cath21',
-    },
-    {
-      name: 'Médecin',
-      icon: 'ios-cafe-outline',
-      cath: 'cath23',
-    },
-    /*{
-      name: 'Boulangerie',
-      icon: '',
-      cath: 'cath5',
-    }*/
-  ]  
-    bool: Boolean = true;
+  bool: Boolean = true;
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController,
               private geolocation: Geolocation) {
@@ -119,14 +56,11 @@ export class SearchPage {
   ionViewDidLoad() {
       this.lat =this.navParams.get('lat');
       this.lng =this.navParams.get('lng');
-      console.log('lat j',this.lat);
-      console.log('lat j',this.lng);
+      
    
       this.go_build_pharmacie_garde();
  this.getLocation();
-    console.log('ionViewDidLoad SearchPage');
-
-
+    
      let watch =this.geolocation.watchPosition();
        watch.subscribe((data)=>{
           /*console.log("Latitude ",data.coords.latitude)   ;
@@ -163,7 +97,6 @@ export class SearchPage {
     }
     go_build_pharmacie_garde(){
        this.pharmacies_garde_load_city().then((data)=>{
-         console.log('garde',data);
          this.list_ville =data;
        });
       return this.list_ville;
@@ -195,7 +128,7 @@ export class SearchPage {
                 });
 
                 parser.parseString(response,function(err,result){
-                console.log('pharm de garde',result);
+               
                   if (result) {
                     for(let answers of result.search_answers.search_answer) { 
                       for(let item of answers.items){  
