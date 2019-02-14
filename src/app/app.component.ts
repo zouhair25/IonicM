@@ -2,13 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform,NavController,MenuController,AlertController  } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { TabsPage } from '../pages/tabs/tabs';
 import { ContactPage } from '../pages/contact/contact';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { BlanchesPage } from '../pages/blanches/blanches';
 import { JaunesPage } from '../pages/jaunes/jaunes';
-import { Api } from '../providers/api';
 import { HttpClient } from '@angular/common/http';
 import { AboutPage } from '../pages/about/about';
 
@@ -35,7 +33,6 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar,
               splashScreen: SplashScreen,
               private menuCtrl: MenuController,
-              private api: Api,
               private http: HttpClient,
               private alertController: AlertController,
               ) {
