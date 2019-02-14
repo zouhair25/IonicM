@@ -25,7 +25,7 @@ export class MyApp {
   optionsPage: any = 'OptionsPage';
   aboutPage: any = AboutPage;
   
-  version_actuell="1000";
+  version_actuell="7.0.0";
   version;
   mandatory;
   @ViewChild('content') content: NavController;
