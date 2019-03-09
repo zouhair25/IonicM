@@ -22,6 +22,7 @@ page-search {
     }
     .icon-pharmacie-garde{
         font-size: 48px !important;
+        padding-top: 14px !important;
     }
 	ion-icon {
     &[class*="custom-"] {
@@ -264,8 +265,15 @@ page-search .categorie {
 
 page-search .icon-pharmacie-garde {
     font-size: 45px !important;
+
 }
 
+.icon-coffee{
+        padding-top: 5px !important;
+}
+.icon-gas-station{
+    padding-top: 5px !important;
+}
 .inverse{
   padding-left: 12px!important;
 }

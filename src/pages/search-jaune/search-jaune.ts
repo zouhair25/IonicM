@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage,NavController, NavParams } from 'ionic-angular';
 import { Observable, Subject } from 'rxjs';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
-
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 import { Geolocation } from '@ionic-native/geolocation';
 @IonicPage()
 @Component({
@@ -24,7 +24,6 @@ export class SearchJaunePage implements OnInit{
   extract =10;
   pos;
   posScroll;
-
   extract_sd;
   first   ; 
   second  ; 
@@ -42,10 +41,9 @@ export class SearchJaunePage implements OnInit{
   private searchTerms = new Subject<string>();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	          private geolocation: Geolocation) {
-    /*for(let i=0;i<30; i++){
-      this.items.push(this.items.length);
-    }*/
+  	          private geolocation: Geolocation,
+              private firebaseAnalytics: FirebaseAnalytics) {
+    
   }
   
   doInfinite(infiniteScroll) {
@@ -106,6 +104,11 @@ infiniteScroll.complete();
   }
   ionViewDidLoad() {
    
+        //google firebase
+    this.firebaseAnalytics.logEvent('liste des professionnels', {page: "liste des professionnels"})
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));  
+
         this.quiquoi =this.navParams.get('quiquoi');
         this.ou =this.navParams.get('ou');
         this.currentLat =this.navParams.get('lat');

@@ -18,6 +18,7 @@ import {  trigger,  state,
         style,  animate,  transition,} from '@angular/animations';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { CallNumber } from '@ionic-native/call-number';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @IonicPage()
 @Component({
@@ -183,7 +184,8 @@ export class SingleProPage {
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
               private platform: Platform,
               private launchNavigator: LaunchNavigator,
-              private callNumber: CallNumber) {
+              private callNumber: CallNumber,
+              private firebaseAnalytics: FirebaseAnalytics) {
      
   }
 
@@ -239,6 +241,10 @@ export class SingleProPage {
 
       }
   ionViewDidLoad() {
+     //google firebase
+    this.firebaseAnalytics.logEvent('page annonceur', {page: "page annonceur"})
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));  
     // this.loadMap();
 
 
@@ -617,7 +623,8 @@ export class SingleProPage {
         }else if(this.longitude3 && this.latitude3){
            this.location =new LatLng(+this.latitude3,+this.longitude3);
            this.destinationLat=+this.latitude3;
-           this.destinationLng=+this.longitude3;          
+           this.destinationLng=+this.longitude3; 
+           console.log('this.latitude3 this.latitude3');        
         } else if(this.longitude4 && this.latitude4){
            this.location =new LatLng(+this.latitude4,+this.longitude4);
            this.destinationLat=+this.latitude4;

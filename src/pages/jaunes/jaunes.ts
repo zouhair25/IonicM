@@ -10,6 +10,7 @@ import {
  } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @Component({
   selector: 'page-jaunes',
@@ -42,7 +43,8 @@ export class JaunesPage{
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private el: ElementRef,
               private geolocation: Geolocation,
-              private storage: Storage) {
+              private storage: Storage,
+              private firebaseAnalytics: FirebaseAnalytics) {
 
   }
 
@@ -95,6 +97,10 @@ export class JaunesPage{
     }
  
     ionViewDidLoad() {
+     //google firebase
+    this.firebaseAnalytics.logEvent('recherche professionnels', {page: "recherche professionnels"})
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));  
       setTimeout(() => {
         this.searchBox.setFocus();
 
@@ -195,6 +201,9 @@ export class JaunesPage{
         // permet de tester si quiquoi ou ville est vide sinon il redirege vers la page search-jaune
     onDisplay(quiquoi, ou,lat,lng){
                console.log('itemitemitemitem');
+               this.quiquoi =this.quiquoi.toLowerCase();
+               this.ou =this.ou.toLowerCase();
+
            if(this.quiquoi=='' || this.quiquoi==null){        
                setTimeout(() => {
                 this.searchBox.setFocus();
@@ -207,12 +216,27 @@ export class JaunesPage{
            }else if(this.ou=='autour de moi' || this.ou=="Autour de moi"){
               this.navCtrl.push('AutourMoiPage',{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
           console.log('AutourMoiPage oui');
+           }
+           else if(this.quiquoi=='pharmacie de garde' || this.quiquoi=='pharmacie garde'
+                   || this.quiquoi=='pharmacies garde'|| this.quiquoi=='pharmacies de garde'
+                   ){
+             if(this.ou=='casa'){
+               this.ou='casablanca'
+             }
+             this.navCtrl.push('PharmacieResultPage',{ou: this.ou,lat: this.lat,lng: this.lng});
+  console.log('pharmacie de garde',this.quiquoi);
            }else{
          this.navCtrl.push('SearchJaunePage',{ou: this.ou, quiquoi: this.quiquoi,lat: this.lat,lng: this.lng})
           console.log('SearchJaunePage oui');
+            console.log('pharmacie de garde',this.quiquoi.toLowerCase());
           
            }
     }
+
+
+    
+
+  
       onDisplayBlanches(tel,lat,lng){
         if(this.tel=='' || this.tel==null){
           setTimeout(()=>{

@@ -2,7 +2,8 @@ import { Component,Pipe, PipeTransform  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
-//var groupArray = require('group-array');
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+
 
 @IonicPage()
 @Component({
@@ -22,18 +23,42 @@ export class PharmacieResultPage {
   currentLat;
   currentLng;
   count;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  ou;
+  noResult: boolean = false; 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private firebaseAnalytics: FirebaseAnalytics) {
   }
 
   ionViewDidLoad() {
+
+    setTimeout(()=>{
+      this.noResult =true;
+    },1000)
+
     this.list  = this.navParams.get('list');
+
+    //pour pharmacie de garde
+    this.ou  = this.navParams.get('ou');
+
     this.currentLat =this.navParams.get('lat');
     this.currentLng =this.navParams.get('lng');
-    this.ville = this.list.titre;
-    this.numero = this.list.numero;
+     console.log('this.currentLat ',this.currentLat )
+     console.log('this.currentLng ',this.currentLng )
+
+    if(this.list){
+      this.ville = this.list.titre;
+      this.numero = this.list.numero;      
+    }else{
+     this.ville = this.ou;
+    }
+
     this.go_build_pharmacies_de_garde_liste(this.ville,1);
 
-         // console.log('data',groupArray(this.arr,'tag'));
+  //google firebase
+  this.firebaseAnalytics.logEvent('liste pharmacie de garde', {page: "liste pharmacie de garde"})
+  .then((res: any) => console.log(res))
+  .catch((error: any) => console.error(error));
+  
 
   }
     onDisplayPro(pro: {rs_comp: string, adresse: string}){

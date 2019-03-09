@@ -7,43 +7,8 @@
 
 </ion-header>
 
-
-<!--<ion-content padding>
-  {{count}} Résultats
-  <div *ngFor='let l of result;  '>
-    <ion-grid>
-      <ion-col col-12>
-        <ion-item class="quartier">
-          <div class="p-s" *ngIf="l.key!='ZZZZZ';else isEmpty">{{l.key}}
-          </div>
-          <ng-template #isEmpty>Autre</ng-template>
-        </ion-item>
-      </ion-col>
-   <ion-col col-12>
-  	<ion-card *ngFor='let k of l.value;let j=index' >
-
-  	  <ion-card-header (click)="onDisplayPro(k.d,currentLat,currentLng)">
-  	    <input type="text" name="" value="{{j+1}}" readonly="readonly" class="cercle-chiffres"> 
-        {{k.d[1].rs_comp}}{{k.d[2].rs_comp}}
-  	  </ion-card-header>
-  	  <ion-card-content>
-
-         <div>
-            <span class="adresse">
-            {{k.d[2].adresse}}{{k.d[3].adresse}}{{k.d[4].adresse}}</span> 
-         </div>
-         <div>
-         	<strong>Ouverture : </strong>{{k.d[8].perm_type}}{{k.d[7].perm_type}}
-         </div>
-  	  </ion-card-content>
-
-  	</ion-card>
-  </ion-col>
-</ion-grid>
-  </div>
-</ion-content>-->
 <ion-content padding class="hist-content">
-<div *ngIf="!count && !noResult"><ion-spinner name="bubbles"></ion-spinner></div>
+
 
   <ion-grid *ngIf="count>0">
     <b> {{count}} Résultats</b>
@@ -84,7 +49,14 @@
     </ion-grid>
 
     <ion-grid >
-    <ion-row *ngIf="count==0 ||noResult"><ion-col col12>Aucun resultat</ion-col></ion-row>
+    <ion-row *ngIf="!count && noResult">
+      <ion-col col-1></ion-col>
+      <ion-col col-10>
+        <p>Pas de résultats pour votre recherche </p>
+        <p>veuillez essayer avec un autre mot-clé.</p>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
     </ion-grid>
  <!--<ion-list>
    <ion-item *ngFor="let i of items">{{i}}</ion-item>

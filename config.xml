@@ -92,6 +92,9 @@
     <plugin name="cordova-sqlite-storage" spec="2.6.0" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-plugin-market" spec="1.2.0" />
+    <plugin name="cordova-plugin-firebase-analytics" spec="1.0.1">
+        <variable name="FIREBASE_CORE_VERSION" value="16.0.+" />
+    </plugin>
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
 </widget>

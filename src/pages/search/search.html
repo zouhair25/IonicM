@@ -70,50 +70,50 @@
 
   <ion-slide>
     <ion-col col-12>
+		<button  (click)="onDisplayPharmacieGarde(list_ville,lat,lng)"
+					        clear class="color-back-trans">
+			<ion-icon name="custom-phar-garde" class="icon-pharmacie-garde">ph</ion-icon>
+		    <p class="categorie" >Pharmacie <br> de garde</p>
+	    </button>    
 
-    <button  (click)="onDisplayByCategory('cath5',lat,lng)"
+		<button  (click)="onDisplayByCategory('cath23',lat,lng)"
+                      clear class="color-back-trans icon-proximite-1">
+          <ion-icon name="custom-doctor" class="icon-doctor">M</ion-icon>
+            <p class="categorie" >Médecin</p>
+          </button>
+		<button  (click)="onDisplayByCategory('cath25',lat,lng)"
 					        clear class="color-back-trans icon-proximite-1">
-			<ion-icon name="custom-cupcake">B</ion-icon>
-		    <p class="categorie" >Boulangerie</p>
+
+			<ion-icon name="custom-pharmacie" class="icon-pharmacie">ph</ion-icon>
+		    <p class="categorie" >Pharmacie</p>
+
 	    </button>
 
-    <button  (click)="onDisplayByCategory('cath6',lat,lng)"
-					        clear class="color-back-trans icon-proximite-1">
-			<ion-icon name="custom-coffee" >C</ion-icon>
-		    <p class="categorie" >Café, bar</p>
-	    </button>
-
-  	<button  (click)="onDisplayByCategory('cath13',lat,lng)"
-					        clear class="color-back-trans icon-proximite-1">
-			<ion-icon name="custom-gas-station" >E</ion-icon>
-		    <p class="categorie" >Essence</p>
-	   </button>
 
       </ion-col>
 	</ion-slide>
 
 <ion-slide>
 		<ion-col col-12>
-		<button  (click)="onDisplayByCategory('cath25',lat,lng)"
-					        clear class="color-back-trans icon-proximite-1">
 
-
-			<ion-icon name="custom-pharmacie" class="icon-pharmacie">ph</ion-icon>
-		    <p class="categorie" >Pharmacie</p>
-
-	    </button>
 		<button  (click)="onDisplayByCategory('cath14',lat,lng)"
 					        clear class="color-back-trans icon-proximite-1">
 			<ion-icon name="custom-flower" class="icon-flower">F</ion-icon>
 		    <p class="categorie" >Fleuriste</p>
 	    </button>
 
-        <button  (click)="onDisplayByCategory('cath23',lat,lng)"
-                      clear class="color-back-trans icon-proximite-1">
-          <ion-icon name="custom-doctor" class="icon-doctor">M</ion-icon>
-            <p class="categorie" >Médecin</p>
-          </button>
 
+        <button  (click)="onDisplayByCategory('cath6',lat,lng)"
+					        clear class="color-back-trans icon-proximite-1">
+			<ion-icon name="custom-coffee" class="icon-coffee">C</ion-icon>
+		    <p class="categorie" >Café, bar</p>
+	    </button>
+
+  	    <button  (click)="onDisplayByCategory('cath13',lat,lng)"
+					        clear class="color-back-trans icon-proximite-1">
+			<ion-icon name="custom-gas-station" class="icon-gas-station">E</ion-icon>
+		    <p class="categorie" >Essence</p>
+	   </button>
 
 	    </ion-col>
 	</ion-slide>
@@ -157,11 +157,13 @@
 			<ion-col col-4>
 
     	<ion-col col-12>
-		<button  (click)="onDisplayPharmacieGarde(list_ville,lat,lng)"
-					        clear class="color-back-trans">
-			<ion-icon name="custom-phar-garde" class="icon-pharmacie-garde">ph</ion-icon>
-		    <p class="categorie" >Pharmacie de garde</p>
-	    </button></ion-col>
+        <button  (click)="onDisplayByCategory('cath5',lat,lng)"
+					        clear class="color-back-trans icon-proximite-1">
+			<ion-icon name="custom-cupcake">B</ion-icon>
+		    <p class="categorie" >Boulangerie</p>
+	    </button>
+
+	    </ion-col>
 
 
      </ion-col>

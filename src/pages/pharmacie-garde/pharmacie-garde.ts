@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 
 
@@ -13,21 +14,30 @@ export class PharmacieGardePage {
   list;
   currentLat;
   currentLng
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private firebaseAnalytics: FirebaseAnalytics
+              ) {
   }
 
   ionViewDidLoad() {
   	this.list = this.navParams.get('list');
     this.currentLat =this.navParams.get('lat');
     this.currentLng =this.navParams.get('lng');
+      console.log('this.lat',this.currentLat);
+      console.log('this.lng',this.currentLng);
+          /////////////////////////////////////google firebase
+  this.firebaseAnalytics.logEvent('search-garde-ville', {page: "page pharmacie garde ville"})
+  .then((res: any) => console.log(res))
+  .catch((error: any) => console.error(error));
 
-    console.log('ionViewDidLoad PharmacieGardePage',this.list);
   }
 
   onDisplayPharmacieGarde(list: {titre: string, numero: string},lat,lng){
     console.log('ionViewDidLoad PharmacieGardePage',this.list);
   	
-  	this.navCtrl.push('PharmacieResultPage',{list: list},lat,lng);
+  	this.navCtrl.push('PharmacieResultPage',{list: list,lat: this.currentLat,lng: this.currentLng});
+
+
   }
 
 }
