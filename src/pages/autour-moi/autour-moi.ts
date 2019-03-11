@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
-
-
 
 @IonicPage()
 @Component({
@@ -29,7 +26,7 @@ export class AutourMoiPage {
   noResult: boolean = false; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              ) {
   }
 
   ionViewDidLoad() {
@@ -39,10 +36,6 @@ export class AutourMoiPage {
         this.currentLng =this.navParams.get('lng');
         this.list=this.go_build_quiquoi_approxy(this.quiquoi,this.currentLat,this.currentLng,this.start);
 
-   //google firebase
-  this.firebaseAnalytics.logEvent('autour de moi', {page: "autour de moi"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));
 
   }
     

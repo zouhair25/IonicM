@@ -3,8 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
 import { JaunesPage } from '../jaunes/jaunes';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
-
 
 @Component({
   selector: 'page-blanches',
@@ -20,7 +18,7 @@ export class BlanchesPage {
   lng;
   noResult: boolean = false; 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              ) {
   }
 
   ionViewDidLoad() {
@@ -32,10 +30,7 @@ export class BlanchesPage {
          console.log('tel o:', this.tel);
          this.list=this.listeResultatTelToArray(this.tel);
           console.log('tel o:', this.list);
-  //google firebase
-  this.firebaseAnalytics.logEvent('recherche annuaire inversé', {page: "recherche annuaire inversé"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));    
+  
   }
       
   onGoJaunesPage(){

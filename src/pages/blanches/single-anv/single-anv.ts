@@ -20,7 +20,6 @@ import {  trigger,  state,
         style,  animate,  transition,} from '@angular/animations';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { CallNumber } from '@ionic-native/call-number';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @IonicPage()
 @Component({
@@ -189,8 +188,7 @@ export class SingleAnvPage {
               private geolocation: Geolocation, private googleMaps: GoogleMaps,
               private platform: Platform,
               private launchNavigator: LaunchNavigator,
-              private callNumber: CallNumber,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              private callNumber: CallNumber,) {
      
   }
 
@@ -603,10 +601,7 @@ export class SingleAnvPage {
 
 
   ionViewDidLoad() {
-      //google firebase
-  this.firebaseAnalytics.logEvent('annuaire inversé liste', {page: "annuaire inversé liste"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));   
+
     // this.loadMap();
 
 

@@ -10,7 +10,6 @@ import {
  } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @Component({
   selector: 'page-jaunes',
@@ -44,7 +43,7 @@ export class JaunesPage{
               private el: ElementRef,
               private geolocation: Geolocation,
               private storage: Storage,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              ) {
 
   }
 
@@ -97,10 +96,7 @@ export class JaunesPage{
     }
  
     ionViewDidLoad() {
-     //google firebase
-    this.firebaseAnalytics.logEvent('recherche professionnels', {page: "recherche professionnels"})
-    .then((res: any) => console.log(res))
-    .catch((error: any) => console.error(error));  
+
       setTimeout(() => {
         this.searchBox.setFocus();
 

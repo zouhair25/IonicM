@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
-
 
 
 @IonicPage()
@@ -15,7 +13,7 @@ export class PharmacieGardePage {
   currentLat;
   currentLng
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private firebaseAnalytics: FirebaseAnalytics
+              
               ) {
   }
 
@@ -25,10 +23,7 @@ export class PharmacieGardePage {
     this.currentLng =this.navParams.get('lng');
       console.log('this.lat',this.currentLat);
       console.log('this.lng',this.currentLng);
-          /////////////////////////////////////google firebase
-  this.firebaseAnalytics.logEvent('search-garde-ville', {page: "page pharmacie garde ville"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));
+          /////////////////////////////////////
 
   }
 

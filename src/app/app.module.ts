@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { CallNumber } from '@ionic-native/call-number';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 @NgModule({
   declarations: [
     MyApp,
@@ -58,7 +57,6 @@ import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
     LaunchNavigator,
     Diagnostic,
     CallNumber,
-    FirebaseAnalytics,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

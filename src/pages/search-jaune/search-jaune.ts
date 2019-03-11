@@ -6,7 +6,6 @@ import xml2js from 'xml2js';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 import { Geolocation } from '@ionic-native/geolocation';
 @IonicPage()
 @Component({
@@ -42,7 +41,7 @@ export class SearchJaunePage implements OnInit{
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	          private geolocation: Geolocation,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              ) {
     
   }
   
@@ -104,10 +103,8 @@ infiniteScroll.complete();
   }
   ionViewDidLoad() {
    
-        //google firebase
-    this.firebaseAnalytics.logEvent('liste des professionnels', {page: "liste des professionnels"})
-    .then((res: any) => console.log(res))
-    .catch((error: any) => console.error(error));  
+
+
 
         this.quiquoi =this.navParams.get('quiquoi');
         this.ou =this.navParams.get('ou');

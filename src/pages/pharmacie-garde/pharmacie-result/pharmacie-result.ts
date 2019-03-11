@@ -2,8 +2,6 @@ import { Component,Pipe, PipeTransform  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
-
 
 @IonicPage()
 @Component({
@@ -26,7 +24,7 @@ export class PharmacieResultPage {
   ou;
   noResult: boolean = false; 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private firebaseAnalytics: FirebaseAnalytics) {
+             ) {
   }
 
   ionViewDidLoad() {
@@ -54,11 +52,7 @@ export class PharmacieResultPage {
 
     this.go_build_pharmacies_de_garde_liste(this.ville,1);
 
-  //google firebase
-  this.firebaseAnalytics.logEvent('liste pharmacie de garde', {page: "liste pharmacie de garde"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));
-  
+
 
   }
     onDisplayPro(pro: {rs_comp: string, adresse: string}){

@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import * as $ from 'jquery';
 import xml2js from 'xml2js';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
-
 
 @IonicPage()
 @Component({
@@ -33,8 +31,7 @@ export class AproximitePage {
   reste =this.start;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private geolocation: Geolocation,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              private geolocation: Geolocation,) {
   }
 
   ionViewDidLoad() {
@@ -63,10 +60,7 @@ export class AproximitePage {
        
    
   /////////////////////////////////////
-  //google firebase
-    this.firebaseAnalytics.logEvent('à proximité', {page: "à proximité"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));
+
   }
   
 

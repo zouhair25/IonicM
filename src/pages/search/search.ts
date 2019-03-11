@@ -8,7 +8,6 @@ import { BlanchesPage } from '../blanches/blanches';
 import { JaunesPage } from '../jaunes/jaunes';
 import { Slides } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @IonicPage()
 @Component({
@@ -27,8 +26,7 @@ export class SearchPage {
   bool: Boolean = true;
   constructor(private navCtrl: NavController, public navParams: NavParams,
               private menuCtrl: MenuController,
-              private geolocation: Geolocation,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              private geolocation: Geolocation,) {
     this.getLocation();
   }
   
@@ -80,10 +78,7 @@ export class SearchPage {
        })
        
    
-  /////////////////////////////////////google firebase
-this.firebaseAnalytics.logEvent('search', {page: "page d'accueil"})
-  .then((res: any) => console.log(res))
-  .catch((error: any) => console.error(error));
+  ////////////////////////////////////
   }
 
 

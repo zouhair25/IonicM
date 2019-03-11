@@ -18,7 +18,6 @@ import {  trigger,  state,
         style,  animate,  transition,} from '@angular/animations';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { CallNumber } from '@ionic-native/call-number';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 
 @IonicPage()
 @Component({
@@ -185,7 +184,7 @@ export class SingleProPage {
               private platform: Platform,
               private launchNavigator: LaunchNavigator,
               private callNumber: CallNumber,
-              private firebaseAnalytics: FirebaseAnalytics) {
+              ) {
      
   }
 
@@ -241,10 +240,7 @@ export class SingleProPage {
 
       }
   ionViewDidLoad() {
-     //google firebase
-    this.firebaseAnalytics.logEvent('page annonceur', {page: "page annonceur"})
-    .then((res: any) => console.log(res))
-    .catch((error: any) => console.error(error));  
+
     // this.loadMap();
 
 
